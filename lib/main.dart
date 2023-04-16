@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:caronapp/screens/login.dart';
+import 'package:caronapp/screens/cadastro.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'VemJunto',
-      home: Login(),
+      home: Cadastro(),
     );
   }
 }
