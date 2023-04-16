@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "009161fdaae134de7125b2eb449b8784c22401dfdd1e5cf8622d82d08ee918e5"
+build_start_time: [1681679942, 776659000]
+build_end_time: [1681679944, 125883000]
+inputs:
+  "/Users/maisamoreira/Desktop/CCO/5_SEM/PDM/caronapp/macos/Flutter/GeneratedPluginRegistrant.swift": [1681679937, 712921664]
+  "/Users/maisamoreira/Desktop/CCO/5_SEM/PDM/caronapp/macos/Runner/AppDelegate.swift": [1680204710, 0]
+  "/Users/maisamoreira/Desktop/CCO/5_SEM/PDM/caronapp/macos/Runner/MainFlutterWindow.swift": [1680204710, 0]
