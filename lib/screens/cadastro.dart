@@ -3,6 +3,8 @@ import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:caronapp/widgets/custombutton.dart';
 
 class Cadastro extends StatelessWidget {
+  const Cadastro({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
