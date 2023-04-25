@@ -14,7 +14,8 @@ class Login extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 80, left: 40.0, right: 40.0, bottom: 80.0),
+              padding: const EdgeInsets.only(
+                  top: 80, left: 40.0, right: 40.0, bottom: 80.0),
               child: Expanded(
                 child: Image.asset(
                   'assets/images/vemjunto.png',
