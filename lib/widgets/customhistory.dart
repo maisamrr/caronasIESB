@@ -9,7 +9,6 @@ class CustomHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       padding: EdgeInsets.fromLTRB(13, 100, 18, 0),
       width: double.infinity,
       height: 67,
