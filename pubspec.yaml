@@ -23,3 +23,15 @@ flutter:
   uses-material-design: true
   assets:
    - assets/images/
+   - assets/fonts/
+  fonts:
+    - family: Inria
+      fonts:
+        - asset: assets/fonts/InriaSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/InriaSans-Regular.ttf
+          weight: 200
+        - asset: assets/fonts/InriaSans-Bold.ttf
+          weight: 300
+        - asset: assets/fonts/InriaSans-Light.ttf
+          weight: 100

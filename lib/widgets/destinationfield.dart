@@ -15,7 +15,7 @@ class DestinationField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(8, 0, 8, 24),
+      margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(

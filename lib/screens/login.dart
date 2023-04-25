@@ -58,9 +58,12 @@ class Login extends StatelessWidget {
                           ),
                         ),
                       ),
-                      CustomButton(
-                        text: 'Login',
-                        onPressed: () {},
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40.0),
+                        child: CustomButton(
+                          text: 'Login',
+                          onPressed: () {},
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0, left: 40.0),

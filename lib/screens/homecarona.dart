@@ -16,7 +16,7 @@ class HomeCarona extends StatelessWidget {
           children: [
             const Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 80.0, bottom: 40.0),
+                padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
                 child: Text(
                   'Olá, Julia',
                   style: TextStyle(

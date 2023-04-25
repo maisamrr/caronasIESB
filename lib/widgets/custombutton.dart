@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0, left: 40.0),
+      padding: const EdgeInsets.only(top: 16.0),
       child: SizedBox(
         width: 180,
         child: ElevatedButton(
@@ -28,7 +28,12 @@ class CustomButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(text),
+              Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
               const Icon(Icons.arrow_forward, size: 18),
             ],
           ),
