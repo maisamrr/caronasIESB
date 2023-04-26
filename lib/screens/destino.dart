@@ -49,8 +49,11 @@ class Destino extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(top: 16.0, left: 48.0, right: 48.0),
-                  child: Image.asset(
-                    'assets/images/imgmapa.png',
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.asset(
+                      'assets/images/imgmapa.png',
+                    ),
                   ),
                 ),
               ),
