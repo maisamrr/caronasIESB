@@ -1,9 +1,6 @@
-import 'package:caronapp/widgets/kmformfield.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customcarcard.dart';
 import '../widgets/customhistory.dart';
-import '../widgets/customsearchfield.dart';
-import '../widgets/customtimepicker.dart';
 import 'homecarona.dart';
 
 class EscolherVeiculo extends StatefulWidget {
