@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String labelTextCustom;
   final TextInputType keyboardTypeCustom;
+  final Color backgroundColorCustom;
 
   const CustomTextField({
     Key? key,
     required this.labelTextCustom,
     required this.keyboardTypeCustom,
+    required this.backgroundColorCustom,
   }) : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class CustomTextField extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
-          color: Colors.white,
+          color: backgroundColorCustom,
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0),

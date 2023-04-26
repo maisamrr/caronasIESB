@@ -27,22 +27,27 @@ class Cadastro extends StatelessWidget {
             const CustomTextField(
               labelTextCustom: 'Celular (00 00000-0000)',
               keyboardTypeCustom: TextInputType.phone,
+              backgroundColorCustom: Colors.white,
             ),
             const CustomTextField(
               labelTextCustom: 'Matrícula',
               keyboardTypeCustom: TextInputType.number,
+              backgroundColorCustom: Colors.white,
             ),
             const CustomTextField(
               labelTextCustom: 'E-mail',
               keyboardTypeCustom: TextInputType.emailAddress,
+              backgroundColorCustom: Colors.white,
             ),
             const CustomTextField(
               labelTextCustom: 'Gênero',
               keyboardTypeCustom: TextInputType.emailAddress,
+              backgroundColorCustom: Colors.white,
             ),
             const CustomTextField(
               labelTextCustom: 'Senha',
               keyboardTypeCustom: TextInputType.text,
+              backgroundColorCustom: Colors.white,
             ),
             Padding(
                 padding:

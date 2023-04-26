@@ -38,10 +38,12 @@ class Login extends StatelessWidget {
                       const CustomTextField(
                         labelTextCustom: 'E-mail',
                         keyboardTypeCustom: TextInputType.emailAddress,
+                        backgroundColorCustom: Colors.white,
                       ),
                       const CustomTextField(
                         labelTextCustom: 'Senha',
                         keyboardTypeCustom: TextInputType.text,
+                        backgroundColorCustom: Colors.white,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0, left: 40.0),
