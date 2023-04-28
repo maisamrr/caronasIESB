@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CustomNumberInput extends FormField<int> {
+class KmFormField extends FormField<int> {
   final BuildContext context;
   final String labelText;
   final TextInputType keyboardType;
   final Color backgroundColor;
   final Function(String)? onSubmitted;
 
-  CustomNumberInput({
+  KmFormField({
     Key? key,
     required this.context,
     required this.labelText,

@@ -64,14 +64,12 @@ class _OferecerCaronaState extends State<OferecerCarona> {
               backgroundColor: const Color(0xFFEDEDED),
               keyboardType: TextInputType.text, // pass context here
             ),
-            CustomNumberInput(
+            KmFormField(
               context: context,
               labelText: 'Enter a number',
               keyboardType: TextInputType.number,
               backgroundColor: Colors.grey[200]!,
-              onSubmitted: (value) {
-                print('Submitted value: $value');
-              },
+              onSubmitted: (value) { },
             ),
           ],
         ),
