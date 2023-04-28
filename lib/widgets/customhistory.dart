@@ -31,8 +31,8 @@ class CustomHistory extends StatelessWidget {
             height: 40,
             child: SvgPicture.asset(
               "assets/images/carona_icon.svg",
-              width: 35,
-              height: 35,
+              width: 30,
+              height: 30,
             ),
           ),
           //FIM ICONE CARONA
@@ -42,22 +42,19 @@ class CustomHistory extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.none,
-                      color: Colors.black,
-                    ),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none,
+                    color: Colors.black,
                   ),
                 ),
                 Text(
                   subtitle,
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     decoration: TextDecoration.none,
                     color: Color.fromRGBO(177, 176, 180, 0.612),
                   ),

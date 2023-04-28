@@ -66,7 +66,7 @@ class FimCarona extends StatelessWidget {
                                       top: 24,
                                       bottom: 16.0),
                                   child: Image.asset(
-                                    '/Users/maisamoreira/Desktop/CCO/5_SEM/PDM/caronapp/assets/images/logovermelho.png',
+                                    'assets/images/logovermelho.png',
                                     height: 120.0,
                                   ),
                                 ),

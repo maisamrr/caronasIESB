@@ -48,7 +48,7 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40.0, right: 40.0, bottom: 32.0),
+              padding: const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 32.0),
               child: CarWidget(
                 model: 'Hyundai HB20',
                 plate: 'BRA1234',
