@@ -1,12 +1,4 @@
-import 'package:caronapp/screens/atividades.dart';
-import 'package:caronapp/screens/cadastroveiculo.dart';
-import 'package:caronapp/screens/detalhescarona.dart';
-import 'package:caronapp/screens/escolherveiculo.dart';
-import 'package:caronapp/screens/fimcarona.dart';
-import 'package:caronapp/screens/homecarona.dart';
-import 'package:caronapp/screens/login.dart';
 import 'package:caronapp/screens/oferecercarona.dart';
-import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:flutter/material.dart';
 
 void main() {

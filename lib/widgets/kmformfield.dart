@@ -16,12 +16,10 @@ class CustomNumberInput extends FormField<int> {
     this.onSubmitted,
     int? initialValue,
     FormFieldSetter<int>? onSaved,
-    FormFieldValidator<int>? validator,
   }) : super(
           key: key,
           initialValue: initialValue ?? 0,
           onSaved: onSaved,
-          validator: validator,
           builder: (FormFieldState<int> state) {
             final TextEditingController _controller =
                 TextEditingController(text: state.value.toString());
@@ -35,37 +33,36 @@ class CustomNumberInput extends FormField<int> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      left: 16.0, right: 8.0, top: 8.0, bottom: 8.0),
+                    left: 16.0,
+                    right: 8.0,
+                  ),
                   child: Row(
                     children: <Widget>[
+                      //LABEL
                       Expanded(
                         child: TextFormField(
                           keyboardType: keyboardType,
                           decoration: InputDecoration(
-                            labelText: labelText,
                             border: InputBorder.none,
                           ),
                           controller: _controller,
-                          onFieldSubmitted: (value) {
-                            if (onSubmitted != null) {
-                              onSubmitted(value);
-                            }
-                            state.didChange(int.parse(value));
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a value';
-                            }
-                            return null;
-                          },
+                          onFieldSubmitted: (value) {/*validar*/},
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 16.0),
-                        child: Icon(
-                          Icons.insert_drive_file,
-                          size: 20,
-                          color: Colors.grey,
+                      //ICONE
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          color: const Color(0xFFFF5757),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            '0.0 km',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     ],
