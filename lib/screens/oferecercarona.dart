@@ -1,17 +1,18 @@
-import 'package:caronapp/widgets/kmformfield.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customsearchfield.dart';
 import '../widgets/customtimepicker.dart';
+import '../widgets/kmformfield.dart';
 
 class OferecerCarona extends StatefulWidget {
-  const OferecerCarona({super.key});
+  const OferecerCarona({Key? key}) : super(key: key);
 
   @override
-  _OferecerCarona createState() => _OferecerCarona();
+  _OferecerCaronaState createState() => _OferecerCaronaState();
 }
 
-class _OferecerCarona extends State<OferecerCarona> {
+class _OferecerCaronaState extends State<OferecerCarona> {
   TimeOfDay? _selectedTime;
+  int _km = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +40,7 @@ class _OferecerCarona extends State<OferecerCarona> {
               labelText: 'Local de partida',
               keyboardType: TextInputType.text,
               backgroundColor: const Color(0xFFEDEDED),
-              onSubmitted: (value) {
-                // handle the search query
-              },
+              onSubmitted: (value) {},
             ),
             CustomSearchField(
               labelText: 'Destino final',
@@ -51,7 +50,6 @@ class _OferecerCarona extends State<OferecerCarona> {
             ),
             CustomTimePicker(
               labelText: 'Horário de saída',
-
               initialValue: _selectedTime,
               onSaved: (time) {
                 _selectedTime = time;
@@ -66,8 +64,14 @@ class _OferecerCarona extends State<OferecerCarona> {
               backgroundColor: const Color(0xFFEDEDED),
               keyboardType: TextInputType.text, // pass context here
             ),
-            KmFormField(
-              label: 'Limite de Km',
+            CustomNumberInput(
+              context: context,
+              labelText: 'Enter a number',
+              keyboardType: TextInputType.number,
+              backgroundColor: Colors.grey[200]!,
+              onSubmitted: (value) {
+                print('Submitted value: $value');
+              },
             ),
           ],
         ),

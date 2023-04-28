@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Builder(
         builder: (context) {
-          return PerfilUsuario();
+          return OferecerCarona();
         },
       ),
     );
