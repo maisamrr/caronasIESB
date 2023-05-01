@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomFind extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const CustomFind({super.key, required this.onPressed});
+  const CustomFind({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
