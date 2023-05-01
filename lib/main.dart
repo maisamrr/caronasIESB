@@ -29,11 +29,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/oferecercarona':(context) => OferecerCarona(),
         '/pedircarona':(context) => HomeCarona(),
-        '/usuarioperfil':(context) => Atividades()
+        '/usuarioperfil':(context) => Atividades(),
+        '/destino':(context) => Destino()
       },
       home: Builder(
         builder: (context) {
-          return Destino();
+          return OferecerCarona();
         },
       ),
     );

@@ -15,11 +15,12 @@ class CustomButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: SizedBox(
-        width: 180,
+        height: 60,
+        width: 170,
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.fromLTRB(24, 18, 0, 18),
             backgroundColor: const Color(0xFF1AD5AD),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32.0),
@@ -31,10 +32,12 @@ class CustomButton extends StatelessWidget {
               Text(
                 text,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
                 ),
               ),
-              const Icon(Icons.arrow_forward, size: 18),
+              Padding(padding: EdgeInsets.only(right: 20, top: 1),
+              child: const Icon(Icons.arrow_forward, size: 24))
             ],
           ),
         ),
