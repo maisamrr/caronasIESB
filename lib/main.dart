@@ -27,14 +27,14 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Inria',
       ),
       routes: {
-        '/oferecercarona':(context) => OferecerCarona(),
-        '/pedircarona':(context) => HomeCarona(),
-        '/usuarioperfil':(context) => Atividades(),
-        '/destino':(context) => Destino()
+        '/oferecercarona': (context) => OferecerCarona(),
+        '/pedircarona': (context) => HomeCarona(),
+        '/usuarioperfil': (context) => Atividades(),
+        '/destino': (context) => Destino()
       },
       home: Builder(
         builder: (context) {
-          return OferecerCarona();
+          return Login();
         },
       ),
     );

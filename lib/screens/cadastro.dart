@@ -58,16 +58,15 @@ class Cadastro extends StatelessWidget {
                   Icon(Icons.circle_outlined, size: 12),
                   Text('  Eu concordo com os Termos e Condições.'),
                 ])),
-            CustomButton(
-              text: 'Cadastrar',
-              onPressed: () {
-                Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                              builder: (context) => Login()
-                            )
-                            );
-              },
+            Padding(
+              padding: const EdgeInsets.only(left: 40.0),
+              child: CustomButton(
+                text: 'Cadastrar',
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Login()));
+                },
+              ),
             ),
           ],
         ),

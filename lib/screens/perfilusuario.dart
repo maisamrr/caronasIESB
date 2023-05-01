@@ -1,3 +1,4 @@
+import 'package:caronapp/screens/atividades.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customtextfield.dart';
@@ -79,7 +80,12 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                   padding: const EdgeInsets.only(top: 8.0, left: 40.0),
                   child: CustomButton(
                     text: 'Alterar',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Atividades()));
+                    },
                   ),
                 ),
               ),

@@ -136,7 +136,7 @@ class _Atividades extends State<Atividades> {
           ],
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
