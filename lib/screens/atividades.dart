@@ -2,7 +2,6 @@ import 'package:caronapp/widgets/customdivider.dart';
 import 'package:caronapp/widgets/customhistory.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
 import 'package:flutter/material.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/roundsquareicon.dart';
 
 class Atividades extends StatefulWidget {
@@ -136,7 +135,6 @@ class _Atividades extends State<Atividades> {
           ],
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

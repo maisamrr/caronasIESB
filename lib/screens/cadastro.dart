@@ -1,4 +1,3 @@
-import 'package:caronapp/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:caronapp/widgets/custombutton.dart';
@@ -60,14 +59,7 @@ class Cadastro extends StatelessWidget {
                 ])),
             CustomButton(
               text: 'Cadastrar',
-              onPressed: () {
-                Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                              builder: (context) => Login()
-                            )
-                            );
-              },
+              onPressed: () {},
             ),
           ],
         ),

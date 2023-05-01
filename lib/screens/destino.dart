@@ -1,7 +1,5 @@
-import 'package:caronapp/screens/detalhescarona.dart';
 import 'package:caronapp/widgets/destinationfield.dart';
 import 'package:flutter/material.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
 
 class Destino extends StatelessWidget {
@@ -64,10 +62,7 @@ class Destino extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16.0, bottom: 48.0),
                   child: CustomButton(
                     text: 'Confirmar',
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => DetalhesCarona()));
-                    },
+                    onPressed: () {},
                   ),
                 ),
               ),
@@ -75,7 +70,6 @@ class Destino extends StatelessWidget {
           ),
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
