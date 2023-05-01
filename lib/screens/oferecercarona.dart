@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/customsearchfield.dart';
 import '../widgets/customtimepicker.dart';
 import '../widgets/kmformfield.dart';
@@ -74,6 +75,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
           ],
         ),
       ),
+            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

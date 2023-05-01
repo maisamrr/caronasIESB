@@ -1,3 +1,4 @@
+import 'package:caronapp/widgets/bottomnavigationbarwidget.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customfind.dart';
 import '../widgets/customhistory.dart';
@@ -59,6 +60,7 @@ class HomeCarona extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

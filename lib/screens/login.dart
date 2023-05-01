@@ -1,3 +1,5 @@
+import 'package:caronapp/screens/cadastro.dart';
+import 'package:caronapp/screens/homecarona.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:caronapp/widgets/custombutton.dart';
@@ -64,13 +66,27 @@ class Login extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 40.0),
                         child: CustomButton(
                           text: 'Login',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(
+                              builder: (context) => HomeCarona()
+                            )
+                            );
+                          },
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0, left: 40.0),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                              builder: (context) => Cadastro()
+                            )
+                            );
+                          },
                           style: ElevatedButton.styleFrom(),
                           child: const Text(
                             'Não tem uma conta? Inscreva-se',
