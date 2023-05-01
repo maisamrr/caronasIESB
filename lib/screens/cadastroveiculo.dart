@@ -1,6 +1,8 @@
+import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customcarcard.dart';
 import '../widgets/customdropdown.dart';
@@ -97,12 +99,16 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                   const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 24.0),
               child: CustomButton(
                 text: 'Cadastrar',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => EscolherVeiculo()));
+                },
               ),
             ),
           ],
         ),
       ),
+            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

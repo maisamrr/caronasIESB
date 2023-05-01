@@ -1,6 +1,7 @@
 import 'package:caronapp/widgets/customdriver.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custompassenger.dart';
 
 class DetalhesCarona extends StatelessWidget {
@@ -91,6 +92,7 @@ class DetalhesCarona extends StatelessWidget {
           ),
         ),
       ),
+            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

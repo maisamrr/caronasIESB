@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/customcarcard.dart';
 import '../widgets/customhistory.dart';
 import 'homecarona.dart';
@@ -122,6 +123,7 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
           ],
         ),
       ),
+            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

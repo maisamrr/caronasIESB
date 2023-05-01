@@ -1,5 +1,6 @@
 import 'package:caronapp/widgets/customdriver.dart';
 import 'package:flutter/material.dart';
+import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custompassenger.dart';
 import '../widgets/custompassengerlike.dart';
 
@@ -156,6 +157,7 @@ class FimCarona extends StatelessWidget {
           ),
         ),
       ),
+            bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
