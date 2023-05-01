@@ -1,3 +1,4 @@
+import 'package:caronapp/screens/cadastroveiculo.dart';
 import 'package:flutter/material.dart';
 import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/customcarcard.dart';
@@ -49,7 +50,8 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 32.0),
+              padding:
+                  const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 32.0),
               child: CarWidget(
                 model: 'Hyundai HB20',
                 plate: 'BRA1234',
@@ -59,7 +61,7 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
             GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeCarona()));
+                    MaterialPageRoute(builder: (context) => CadastroVeiculo()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 40.0, right: 40.0),
@@ -123,7 +125,7 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
           ],
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

@@ -17,7 +17,6 @@ class OferecerCarona extends StatefulWidget {
 class _OferecerCaronaState extends State<OferecerCarona> {
   TimeOfDay? _selectedTime;
   int _km = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +39,16 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                 ),
               ),
             ),
-            Padding(padding: EdgeInsets.only(left: 40),
-            child: Text(
-              'Carro em uso', 
-              style: TextStyle(fontSize: 20, fontFamily: 'Inria', color: Colors.black)
-              )
-              ),
-            Padding(padding: EdgeInsets.fromLTRB(40, 24, 0, 0),
-            child: AddCarButton()),
+            Padding(
+                padding: EdgeInsets.only(left: 40),
+                child: Text('Carro em uso',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Inria',
+                        color: Colors.black))),
+            Padding(
+                padding: EdgeInsets.fromLTRB(40, 24, 0, 0),
+                child: AddCarButton()),
             CustomSearchField(
               labelText: 'Local de partida',
               keyboardType: TextInputType.text,
@@ -81,19 +82,22 @@ class _OferecerCaronaState extends State<OferecerCarona> {
               labelText: 'Enter a number',
               keyboardType: TextInputType.number,
               backgroundColor: Colors.grey[200]!,
-              onSubmitted: (value) { },
+              onSubmitted: (value) {},
             ),
-            Padding(padding: EdgeInsets.only(left: 40, top: 7),
-            child: CustomButton(
-                text: 'VemJunto',
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => HomeCarona()));
-                }))
+            Padding(
+                padding: EdgeInsets.only(left: 40, top: 7),
+                child: CustomButton(
+                    text: 'VemJunto',
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeCarona()));
+                    }))
           ],
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
