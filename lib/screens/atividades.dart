@@ -84,9 +84,9 @@ class _Atividades extends State<Atividades> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 40.0, right: 40.0),
                 child: CustomHistory(
-                  onPressed: () {},
                   title: 'IESB Sul',
                   subtitle: 'SGAS Quadra 613/614, Via L2 Sul',
+                  iconAsset: "assets/images/carona_icon.svg",
                 ),
               ),
             ),
@@ -96,9 +96,9 @@ class _Atividades extends State<Atividades> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 40.0, right: 40.0),
                 child: CustomHistory(
-                  onPressed: () {},
                   title: 'Casa',
                   subtitle: 'QE 38, Guará',
+                  iconAsset: "assets/images/carona_icon.svg",
                 ),
               ),
             ),
@@ -108,9 +108,9 @@ class _Atividades extends State<Atividades> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 40.0, right: 40.0),
                 child: CustomHistory(
-                  onPressed: () {},
                   title: 'Conjunto Nacional',
                   subtitle: 'SDN, CNB - Asa Norte',
+                  iconAsset: "assets/images/carona_icon.svg",
                 ),
               ),
             ),
@@ -131,7 +131,7 @@ class _Atividades extends State<Atividades> {
                   ),
                 ),
               ),
-              onTap: () => ('https://www.google.com'),
+              onTap: () => ('https://www.google.com'), //CORRIGIR
             ),
           ],
         ),

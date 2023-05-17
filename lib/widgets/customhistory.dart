@@ -2,25 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomHistory extends StatelessWidget {
-  final VoidCallback onPressed;
   final String title;
   final String subtitle;
+  final dynamic iconAsset;
 
   const CustomHistory({
     Key? key,
-    required this.onPressed,
     required this.title,
     required this.subtitle,
+    required this.iconAsset,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Widget iconWidget;
+    if (iconAsset is String && iconAsset.endsWith('.svg')) {
+      iconWidget = SvgPicture.asset(
+        iconAsset,
+        width: 30,
+        height: 30,
+      );
+    } else if (iconAsset is Icon) {
+      iconWidget = iconAsset;
+    } else {
+      iconWidget = const Icon(
+        Icons.add,
+        size: 20,
+        color: Colors.black,
+      );
+    }
     return SizedBox(
       height: 100,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          //ICONE CARONA
+          // ICON
           Container(
             margin: const EdgeInsets.only(right: 24.0),
             decoration: BoxDecoration(
@@ -29,14 +45,10 @@ class CustomHistory extends StatelessWidget {
             ),
             width: 40,
             height: 40,
-            child: SvgPicture.asset(
-              "assets/images/carona_icon.svg",
-              width: 30,
-              height: 30,
-            ),
+            child: iconWidget,
           ),
-          //FIM ICONE CARONA
-          //TEXTOS
+          // END ICON
+          // TEXTS
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,8 +74,8 @@ class CustomHistory extends StatelessWidget {
               ],
             ),
           ),
-          //FIM TEXTOS
-          //SETA
+          // END TEXTS
+          // ARROW
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -72,8 +84,8 @@ class CustomHistory extends StatelessWidget {
                 Icon(Icons.chevron_right, size: 40),
               ],
             ),
-            //FIM SETA
           ),
+          // END ARROW
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:caronapp/widgets/bottomnavigationbarwidget.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customfind.dart';
 import '../widgets/customhistory.dart';
+import 'cadastroveiculo.dart';
 
 class HomeCarona extends StatelessWidget {
   const HomeCarona({super.key});
@@ -36,27 +37,48 @@ class HomeCarona extends StatelessWidget {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 48.0, right: 48.0),
-              child: CustomHistory(
-                onPressed: () {},
-                title: 'IESB Sul',
-                subtitle: 'SGAS Quadra 613/614, Via L2 Sul',
+            GestureDetector(
+              onTap: () {
+                //CORRIGIR
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CadastroVeiculo()));
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(left: 48.0, right: 48.0),
+                child: CustomHistory(
+                  title: 'IESB Sul',
+                  subtitle: 'SGAS Quadra 613/614, Via L2 Sul',
+                  iconAsset: "assets/images/carona_icon.svg",
+                ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 48.0, right: 48.0),
-              child: Divider(
-                color: Color.fromRGBO(177, 176, 180, 0.612),
-                thickness: 1,
+            GestureDetector(
+              onTap: () {
+                //CORRIGIR
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CadastroVeiculo()));
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(left: 48.0, right: 48.0),
+                child: Divider(
+                  color: Color.fromRGBO(177, 176, 180, 0.612),
+                  thickness: 1,
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 48.0, right: 48.0),
-              child: CustomHistory(
-                onPressed: () {},
-                title: 'Casa',
-                subtitle: 'QE 38, Guará',
+            GestureDetector(
+              onTap: () {
+                //CORRIGIR
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CadastroVeiculo()));
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(left: 48.0, right: 48.0),
+                child: CustomHistory(
+                  title: 'Casa',
+                  subtitle: 'QE 38, Guará',
+                  iconAsset: "assets/images/carona_icon.svg",
+                ),
               ),
             ),
           ],

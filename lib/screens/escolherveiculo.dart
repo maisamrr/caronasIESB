@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/customcarcard.dart';
 import '../widgets/customhistory.dart';
+import 'excluirveiculo.dart';
 import 'homecarona.dart';
 
 class EscolherVeiculo extends StatefulWidget {
@@ -63,62 +64,26 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CadastroVeiculo()));
               },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    //ICONE CARONA
-                    Container(
-                      margin: const EdgeInsets.only(right: 24.0),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEBEBEB),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      width: 40,
-                      height: 40,
-                      child: const Icon(Icons.add),
-                    ),
-                    //TEXTOS
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 8.0),
-                            child: Text(
-                              'Novo veículo',
-                              style: TextStyle(
-                                fontSize: 18,
-                                decoration: TextDecoration.none,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            'Adicionar',
-                            style: TextStyle(
-                              fontSize: 12,
-                              decoration: TextDecoration.none,
-                              color: Color.fromRGBO(177, 176, 180, 0.612),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    //SETA
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: const [
-                          Icon(Icons.chevron_right, size: 40),
-                        ],
-                      ),
-                    ),
-                    //FIM SETA
-                  ],
+              child: const Padding(
+                padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                child: CustomHistory(
+                  title: 'Novo veículo',
+                  subtitle: 'Adicionar',
+                  iconAsset: Icons.add,
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ExcluirVeiculo()));
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                child: CustomHistory(
+                  title: 'Excluir veículo',
+                  subtitle: 'Remover',
+                  iconAsset: Icon(Icons.delete_outline, size: 20, color: Colors.black),
                 ),
               ),
             ),
