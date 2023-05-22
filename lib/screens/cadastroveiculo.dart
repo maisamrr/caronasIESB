@@ -65,7 +65,8 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                       left: 40.0, right: 40.0, bottom: 24.0),
                   child: CustomDropdown(
                     optionsList: const ['Ford Ka', 'HB20', 'Celta'],
-                    hint: 'Modelo',
+                    hint: 'Modelo', 
+                    boxColor: const Color(0xFFEDEDED),
                   ),
                 ),
                 //COR
@@ -80,7 +81,8 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                       'Preto',
                       'Azul escuro'
                     ],
-                    hint: 'Cor',
+                    hint: 'Cor', 
+                    boxColor: const Color(0xFFEDEDED),
                   ),
                 ),
                 //COR
@@ -89,7 +91,8 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                       left: 40.0, right: 40.0, bottom: 24.0),
                   child: CustomDropdown(
                     optionsList: const ['Carro', 'Moto'],
-                    hint: 'Tipo',
+                    hint: 'Tipo', 
+                    boxColor: const Color(0xFFEDEDED),
                   ),
                 ),
               ],
