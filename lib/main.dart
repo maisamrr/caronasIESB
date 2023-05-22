@@ -7,6 +7,8 @@ import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:caronapp/screens/esquecisenha.dart';
 import 'package:caronapp/screens/excluirveiculo.dart';
 import 'package:caronapp/screens/fimcarona.dart';
+import 'package:caronapp/screens/historicodaviagem.dart';
+import 'package:caronapp/screens/historicodecaronas.dart';
 import 'package:caronapp/screens/homecarona.dart';
 import 'package:caronapp/screens/login.dart';
 import 'package:caronapp/screens/oferecercarona.dart';
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       },
       home: Builder(
         builder: (context) {
-          return Login();
+          return HistoricoDaViagem();
         },
       ),
     );
