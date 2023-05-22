@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
-import '../widgets/customcarcard.dart';
+import '../widgets/carwidget.dart';
 import '../widgets/customdropdown.dart';
 import '../widgets/customhistory.dart';
 import 'homecarona.dart';

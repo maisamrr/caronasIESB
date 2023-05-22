@@ -1,4 +1,5 @@
 import 'package:caronapp/screens/cadastro.dart';
+import 'package:caronapp/screens/esquecisenha.dart';
 import 'package:caronapp/screens/homecarona.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/customtextfield.dart';
@@ -53,7 +54,12 @@ class Login extends StatelessWidget {
                             padding:
                                 const EdgeInsets.only(top: 16.0, left: 40.0),
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EsqueciSenha()));
+                              },
                               style: ElevatedButton.styleFrom(),
                               child: const Text(
                                 'Esqueci minha senha',

@@ -2,7 +2,7 @@ import 'package:caronapp/screens/cadastroveiculo.dart';
 import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:flutter/material.dart';
 import '../widgets/bottomnavigationbarwidget.dart';
-import '../widgets/customcarcard.dart';
+import '../widgets/carwidget.dart';
 import '../widgets/customhistory.dart';
 import 'homecarona.dart';
 import 'oferecercarona.dart';

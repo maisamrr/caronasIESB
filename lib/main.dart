@@ -4,6 +4,7 @@ import 'package:caronapp/screens/cadastroveiculo.dart';
 import 'package:caronapp/screens/destino.dart';
 import 'package:caronapp/screens/detalhescarona.dart';
 import 'package:caronapp/screens/escolherveiculo.dart';
+import 'package:caronapp/screens/esquecisenha.dart';
 import 'package:caronapp/screens/excluirveiculo.dart';
 import 'package:caronapp/screens/fimcarona.dart';
 import 'package:caronapp/screens/homecarona.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       },
       home: Builder(
         builder: (context) {
-          return ExcluirVeiculo();
+          return Login();
         },
       ),
     );
