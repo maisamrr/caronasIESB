@@ -6,6 +6,7 @@ import 'package:caronapp/screens/detalhescarona.dart';
 import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:caronapp/screens/esquecisenha.dart';
 import 'package:caronapp/screens/excluirveiculo.dart';
+import 'package:caronapp/screens/faq.dart';
 import 'package:caronapp/screens/fimcarona.dart';
 import 'package:caronapp/screens/historicodaviagem.dart';
 import 'package:caronapp/screens/historicodecaronas.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       },
       home: Builder(
         builder: (context) {
-          return Cadastro();
+          return Faq();
         },
       ),
     );
