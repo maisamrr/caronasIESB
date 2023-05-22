@@ -32,15 +32,16 @@ O projeto deve ser executado usando Run na main.dart do editor de código ou usa
 flutter run
 ```
 
-## User Interface
-### Login, cadastro e recuperação de senha
-<img alt="Tela vermelha de login com a logo do VemJunto em branco e os campos de login: email e senha, link de Esqueci minha senha, botão verde de Login e link de Não possui uma senha? Inscreva-se" src="./rsc/01_login.png"/>    
-
-### Home, Solicitar carona, Oferecer Carona
-### Cadastro de veículos
-### Atividade e Perfil do usuário
-
 ### Bibliotecas
 * [MobX](https://github.com/mobxjs/mobx.dart)
+
+## User Interface
+### Login, cadastro e recuperação de senha
+<img height="400" alt="Tela vermelha de login com a logo do VemJunto em branco e os campos de login: email e senha, link de Esqueci minha senha, botão verde de Login e link de Não possui uma senha? Inscreva-se" src="./rsc/01_login.png"/> <img height="400" alt="Tela de cadastro" src="./rsc/02_cadastro.png"/> <img height="400" alt="Tela de esqueci minha senha" src="./rsc/03_esquecisenha.png"/> <img height="400" alt="Tela de pop up de esqueci minha senha" src="./rsc/04_esquecisenha.png"/>    
+
+### Home, Solicitar carona, Oferecer Carona
+
+### Cadastro de veículos
+### Atividade e Perfil do usuário
 
 Projeto desenvolvido para as disciplinas de Programação para Dispositivos Móveis e Projeto Integrador 3A em 2023.1 - Ciência da Computação - IESB/Sul.
