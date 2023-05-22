@@ -53,16 +53,24 @@ class HistoricoDeCaronas extends StatelessWidget {
                 },
               ),
               const CustomDivider(),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                  child: CustomHistory(
-                    title: 'Casa',
-                    subtitle: 'QE 38, Guará',
-                    iconAsset: "assets/images/carona_icon.svg",
+              GestureDetector(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 40.0, right: 40.0),
+                    child: CustomHistory(
+                      title: 'Casa',
+                      subtitle: 'QE 38, Guará',
+                      iconAsset: "assets/images/carona_icon.svg",
+                    ),
                   ),
                 ),
+                onTap: () => {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HistoricoDaViagem()))
+                },
               ),
               const CustomDivider(),
               Align(

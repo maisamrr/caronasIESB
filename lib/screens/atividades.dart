@@ -1,3 +1,4 @@
+import 'package:caronapp/screens/historicodecaronas.dart';
 import 'package:caronapp/widgets/customdivider.dart';
 import 'package:caronapp/widgets/customhistory.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
@@ -69,7 +70,7 @@ class _Atividades extends State<Atividades> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: 24.0, left: 40.0, right: 40.0, bottom: 24.0),
+                    top: 40.0, left: 40.0, right: 40.0, bottom: 8.0),
                 child: Text(
                   'Viagens recentes',
                   style: TextStyle(
@@ -78,7 +79,6 @@ class _Atividades extends State<Atividades> {
                 ),
               ),
             ),
-            const CustomDivider(),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -131,7 +131,10 @@ class _Atividades extends State<Atividades> {
                   ),
                 ),
               ),
-              onTap: () => ('https://www.google.com'), //CORRIGIR
+              onTap: () => (Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HistoricoDeCaronas()))),
             ),
           ],
         ),
