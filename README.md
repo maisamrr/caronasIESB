@@ -1,16 +1,46 @@
-# caronapp
+# VemJunto
+O aplicativo VemJunto propõe uma solução para o deslocamento de estudantes até a faculdade através de caronas, promovento a integração entre alunos, economia financeira e utilização da tecnologia. Ele permite tanto solicitar uma carona a partir do endereço de partida e chegada fornecida pelo usuário, como oferecer uma carona, detalhando a quantidade de assentos disponíveis. Algumas das funcionalidades desenvolvidas:
+- Cadastro de usuários
+- Solicitar/Oferecer carona: configurar endereços de partida e destino, quantidade de assentos disponíveis, horário e raio de quilometragem máxima de busca
+- Cadastro e exclusão de veículos
+- Alteração de perfil do usuário
+- Listagem do histórico de caronas
 
-A new Flutter project.
+## Linguagens e recursos
+- Linguagem: [Dart](https://dart.dev/)
+- Framework: [Flutter](https://flutter.dev/)
+- Backend: [Firebase](https://firebase.google.com/?hl=pt-br)
 
-## Getting Started
+## Pré-requisitos e execução
+É necessário para o projeto: Flutter SDK 3.7.9, Dart SDK 2.19.6, editor de código, emulador Android ou iOS.
 
-This project is a starting point for a Flutter application.
+**Passo 1:**
+Clone ou baixe o repositório usando o link abaixo:
+```
+https://github.com/maisamrr/caronasIESB.git
+```
 
-A few resources to get you started if this is your first Flutter project:
+**Passo 2:**
+Na pasta root do projeto, executar o comando abaixo no console para obter as dependências necessárias:
+```
+flutter pub get 
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Passo 3:**
+O projeto deve ser executado usando Run na main.dart do editor de código ou usando o comando abaixo no console.
+```
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## User Interface
+### Login, cadastro e recuperação de senha
+<img alt="Tela vermelha de login com a logo do VemJunto em branco e os campos de login: email e senha, link de Esqueci minha senha, botão verde de Login e link de Não possui uma senha? Inscreva-se" src="./rsc/01_login.png"/>    
+
+### Home, Solicitar carona, Oferecer Carona
+### Cadastro de veículos
+### Atividade e Perfil do usuário
+
+### Bibliotecas
+* [MobX](https://github.com/mobxjs/mobx.dart)
+
+Projeto desenvolvido para as disciplinas de Programação para Dispositivos Móveis e Projeto Integrador 3A em 2023.1 - Ciência da Computação - IESB/Sul.

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       },
       home: Builder(
         builder: (context) {
-          return HistoricoDaViagem();
+          return Login();
         },
       ),
     );
