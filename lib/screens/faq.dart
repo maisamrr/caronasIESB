@@ -1,3 +1,4 @@
+import 'package:caronapp/screens/atividades.dart';
 import 'package:caronapp/screens/cadastro.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class Faq extends StatelessWidget {
                   child: const Icon(Icons.arrow_back, size: 24),
                   onTap: () => {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Cadastro()))
+                        MaterialPageRoute(builder: (context) => Atividades()))
                   },
                 ),
               ),
@@ -49,6 +50,8 @@ class Faq extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  textColor: Color(0xFFFF5757), 
+                  iconColor: Color(0xFFFF5757),
                   children: <Widget>[
                     ListTile(
                       title: Text(
@@ -70,6 +73,74 @@ class Faq extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  textColor: Color(0xFFFF5757), 
+                  iconColor: Color(0xFFFF5757),
+                  children: <Widget>[
+                    ListTile(
+                        title: Text(
+                      'As viagens no VemJunto são de graça. Não é permitido cobrar por uma viagem através do app.',
+                      style: TextStyle(
+                        height: 1.8,
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                child: ExpansionTile(
+                  title: Text(
+                    'Como faço para oferecer uma carona?',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  textColor: Color(0xFFFF5757), 
+                  iconColor: Color(0xFFFF5757),
+                  children: <Widget>[
+                    ListTile(
+                        title: Text(
+                      'As viagens no VemJunto são de graça. Não é permitido cobrar por uma viagem através do app.',
+                      style: TextStyle(
+                        height: 1.8,
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                child: ExpansionTile(
+                  title: Text(
+                    'Como adicionar um veículo no aplicativo?',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  textColor: Color(0xFFFF5757), 
+                  iconColor: Color(0xFFFF5757),
+                  children: <Widget>[
+                    ListTile(
+                        title: Text(
+                      'As viagens no VemJunto são de graça. Não é permitido cobrar por uma viagem através do app.',
+                      style: TextStyle(
+                        height: 1.8,
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                child: ExpansionTile(
+                  title: Text(
+                    'Posso levar uma pessoa comigo ao pedir uma carona?',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  textColor: Color(0xFFFF5757), 
+                  iconColor: Color(0xFFFF5757),
                   children: <Widget>[
                     ListTile(
                         title: Text(
