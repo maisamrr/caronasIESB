@@ -1,4 +1,7 @@
+import 'package:caronapp/screens/contatosuporte.dart';
+import 'package:caronapp/screens/faq.dart';
 import 'package:caronapp/screens/historicodecaronas.dart';
+import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:caronapp/widgets/customdivider.dart';
 import 'package:caronapp/widgets/customhistory.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
@@ -50,18 +53,36 @@ class _Atividades extends State<Atividades> {
             //ROW ícones do menu
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                RoundedSquareIcon(
-                  icon: Icons.edit_document,
+              children: [
+                GestureDetector(
+                  child: RoundedSquareIcon(
+                    icon: Icons.edit_document,
+                  ),
+                  onTap: () => {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PerfilUsuario()))
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 32.0, right: 32.0),
-                  child: RoundedSquareIcon(
-                    icon: Icons.email,
+                  child: GestureDetector(
+                    child: RoundedSquareIcon(
+                      icon: Icons.email,
+                    ),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ContatoSuporte())),
                   ),
                 ),
-                RoundedSquareIcon(
-                  icon: Icons.info_sharp,
+                GestureDetector(
+                  child: RoundedSquareIcon(
+                    icon: Icons.info_sharp,
+                  ),
+                  onTap: () => Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Faq())),
                 ),
               ],
             ),

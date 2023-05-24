@@ -1,7 +1,8 @@
+import 'package:caronapp/screens/aguardandoinicio.dart';
 import 'package:caronapp/screens/atividades.dart';
-import 'package:caronapp/screens/contatosuporte.dart';
 import 'package:caronapp/screens/destino.dart';
 import 'package:caronapp/screens/homecarona.dart';
+import 'package:caronapp/screens/login.dart';
 import 'package:caronapp/screens/oferecercarona.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       },
       home: Builder(
         builder: (context) {
-          return ContatoSuporte();
+          return AguardandoInicio();
         },
       ),
     );
