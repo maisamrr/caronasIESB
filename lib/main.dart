@@ -4,6 +4,7 @@ import 'package:caronapp/screens/destino.dart';
 import 'package:caronapp/screens/homecarona.dart';
 import 'package:caronapp/screens/login.dart';
 import 'package:caronapp/screens/oferecercarona.dart';
+import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       },
       home: Builder(
         builder: (context) {
-          return AguardandoInicio();
+          return PerfilUsuario();
         },
       ),
     );

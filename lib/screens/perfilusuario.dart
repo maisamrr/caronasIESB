@@ -28,13 +28,54 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                 child: Column(
                   children: [
                     //FOTO
-                    Padding(
-                      padding: const EdgeInsets.only(top: 32.0),
-                      child: RoundProfilePicture(
-                        photoPath: 'assets/images/imgprofilejulia.png',
-                        size: 120,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 40.0, left: 40.0),
+                        child: GestureDetector(
+                          child: const Icon(
+                            Icons.arrow_back,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                          onTap: () => {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Atividades()))
+                          },
+                        ),
                       ),
                     ),
+                    //FOTO INICIO
+                    GestureDetector(
+                      child: Stack(
+                        children: [
+                          RoundProfilePicture(
+                            photoPath: 'assets/images/imgprofilejulia.png',
+                            size: 120,
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: const EdgeInsets.all(4),
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () => {},
+                    ),
+                    //FOTO FIM
                     const Padding(
                       padding: EdgeInsets.only(top: 24.0, bottom: 32.0),
                       child: Text(
