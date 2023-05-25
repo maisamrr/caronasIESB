@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/cadastro.dart';
 import 'package:caronapp/screens/esquecisenha.dart';
 import 'package:caronapp/screens/homecarona.dart';
@@ -9,7 +10,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFF5757),
+      backgroundColor: redIdColor,
       body: ListView(
         children: [
           Container(

@@ -13,6 +13,8 @@ dependencies:
   flutter_svg: ^0.22.0
   cupertino_icons: ^1.0.2
   google_fonts: ^2.0.0
+  google_nav_bar: ^5.0.6
+
 
 dev_dependencies:
   flutter_test:
@@ -25,13 +27,13 @@ flutter:
    - assets/images/
    - assets/fonts/
   fonts:
-    - family: Inria
+    - family: Satoshi
       fonts:
-        - asset: assets/fonts/InriaSans-Italic.ttf
-          style: italic
-        - asset: assets/fonts/InriaSans-Regular.ttf
-          weight: 200
-        - asset: assets/fonts/InriaSans-Bold.ttf
+        - asset: assets/fonts/Satoshi-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Satoshi-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Satoshi-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Satoshi-Light.ttf
           weight: 300
-        - asset: assets/fonts/InriaSans-Light.ttf
-          weight: 100

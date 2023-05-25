@@ -8,14 +8,13 @@ class CustomFind extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(8, 0, 8, 32),
+      margin: const EdgeInsets.fromLTRB(8, 0, 8, 24.0),
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
         ),
         child: Container(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
           child: SizedBox(
             width: double.infinity,
             height: 60,
@@ -26,13 +25,6 @@ class CustomFind extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFFEDEDED),
                 borderRadius: BorderRadius.circular(16),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x14263f33),
-                    offset: Offset(0, 3),
-                    blurRadius: 8,
-                  ),
-                ],
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

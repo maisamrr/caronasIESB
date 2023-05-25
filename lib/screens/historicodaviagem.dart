@@ -252,7 +252,7 @@ class HistoricoDaViagem extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

@@ -90,7 +90,7 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

@@ -157,7 +157,7 @@ class FimCarona extends StatelessWidget {
           ),
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+            //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

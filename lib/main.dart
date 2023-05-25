@@ -1,10 +1,8 @@
-import 'package:caronapp/screens/aguardandoinicio.dart';
 import 'package:caronapp/screens/atividades.dart';
 import 'package:caronapp/screens/destino.dart';
 import 'package:caronapp/screens/homecarona.dart';
 import 'package:caronapp/screens/login.dart';
 import 'package:caronapp/screens/oferecercarona.dart';
-import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'VemJunto',
       theme: ThemeData(
-        fontFamily: 'Inria',
+        fontFamily: 'Satochi',
       ),
       routes: {
         '/oferecercarona': (context) => OferecerCarona(),
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
       },
       home: Builder(
         builder: (context) {
-          return PerfilUsuario();
+          return OferecerCarona();
         },
       ),
     );

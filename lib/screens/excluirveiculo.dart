@@ -162,7 +162,7 @@ class _ExcluirVeiculo extends State<ExcluirVeiculo> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

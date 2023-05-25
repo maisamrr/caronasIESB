@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
 
 class KmFormField extends FormField<int> {
@@ -27,9 +28,10 @@ class KmFormField extends FormField<int> {
               padding:
                   const EdgeInsets.only(top: 24.0, left: 40.0, right: 40.0),
               child: Container(
+                height: 60,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  color: backgroundColor,
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: Colors.white,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -42,7 +44,7 @@ class KmFormField extends FormField<int> {
                       Expanded(
                         child: TextFormField(
                           keyboardType: keyboardType,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                           ),
                           controller: _controller,
@@ -51,9 +53,10 @@ class KmFormField extends FormField<int> {
                       ),
                       //ICONE
                       Container(
+                        margin: EdgeInsets.only(right: 8.0),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          color: const Color(0xFFFF5757),
+                          borderRadius: BorderRadius.circular(5),
+                          color: redIdColor,
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
@@ -61,6 +64,7 @@ class KmFormField extends FormField<int> {
                             '0.0 km',
                             style: TextStyle(
                               color: Colors.white,
+                              fontSize: 16.0,
                             ),
                           ),
                         ),

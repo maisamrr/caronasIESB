@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
 
 class CustomTimePicker extends FormField<TimeOfDay> {
@@ -26,10 +27,11 @@ class CustomTimePicker extends FormField<TimeOfDay> {
             final TextEditingController _controller =
                 TextEditingController(text: state.value!.format(context));
             return Padding(
-              padding: const EdgeInsets.only(top: 24.0, left: 40.0, right: 40.0),
+              padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
               child: Container(
+                height: 60,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(20.0),
                   color: backgroundColor,
                 ),
                 child: InkWell(
@@ -74,14 +76,15 @@ class CustomTimePicker extends FormField<TimeOfDay> {
                                   labelText,
                                   style: const TextStyle(
                                     fontSize: 16.0,
-                                    color: Colors.black87,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
                               Container(
+                                margin: EdgeInsets.only(right: 8.0),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  color: const Color(0xFFFF5757),
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: redIdColor,
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),

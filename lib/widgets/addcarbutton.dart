@@ -14,39 +14,32 @@ class AddCarButton extends StatelessWidget {
         );
       },
       child: Container(
-        height: 29.7,
-        width: 200,
+        height: 60,
+        width: 248,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(20, 0, 0, 0),
-              offset: Offset(0.0, 8.0),
-              blurRadius: 20.0,
-            )
-          ],
-          color: Color.fromARGB(255, 255, 255, 255),
+          borderRadius: BorderRadius.circular(20.0),
+          color: const Color(0xFFf7f5f5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          children: const [
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 35, 0),
+              padding: EdgeInsets.fromLTRB(24, 0, 35, 0),
               child: Text(
                 'Adicione um carro',
                 style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[300],
-                    fontFamily: 'Inria'),
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
               ),
             ),
             Padding(
                 padding: EdgeInsets.fromLTRB(35, 0, 10, 0),
-                child: Text('+',
-                    style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.black,
-                        fontFamily: 'Inria')))
+                child: Icon(
+                  Icons.add,
+                  size: 24,
+                  color: Colors.grey,
+                ))
           ],
         ),
       ),

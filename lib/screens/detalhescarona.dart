@@ -92,7 +92,7 @@ class DetalhesCarona extends StatelessWidget {
           ),
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+            //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

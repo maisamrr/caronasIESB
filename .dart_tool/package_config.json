@@ -92,6 +92,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "google_nav_bar",
+      "rootUri": "file:///Users/maisamoreira/.pub-cache/hosted/pub.dev/google_nav_bar-5.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "http",
       "rootUri": "file:///Users/maisamoreira/.pub-cache/hosted/pub.dev/http-0.13.5",
       "packageUri": "lib/",
@@ -290,7 +296,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-17T17:44:21.477182Z",
+  "generated": "2023-05-25T01:01:36.217923Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }

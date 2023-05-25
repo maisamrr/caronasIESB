@@ -31,15 +31,8 @@ class DestinationField extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                color: const Color(0xFFEDEDED),
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x14263f33),
-                    offset: Offset(0, 3),
-                    blurRadius: 8,
-                  ),
-                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +49,7 @@ class DestinationField extends StatelessWidget {
                     child: Text(
                       text,
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 16.0,
                         color: Color(0xff000000),
                       ),
                     ),

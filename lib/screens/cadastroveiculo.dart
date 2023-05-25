@@ -111,7 +111,7 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
           ],
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+            //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

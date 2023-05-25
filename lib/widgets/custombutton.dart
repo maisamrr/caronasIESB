@@ -32,12 +32,11 @@ class CustomButton extends StatelessWidget {
               Text(
                 text,
                 style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
+                  fontSize: 16.0,
                 ),
               ),
-              Padding(padding: EdgeInsets.only(right: 20, top: 1),
-              child: const Icon(Icons.arrow_forward, size: 24))
+              const Padding(padding: EdgeInsets.only(right: 20, top: 1),
+              child: Icon(Icons.arrow_forward, size: 24))
             ],
           ),
         ),

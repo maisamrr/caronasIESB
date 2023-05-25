@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/homecarona.dart';
 import 'package:flutter/material.dart';
 import '../widgets/addcarbutton.dart';
@@ -20,45 +21,45 @@ class _OferecerCaronaState extends State<OferecerCarona> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(
+            Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
+                padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                 child: Text(
                   'Oferecer Carona',
                   style: TextStyle(
                     fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFF5757),
+                    fontWeight: FontWeight.w900,
+                    color: redIdColor,
                   ),
                 ),
               ),
             ),
-            Padding(
+            const Padding(
                 padding: EdgeInsets.only(left: 40),
                 child: Text('Carro em uso',
                     style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Inria',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                         color: Colors.black))),
             Padding(
-                padding: EdgeInsets.fromLTRB(40, 24, 0, 0),
+                padding: const EdgeInsets.fromLTRB(40, 24, 0, 16.0),
                 child: AddCarButton()),
             CustomSearchField(
               labelText: 'Local de partida',
               keyboardType: TextInputType.text,
-              backgroundColor: const Color(0xFFEDEDED),
+              backgroundColor: Colors.white,
               onSubmitted: (value) {},
             ),
             CustomSearchField(
               labelText: 'Destino final',
               keyboardType: TextInputType.text,
-              backgroundColor: const Color(0xFFEDEDED),
+              backgroundColor: Colors.white,
               onSubmitted: (value) {},
             ),
             CustomTimePicker(
@@ -74,8 +75,8 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                 return null;
               },
               context: context,
-              backgroundColor: const Color(0xFFEDEDED),
-              keyboardType: TextInputType.text, // pass context here
+              backgroundColor: Colors.white,
+              keyboardType: TextInputType.text,
             ),
             KmFormField(
               context: context,
@@ -97,7 +98,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      //bottomNavigationBar: BottomNav(),
     );
   }
 }

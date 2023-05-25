@@ -129,7 +129,7 @@ class AguardandoInicio extends StatelessWidget {
           ),
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+            //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

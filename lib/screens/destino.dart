@@ -1,31 +1,34 @@
 import 'package:caronapp/screens/detalhescarona.dart';
+import 'package:caronapp/widgets/bottonnav.dart';
 import 'package:caronapp/widgets/destinationfield.dart';
 import 'package:flutter/material.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
+import '../const.dart';
 import '../widgets/custombutton.dart';
+import 'historicodecaronas.dart';
 
 class Destino extends StatelessWidget {
   const Destino({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
+              Center(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
+                  padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                   child: Text(
                     'Destino',
                     style: TextStyle(
                       fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFF5757),
+                      fontWeight: FontWeight.w900,
+                      color: redIdColor,
                     ),
                   ),
                 ),
@@ -65,8 +68,10 @@ class Destino extends StatelessWidget {
                   child: CustomButton(
                     text: 'Confirmar',
                     onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => DetalhesCarona()));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetalhesCarona()));
                     },
                   ),
                 ),
@@ -75,7 +80,12 @@ class Destino extends StatelessWidget {
           ),
         ),
       ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
+      bottomNavigationBar: BottomNav(
+        onTabChange: (index) => (Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HistoricoDeCaronas(),))), //corrigir!
+      ),
     );
   }
 }
