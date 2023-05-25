@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -21,7 +22,7 @@ class CustomButton extends StatelessWidget {
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.fromLTRB(24, 18, 0, 18),
-            backgroundColor: const Color(0xFF1AD5AD),
+            backgroundColor: greenIdColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32.0),
             ),

@@ -1,9 +1,9 @@
-import 'package:caronapp/screens/cadastroveiculo.dart';
+import 'package:caronapp/const.dart';
+import 'package:caronapp/models/carmodel.dart';
+import 'package:caronapp/models/savedcarmodels.dart';
+import 'package:caronapp/widgets/carmodeltile.dart';
 import 'package:flutter/material.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
-import '../widgets/carwidget.dart';
-import '../widgets/customhistory.dart';
-import 'excluirveiculo.dart';
+import '../widgets/customsecondarybutton.dart';
 import 'homecarona.dart';
 
 class EscolherVeiculo extends StatefulWidget {
@@ -14,10 +14,24 @@ class EscolherVeiculo extends StatefulWidget {
 }
 
 class _EscolherVeiculo extends State<EscolherVeiculo> {
+  SavedCarModels savedCarModels = SavedCarModels();
+
+  void deleteCar(CarModel car) {}
+
+  int _selectedIndex = 1;
+  void navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    
+    List<CarModel> cars = savedCarModels.savedCarModels;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -36,61 +50,64 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
                 ),
               ),
             ),
-            Row(
-              children: const [
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: 40.0, right: 40.0, bottom: 32.0),
-                  child: Text(
-                    'Escolha o veículo',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                    ),
-                  ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(40.0, 0, 40.0, 24.0),
+              child: Text(
+                'Escolha o veículo desejado',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
                 ),
-              ],
+              ),
             ),
             Padding(
               padding:
-                  const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 32.0),
-              child: CarWidget(
-                model: 'Hyundai HB20',
-                plate: 'BRA1234',
-                color: Colors.blueGrey,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CadastroVeiculo()));
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 40.0, right: 40.0),
-                child: CustomHistory(
-                  title: 'Novo veículo',
-                  subtitle: 'Adicionar',
-                  iconAsset: Icons.add,
+                  const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 16.0),
+              child: Container(
+                height: 80,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFf7f5f5),
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16.0),
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.add,
+                        size: 25,
+                        color: Colors.grey,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Adicionar novo',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ExcluirVeiculo()));
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 40.0, right: 40.0),
-                child: CustomHistory(
-                  title: 'Excluir veículo',
-                  subtitle: 'Remover',
-                  iconAsset: Icon(Icons.delete_outline, size: 20, color: Colors.black),
-                ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: cars.length,
+                itemBuilder: (context, index) {
+                  final car = cars[index];
+                  return CarModelTile(
+                    carModel: car,
+                    onPressed: () {},
+                  );
+                },
               ),
             ),
           ],
         ),
       ),
-      //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

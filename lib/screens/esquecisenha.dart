@@ -1,36 +1,14 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:caronapp/widgets/custombutton.dart';
 
-showAlertDialog(BuildContext context) {
-  Widget okButton = TextButton(
-    child: const Text("OK"),
-    onPressed: () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Login()));
-    },
-  );
-  AlertDialog alert = AlertDialog(
-    title: const Text("Recuperação de senha"),
-    content: const Text("Foi enviado um e-mail para o endereço informado."),
-    actions: [
-      okButton,
-    ],
-  );
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
-
 class EsqueciSenha extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFF5757),
+      backgroundColor: redIdColor,
       body: ListView(
         children: [
           Container(
@@ -66,9 +44,9 @@ class EsqueciSenha extends StatelessWidget {
                             child: Text(
                               'Esqueceu sua senha?',
                               style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.0,
                                 color: Colors.white,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 20,
                               ),
                             ),
                           ),
@@ -99,4 +77,28 @@ class EsqueciSenha extends StatelessWidget {
       ),
     );
   }
+}
+
+
+showAlertDialog(BuildContext context) {
+  Widget okButton = TextButton(
+    child: const Text("OK"),
+    onPressed: () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Login()));
+    },
+  );
+  AlertDialog alert = AlertDialog(
+    title: const Text("Recuperação de senha"),
+    content: const Text("Foi enviado um e-mail para o endereço informado."),
+    actions: [
+      okButton,
+    ],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

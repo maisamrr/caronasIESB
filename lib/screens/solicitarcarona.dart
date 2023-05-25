@@ -52,7 +52,7 @@ class _PedirCaronaState extends State<PedirCarona> {
                   padding: EdgeInsets.only(
                       top: 24.0, left: 56.0, right: 40.0, bottom: 24.0),
                   child: Text(
-                    'Endereços salvos',
+                    'Endereços recentes',
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,

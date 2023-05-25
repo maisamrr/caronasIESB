@@ -28,65 +28,36 @@ class CustomHistory extends StatelessWidget {
       iconWidget = const Icon(
         Icons.add,
         size: 20,
-        color: Colors.black,
+        color: Colors.grey,
       );
     }
-    return SizedBox(
-      height: 100,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // ICON
-          Container(
-            margin: const EdgeInsets.only(right: 24.0),
-            decoration: BoxDecoration(
-              color: const Color(0xFFEBEBEB),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            width: 40,
-            height: 40,
-            child: iconWidget,
-          ),
-          // END ICON
-          // TEXTS
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.none,
-                    color: Colors.black,
-                  ),
-                ),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    decoration: TextDecoration.none,
-                    color: Color.fromRGBO(177, 176, 180, 0.612),
-                  ),
-                ),
-              ],
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFFf7f5f5),
+        borderRadius: BorderRadius.circular(24.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+        child: ListTile(
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              'Oie',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Color(0xff000000),
+              ),
             ),
           ),
-          // END TEXTS
-          // ARROW
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Icon(Icons.chevron_right, size: 40),
-              ],
-            ),
-          ),
-          // END ARROW
-        ],
+          leading: iconAsset,
+          trailing: IconButton(
+              icon: const Icon(
+                Icons.arrow_forward,
+                size: 30,
+              ),
+              onPressed: () {}),
+        ),
       ),
     );
   }

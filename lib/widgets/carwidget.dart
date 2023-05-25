@@ -29,19 +29,10 @@ class _CarWidgetState extends State<CarWidget> {
             context, MaterialPageRoute(builder: (context) => OferecerCarona()))
       },
       child: Container(
-        padding: const EdgeInsets.only(
-            top: 24.0, left: 16.0, right: 16, bottom: 24.0),
+        padding: const EdgeInsets.all(24.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color.fromARGB(255, 236, 236, 236),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(20, 38, 63, 51),
-              spreadRadius: 1,
-              blurRadius: 20,
-              offset: Offset(0, 8),
-            ),
-          ],
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,16 +44,16 @@ class _CarWidgetState extends State<CarWidget> {
                 Text(
                   widget.model,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Color.fromARGB(255, 28, 22, 46)),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
                 Text(
                   widget.plate,
                   style: const TextStyle(
-                      fontSize: 14,
-                      height: 1.5,
-                      color: Color.fromARGB(255, 28, 22, 46)),
+                    fontSize: 12,
+                    height: 1.5,
+                  ),
                 ),
               ],
             ),

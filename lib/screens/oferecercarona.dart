@@ -1,8 +1,7 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/homecarona.dart';
+import 'package:caronapp/screens/detalhescarona.dart';
 import 'package:flutter/material.dart';
 import '../widgets/addcarbutton.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customsearchfield.dart';
 import '../widgets/customtimepicker.dart';
@@ -93,7 +92,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HomeCarona()));
+                              builder: (context) => DetalhesCarona()));
                     }))
           ],
         ),

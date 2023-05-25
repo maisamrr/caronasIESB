@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
 
 class CustomDriver extends StatelessWidget {
@@ -16,7 +17,6 @@ class CustomDriver extends StatelessWidget {
           padding: const EdgeInsets.only(top: 8.0, left: 48.0, right: 48.0),
           child: Row(
             children: [
-              //FOTO MOTORISTA
               Container(
                 margin: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
                 width: 35,
@@ -31,36 +31,12 @@ class CustomDriver extends StatelessWidget {
                   size: 25
                 ),
               ),
-
-              //MOTORISTA
               Expanded(
                 child: Text(
                   driverName,
                   style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
-                ),
-              ),
-
-              //COMPARTILHAR
-              GestureDetector(
-                onTap: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.emergency_share,
-                      color: Color(0xFFFF5757), 
-                      size: 30
-                    ),
-                    Text(
-                      'Compartilhar',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ],

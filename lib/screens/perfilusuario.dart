@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/atividades.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custombutton.dart';
@@ -15,15 +16,15 @@ class _PerfilUsuario extends State<PerfilUsuario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
               Container(
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFFF5757),
+                decoration: BoxDecoration(
+                  color: redIdColor,
                 ),
                 child: Column(
                   children: [
@@ -82,7 +83,7 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                         'Julia Paiva',
                         style: TextStyle(
                           fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w900,
                           color: Colors.white,
                         ),
                       ),
@@ -90,30 +91,40 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                   ],
                 ),
               ),
-              const CustomTextField(
-                labelTextCustom: 'Celular (61 99000-0000)',
-                keyboardTypeCustom: TextInputType.phone,
-                backgroundColorCustom: Color(0xFFEDEDED),
+              SizedBox(
+                height: 32,
+              ),
+              Text(
+                'Alterar perfil',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const CustomTextField(
-                labelTextCustom: 'Matrícula 20201235000',
+                labelTextCustom: 'Celular',
                 keyboardTypeCustom: TextInputType.phone,
-                backgroundColorCustom: Color(0xFFEDEDED),
+                backgroundColorCustom: Colors.white,
               ),
               const CustomTextField(
-                labelTextCustom: 'paiva.julia@iesb.edu.br',
+                labelTextCustom: 'Matrícula',
                 keyboardTypeCustom: TextInputType.phone,
-                backgroundColorCustom: Color(0xFFEDEDED),
+                backgroundColorCustom: Colors.white,
+              ),
+              const CustomTextField(
+                labelTextCustom: 'Email',
+                keyboardTypeCustom: TextInputType.phone,
+                backgroundColorCustom: Colors.white,
               ),
               const CustomTextField(
                 labelTextCustom: '********',
                 keyboardTypeCustom: TextInputType.phone,
-                backgroundColorCustom: Color(0xFFEDEDED),
+                backgroundColorCustom: Colors.white,
               ),
               const CustomTextField(
-                labelTextCustom: 'Ciência da Computação - 5º',
+                labelTextCustom: 'Curso',
                 keyboardTypeCustom: TextInputType.phone,
-                backgroundColorCustom: Color(0xFFEDEDED),
+                backgroundColorCustom: Colors.white,
               ),
               Align(
                 alignment: Alignment.centerLeft,

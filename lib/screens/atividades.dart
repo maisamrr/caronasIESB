@@ -1,12 +1,16 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/contatosuporte.dart';
 import 'package:caronapp/screens/faq.dart';
 import 'package:caronapp/screens/historicodecaronas.dart';
 import 'package:caronapp/screens/perfilusuario.dart';
-import 'package:caronapp/widgets/customdivider.dart';
 import 'package:caronapp/widgets/customhistory.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
 import 'package:flutter/material.dart';
+import '../models/address.dart';
+import '../models/savedaddress.dart';
+import '../widgets/addresstile.dart';
 import '../widgets/bottomnavigationbarwidget.dart';
+import '../widgets/bottonnav.dart';
 import '../widgets/roundsquareicon.dart';
 
 class Atividades extends StatefulWidget {
@@ -17,25 +21,30 @@ class Atividades extends StatefulWidget {
 }
 
 class _Atividades extends State<Atividades> {
+  SavedAddress savedAddress = SavedAddress();
+  int _selectedIndex = 2;
+
   @override
   Widget build(BuildContext context) {
+    List<Address> addresses = savedAddress.savedAddress;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
             //ROW nome
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.only(top: 32.0, bottom: 24.0),
                   child: Text(
                     'Julia Paiva',
                     style: TextStyle(
                       fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFF5757),
+                      fontWeight: FontWeight.w900,
+                      color: redIdColor,
                     ),
                   ),
                 ),
@@ -55,7 +64,7 @@ class _Atividades extends State<Atividades> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  child: RoundedSquareIcon(
+                  child: const RoundedSquareIcon(
                     icon: Icons.edit_document,
                   ),
                   onTap: () => {
@@ -66,9 +75,9 @@ class _Atividades extends State<Atividades> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 32.0, right: 32.0),
+                  padding: const EdgeInsets.only(left: 32.0, right: 32.0),
                   child: GestureDetector(
-                    child: RoundedSquareIcon(
+                    child: const RoundedSquareIcon(
                       icon: Icons.email,
                     ),
                     onTap: () => Navigator.push(
@@ -78,7 +87,7 @@ class _Atividades extends State<Atividades> {
                   ),
                 ),
                 GestureDetector(
-                  child: RoundedSquareIcon(
+                  child: const RoundedSquareIcon(
                     icon: Icons.info_sharp,
                   ),
                   onTap: () => Navigator.push(
@@ -91,58 +100,38 @@ class _Atividades extends State<Atividades> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: 40.0, left: 40.0, right: 40.0, bottom: 8.0),
+                    top: 40.0, left: 40.0, right: 40.0, bottom: 16.0),
                 child: Text(
                   'Viagens recentes',
                   style: TextStyle(
                     fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                child: CustomHistory(
-                  title: 'IESB Sul',
-                  subtitle: 'SGAS Quadra 613/614, Via L2 Sul',
-                  iconAsset: "assets/images/carona_icon.svg",
-                ),
+            //filha - LISTA
+
+            Container(
+              height: 380,
+              child: ListView.builder(
+                itemCount: addresses.length,
+                itemBuilder: (context, index) {
+                  final address = addresses[index];
+                  return AddressTile(
+                    address: address,
+                    onPressed: () {},
+                  );
+                },
               ),
             ),
-            const CustomDivider(),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                child: CustomHistory(
-                  title: 'Casa',
-                  subtitle: 'QE 38, Guará',
-                  iconAsset: "assets/images/carona_icon.svg",
-                ),
-              ),
-            ),
-            const CustomDivider(),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                child: CustomHistory(
-                  title: 'Conjunto Nacional',
-                  subtitle: 'SDN, CNB - Asa Norte',
-                  iconAsset: "assets/images/carona_icon.svg",
-                ),
-              ),
-            ),
-            const CustomDivider(),
             //HISTORICO
             GestureDetector(
               child: const Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: EdgeInsets.only(
-                      top: 24.0, left: 40.0, right: 40.0, bottom: 24.0),
+                      top: 16.0, left: 40.0, right: 40.0, bottom: 24.0),
                   child: Text(
                     'Ver todo o histórico',
                     style: TextStyle(
@@ -160,7 +149,9 @@ class _Atividades extends State<Atividades> {
           ],
         ),
       ),
-      //bottomNavigationBar: BottomNavigationBarWidget(),
+       bottomNavigationBar: BottomNav(
+        onTabChange: (index) => {},
+      ),
     );
   }
 }

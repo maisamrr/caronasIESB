@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/homecarona.dart';
 import 'package:caronapp/screens/login.dart';
 import 'package:caronapp/screens/termoscondicoes.dart';
@@ -12,7 +13,7 @@ class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEBEBEB),
+      backgroundColor: backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,6 +40,11 @@ class Cadastro extends StatelessWidget {
               ),
             ),
             const CustomTextField(
+              labelTextCustom: 'Nome',
+              keyboardTypeCustom: TextInputType.text,
+              backgroundColorCustom: Colors.white,
+            ),
+            const CustomTextField(
               labelTextCustom: 'Celular (00 00000-0000)',
               keyboardTypeCustom: TextInputType.phone,
               backgroundColorCustom: Colors.white,
@@ -53,14 +59,10 @@ class Cadastro extends StatelessWidget {
               keyboardTypeCustom: TextInputType.emailAddress,
               backgroundColorCustom: Colors.white,
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 24.0, left: 40.0, right: 40.0),
-              child: CustomDropdown(
-                optionsList: const ['Feminino', 'Masculino', 'Não-binário'],
-                hint: 'Gênero',
-                boxColor: Colors.white,
-              ),
+            CustomDropdown(
+              optionsList: const ['Feminino', 'Masculino', 'Não-binário'],
+              hint: 'Gênero',
+              boxColor: Colors.white,
             ),
             const CustomTextField(
               labelTextCustom: 'Senha',

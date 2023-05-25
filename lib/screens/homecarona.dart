@@ -1,9 +1,12 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/atividades.dart';
+import 'package:caronapp/screens/contatosuporte.dart';
 import 'package:caronapp/screens/oferecercarona.dart';
 import 'package:caronapp/screens/solicitarcarona.dart';
 import 'package:caronapp/widgets/bottonnav.dart';
 import 'package:flutter/material.dart';
+
+import 'faq.dart';
 
 class HomeCarona extends StatefulWidget {
   const HomeCarona({super.key});
@@ -22,13 +25,8 @@ class _HomeCaronaState extends State<HomeCarona> {
 
   //SCREENS
   final List<Widget> _screens = [
-    //SCREEN solicitar
     PedirCarona(),
-
-    //SCREEN oferecer
     OferecerCarona(),
-
-    //SCREEN atividades
     Atividades(),
   ];
 
@@ -43,3 +41,5 @@ class _HomeCaronaState extends State<HomeCarona> {
     );
   }
 }
+
+

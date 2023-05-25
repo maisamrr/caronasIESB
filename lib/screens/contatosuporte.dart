@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/atividades.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class ContatoSuporte extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -31,15 +32,15 @@ class ContatoSuporte extends StatelessWidget {
                   },
                 ),
               ),
-              const Center(
+              Center(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
+                  padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                   child: Text(
                     'Suporte',
                     style: TextStyle(
                       fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFF5757),
+                      fontWeight: FontWeight.w900,
+                      color: redIdColor,
                     ),
                   ),
                 ),
@@ -47,22 +48,19 @@ class ContatoSuporte extends StatelessWidget {
               const CustomTextField(
                 labelTextCustom: 'Nome',
                 keyboardTypeCustom: TextInputType.text,
-                backgroundColorCustom: Color(0xFFEBEBEB),
+                backgroundColorCustom: Colors.white,
               ),
               const CustomTextField(
                 labelTextCustom: 'E-mail',
                 keyboardTypeCustom: TextInputType.emailAddress,
-                backgroundColorCustom: Color(0xFFEBEBEB),
+                backgroundColorCustom: Colors.white,
               ),
               const CustomTextField(
                 labelTextCustom: 'Matrícula',
                 keyboardTypeCustom: TextInputType.number,
-                backgroundColorCustom: Color(0xFFEBEBEB),
+                backgroundColorCustom: Colors.white,
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 24.0, left: 40.0, right: 40.0),
-                child: CustomDropdown(
+              CustomDropdown(
                   optionsList: const [
                     'Login',
                     'Pedir carona',
@@ -72,22 +70,22 @@ class ContatoSuporte extends StatelessWidget {
                     'Outros'
                   ],
                   hint: 'Tipo de problema',
-                  boxColor: const Color(0xFFEBEBEB),
+                  boxColor: Colors.white,
                 ),
-              ),
+              
               Padding(
                 padding:
                     const EdgeInsets.only(top: 24.0, left: 40.0, right: 40.0),
                 child: Container(
                   height: 150,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: const Color(0xFFEBEBEB),
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Colors.white,
                   ),
                   child: TextField(
                     decoration: const InputDecoration(
                       contentPadding: EdgeInsets.symmetric(
-                          horizontal: 16.0),
+                          horizontal: 16.0, vertical: 8.0),
                       labelText: 'Descrição do problema',
                       hintText: 'Relate aqui seu problema',
                       border: InputBorder.none,
@@ -103,7 +101,7 @@ class ContatoSuporte extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
                 child: CustomButton(
-                  text: 'Recuperar',
+                  text: 'Enviar',
                   onPressed: () => {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => Atividades()))

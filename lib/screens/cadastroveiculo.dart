@@ -1,13 +1,10 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
-import '../widgets/carwidget.dart';
 import '../widgets/customdropdown.dart';
-import '../widgets/customhistory.dart';
-import 'homecarona.dart';
 
 class CadastroVeiculo extends StatefulWidget {
   const CadastroVeiculo({super.key});
@@ -27,21 +24,21 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
     //FIM STATUS BAR
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(
+            Center(
               child: Padding(
                 padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
                 child: Text(
                   'Cadastrar veículo',
                   style: TextStyle(
                     fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFF5757),
+                    fontWeight: FontWeight.w900,
+                    color: redIdColor,
                   ),
                 ),
               ),
@@ -50,68 +47,50 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //PLACA
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 24.0),
-                  child: CustomTextField(
-                    labelTextCustom: 'Placa',
-                    keyboardTypeCustom: TextInputType.text,
-                    backgroundColorCustom: Color(0xFFEDEDED),
-                  ),
+                CustomTextField(
+                  labelTextCustom: 'Placa',
+                  keyboardTypeCustom: TextInputType.text,
+                  backgroundColorCustom: Colors.white,
                 ),
-                //MODELO
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 40.0, right: 40.0, bottom: 24.0),
-                  child: CustomDropdown(
-                    optionsList: const ['Ford Ka', 'HB20', 'Celta'],
-                    hint: 'Modelo', 
-                    boxColor: const Color(0xFFEDEDED),
-                  ),
+                CustomDropdown(
+                  optionsList: const ['Ford Ka', 'HB20', 'Celta'],
+                  hint: 'Modelo',
+                  boxColor: Colors.white,
                 ),
-                //COR
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 40.0, right: 40.0, bottom: 24.0),
-                  child: CustomDropdown(
-                    optionsList: const [
-                      'Prata',
-                      'Branco',
-                      'Vermelho',
-                      'Preto',
-                      'Azul escuro'
-                    ],
-                    hint: 'Cor', 
-                    boxColor: const Color(0xFFEDEDED),
-                  ),
+                CustomDropdown(
+                  optionsList: const [
+                    'Prata',
+                    'Branco',
+                    'Vermelho',
+                    'Preto',
+                    'Azul escuro'
+                  ],
+                  hint: 'Cor',
+                  boxColor: Colors.white,
                 ),
-                //COR
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 40.0, right: 40.0, bottom: 24.0),
-                  child: CustomDropdown(
-                    optionsList: const ['Carro', 'Moto'],
-                    hint: 'Tipo', 
-                    boxColor: const Color(0xFFEDEDED),
-                  ),
+                CustomDropdown(
+                  optionsList: const ['Carro', 'Moto'],
+                  hint: 'Tipo',
+                  boxColor: Colors.white,
                 ),
               ],
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 24.0),
+              padding: const EdgeInsets.fromLTRB(40.0, 24.0, 40.0, 24.0),
               child: CustomButton(
                 text: 'Cadastrar',
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => EscolherVeiculo()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EscolherVeiculo()));
                 },
               ),
             ),
           ],
         ),
       ),
-            //bottomNavigationBar: BottomNavigationBarWidget(),
+      //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

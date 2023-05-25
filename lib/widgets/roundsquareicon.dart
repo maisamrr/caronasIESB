@@ -16,23 +16,16 @@ class RoundedSquareIcon extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 236, 236, 236),
+          color: const Color(0xFFEDEDED),
           borderRadius: BorderRadius.circular(16),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(20, 38, 63, 51),
-              blurRadius: 20,
-              offset: Offset(0, 8),
-            ),
-          ],
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Center(
             child: Icon(
               icon,
-              color: Colors.black,
-              size: 48,
+              color: Colors.grey,
+              size: 30,
             ),
           ),
         ),

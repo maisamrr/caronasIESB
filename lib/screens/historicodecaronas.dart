@@ -1,25 +1,49 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/detalhescarona.dart';
 import 'package:caronapp/widgets/destinationfield.dart';
 import 'package:flutter/material.dart';
+import '../models/address.dart';
+import '../models/savedaddress.dart';
+import '../widgets/addresstile.dart';
 import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
-import '../widgets/customdivider.dart';
 import '../widgets/customhistory.dart';
+import 'atividades.dart';
 import 'historicodaviagem.dart';
 
 class HistoricoDeCaronas extends StatelessWidget {
-  const HistoricoDeCaronas({super.key});
+  HistoricoDeCaronas({super.key});
+  SavedAddress savedAddress = SavedAddress();
 
   @override
   Widget build(BuildContext context) {
+    List<Address> addresses = savedAddress.savedAddress;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 40.0, left: 40.0),
+                  child: GestureDetector(
+                    child: const Icon(
+                      Icons.arrow_back,
+                      size: 24,
+                      color: Colors.grey,
+                    ),
+                    onTap: () => {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => Atividades()))
+                    },
+                  ),
+                ),
+              ),
               const Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
@@ -33,55 +57,17 @@ class HistoricoDeCaronas extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
-                child: const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 40.0, right: 40.0),
-                    child: CustomHistory(
-                      title: 'IESB Sul',
-                      subtitle: 'SGAS Quadra 613/614, Via L2 Sul',
-                      iconAsset: "assets/images/carona_icon.svg",
-                    ),
-                  ),
-                ),
-                onTap: () => {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HistoricoDaViagem()))
-                },
-              ),
-              const CustomDivider(),
-              GestureDetector(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                    child: CustomHistory(
-                      title: 'Casa',
-                      subtitle: 'QE 38, Guará',
-                      iconAsset: "assets/images/carona_icon.svg",
-                    ),
-                  ),
-                ),
-                onTap: () => {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HistoricoDaViagem()))
-                },
-              ),
-              const CustomDivider(),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-                  child: CustomHistory(
-                    title: 'Conjunto Nacional',
-                    subtitle: 'SDN, CNB - Asa Norte',
-                    iconAsset: "assets/images/carona_icon.svg",
-                  ),
+              Container(
+                height: 500,
+                child: ListView.builder(
+                  itemCount: addresses.length,
+                  itemBuilder: (context, index) {
+                    final address = addresses[index];
+                    return AddressTile(
+                      address: address,
+                      onPressed: () {},
+                    );
+                  },
                 ),
               ),
             ],

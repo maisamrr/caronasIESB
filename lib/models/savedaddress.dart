@@ -11,6 +11,22 @@ class SavedAddress {
       nameAddress: 'IESB Sul',
       detailsAddress: 'SGAS Quadra 613/614',
     ),
+    Address(
+      nameAddress: 'Shopping',
+      detailsAddress: 'HAGGShshsjsjk jsjsj ',
+    ),
+    Address(
+      nameAddress: 'Comercial',
+      detailsAddress: 'SGAS Quadra',
+    ),
+    Address(
+      nameAddress: 'Estágio',
+      detailsAddress: 'SCHSC85859',
+    ),
+    Address(
+      nameAddress: 'IESB Asa Norte',
+      detailsAddress: 'SGAS Quadra 613/614',
+    ),
   ];
 
   //get saved addresses

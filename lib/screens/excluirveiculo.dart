@@ -1,7 +1,11 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/cadastroveiculo.dart';
 import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:flutter/material.dart';
+import '../models/carmodel.dart';
+import '../models/savedcarmodels.dart';
 import '../widgets/bottomnavigationbarwidget.dart';
+import '../widgets/carmodeltile.dart';
 import '../widgets/carwidget.dart';
 import '../widgets/customhistory.dart';
 import 'homecarona.dart';
@@ -15,41 +19,41 @@ class ExcluirVeiculo extends StatefulWidget {
 }
 
 class _ExcluirVeiculo extends State<ExcluirVeiculo> {
+  SavedCarModels savedCarModels = SavedCarModels();
+
   @override
   Widget build(BuildContext context) {
+    List<CarModel> cars = savedCarModels.savedCarModels;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(
+            Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
+                padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                 child: Text(
                   'Oferecer Carona',
                   style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFFF5757),
+                    color: redIdColor,
                   ),
                 ),
               ),
             ),
-            Row(
-              children: const [
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: 40.0, right: 40.0, bottom: 32.0),
-                  child: Text(
-                    'Escolha o veículo',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                    ),
-                  ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(40.0, 0, 40.0, 24.0),
+              child: Text(
+                'Escolha o veículo',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
                 ),
-              ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,10 +62,17 @@ class _ExcluirVeiculo extends State<ExcluirVeiculo> {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         left: 40.0, right: 16.0, bottom: 32.0),
-                    child: CarWidget(
-                      model: 'Hyundai HB20',
-                      plate: 'BRA1234',
-                      color: Colors.blueGrey,
+                    child: Expanded(
+                      child: ListView.builder(
+                        itemCount: cars.length,
+                        itemBuilder: (context, index) {
+                          final car = cars[index];
+                          return CarModelTile(
+                            carModel: car,
+                            onPressed: () {},
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -134,8 +145,7 @@ class _ExcluirVeiculo extends State<ExcluirVeiculo> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
-                              Icon(Icons.close,
-                                  size: 25, color: Colors.black),
+                              Icon(Icons.close, size: 25, color: Colors.black),
                             ],
                           ),
                         ],
