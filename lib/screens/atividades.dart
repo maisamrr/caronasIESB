@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import '../models/address.dart';
 import '../models/savedaddress.dart';
 import '../widgets/addresstile.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/bottonnav.dart';
 import '../widgets/roundsquareicon.dart';
 
@@ -148,9 +147,6 @@ class _Atividades extends State<Atividades> {
             ),
           ],
         ),
-      ),
-       bottomNavigationBar: BottomNav(
-        onTabChange: (index) => {},
       ),
     );
   }
