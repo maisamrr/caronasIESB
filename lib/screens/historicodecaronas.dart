@@ -9,7 +9,7 @@ import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customhistory.dart';
 import 'atividades.dart';
-import 'historicodaviagem.dart';
+import 'detalhesdaviagem.dart';
 
 class HistoricoDeCaronas extends StatelessWidget {
   HistoricoDeCaronas({super.key});

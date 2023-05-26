@@ -84,8 +84,7 @@ showAlertDialog(BuildContext context) {
   Widget okButton = TextButton(
     child: const Text("OK"),
     onPressed: () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Login()));
+     Navigator.of(context).pushNamed('/');
     },
   );
   AlertDialog alert = AlertDialog(

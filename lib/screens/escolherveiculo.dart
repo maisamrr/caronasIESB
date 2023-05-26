@@ -4,7 +4,6 @@ import 'package:caronapp/models/savedcarmodels.dart';
 import 'package:caronapp/widgets/carmodeltile.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customsecondarybutton.dart';
-import 'homecarona.dart';
 
 class EscolherVeiculo extends StatefulWidget {
   const EscolherVeiculo({super.key});

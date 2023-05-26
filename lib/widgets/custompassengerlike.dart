@@ -1,4 +1,3 @@
-import 'package:caronapp/screens/homecarona.dart';
 import 'package:flutter/material.dart';
 
 class CustomPassengerLike extends StatelessWidget {
@@ -26,11 +25,8 @@ class CustomPassengerLike extends StatelessWidget {
                   color: const Color.fromRGBO(214, 214, 214, 0.612),
                   borderRadius: BorderRadius.circular(17.5),
                 ),
-                child: const Icon(
-                  Icons.account_circle,
-                  color: Colors.grey, 
-                  size: 25
-                ),
+                child: const Icon(Icons.account_circle,
+                    color: Colors.grey, size: 25),
               ),
 
               //MOTORISTA
@@ -40,29 +36,6 @@ class CustomPassengerLike extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                   ),
-                ),
-              ),
-
-              //COMPARTILHAR
-              GestureDetector(
-                onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeCarona()));
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.thumb_up,
-                      color: Color(0xFFFF5757), 
-                      size: 30
-                    ),
-                    Text(
-                      'Avaliar',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ],

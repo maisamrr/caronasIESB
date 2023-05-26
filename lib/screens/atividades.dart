@@ -3,7 +3,6 @@ import 'package:caronapp/screens/contatosuporte.dart';
 import 'package:caronapp/screens/faq.dart';
 import 'package:caronapp/screens/historicodecaronas.dart';
 import 'package:caronapp/screens/perfilusuario.dart';
-import 'package:caronapp/widgets/customhistory.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
 import 'package:flutter/material.dart';
 import '../models/address.dart';
@@ -21,7 +20,6 @@ class Atividades extends StatefulWidget {
 
 class _Atividades extends State<Atividades> {
   SavedAddress savedAddress = SavedAddress();
-  int _selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +64,8 @@ class _Atividades extends State<Atividades> {
                   child: const RoundedSquareIcon(
                     icon: Icons.edit_document,
                   ),
-                  onTap: () => {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PerfilUsuario()))
-                  },
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PerfilUsuario())),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 32.0, right: 32.0),
@@ -148,6 +142,7 @@ class _Atividades extends State<Atividades> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNav(selectedIndex: 2),
     );
   }
 }

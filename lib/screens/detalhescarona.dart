@@ -1,5 +1,4 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/homecarona.dart';
 import 'package:caronapp/widgets/customdriver.dart';
 import 'package:caronapp/widgets/customsecondarybutton.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +30,7 @@ class DetalhesCarona extends StatelessWidget {
                   ),
                 ),
               ),
+              GestureDetector( child:
               SizedBox(
                 width: double.infinity,
                 child: Padding(
@@ -44,6 +44,9 @@ class DetalhesCarona extends StatelessWidget {
                   ),
                 ),
               ),
+              onTap: () {
+                 Navigator.of(context).pushReplacementNamed('/fimcarona');
+              },),
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 32, 40, 0),
                 child: Row(
@@ -119,7 +122,6 @@ class DetalhesCarona extends StatelessWidget {
           ),
         ),
       ),
-      //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
@@ -128,8 +130,7 @@ void showCompartilharDialog(BuildContext context) {
   Widget okButton = TextButton(
     child: const Text('OK'),
     onPressed: () {
-      Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomeCarona()));
+      Navigator.of(context).pushNamed('/pedircarona');
     },
   );
 
@@ -153,7 +154,7 @@ void showCancelarDialog(BuildContext context) {
   Widget simButton = TextButton(
     child: const Text('Sim'),
     onPressed: () {
-      // Ação do botão sim
+      Navigator.of(context).pushNamed('/pedircarona');
     },
   );
   Widget naoButton = TextButton(

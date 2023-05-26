@@ -2,7 +2,7 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/models/question.dart';
 import 'package:caronapp/models/savedquestions.dart';
 import 'package:caronapp/screens/atividades.dart';
-import 'package:caronapp/screens/cadastro.dart';
+import 'package:caronapp/screens/cadastrousuario.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/questionstile.dart';

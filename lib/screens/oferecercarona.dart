@@ -2,6 +2,7 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/detalhescarona.dart';
 import 'package:flutter/material.dart';
 import '../widgets/addcarbutton.dart';
+import '../widgets/bottonnav.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customsearchfield.dart';
 import '../widgets/customtimepicker.dart';
@@ -97,7 +98,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
           ],
         ),
       ),
-      //bottomNavigationBar: BottomNav(),
+      bottomNavigationBar: BottomNav(selectedIndex: 1),
     );
   }
 }

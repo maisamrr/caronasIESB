@@ -1,7 +1,4 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/cadastro.dart';
-import 'package:caronapp/screens/esquecisenha.dart';
-import 'package:caronapp/screens/homecarona.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:caronapp/widgets/custombutton.dart';
@@ -56,10 +53,7 @@ class Login extends StatelessWidget {
                                 const EdgeInsets.only(top: 16.0, left: 40.0),
                             child: TextButton(
                               onPressed: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => EsqueciSenha()));
+                                Navigator.of(context).pushReplacementNamed('/esquecisenha');
                               },
                               style: ElevatedButton.styleFrom(),
                               child: const Text(
@@ -77,10 +71,7 @@ class Login extends StatelessWidget {
                             child: CustomButton(
                               text: 'Login',
                               onPressed: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HomeCarona()));
+                                Navigator.of(context).pushReplacementNamed('/pedircarona');
                               },
                             ),
                           ),
@@ -89,10 +80,7 @@ class Login extends StatelessWidget {
                                 const EdgeInsets.only(top: 16.0, left: 40.0),
                             child: TextButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Cadastro()));
+                                Navigator.of(context).pushReplacementNamed('/cadastrousuario');
                               },
                               style: ElevatedButton.styleFrom(),
                               child: const Text(

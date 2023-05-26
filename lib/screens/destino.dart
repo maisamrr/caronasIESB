@@ -11,7 +11,6 @@ class Destino extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -68,10 +67,7 @@ class Destino extends StatelessWidget {
                   child: CustomButton(
                     text: 'Confirmar',
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetalhesCarona()));
+                      Navigator.of(context).pushNamed('/aguardandoinicio');
                     },
                   ),
                 ),
@@ -80,12 +76,7 @@ class Destino extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(
-        onTabChange: (index) => (Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HistoricoDeCaronas(),))), //corrigir!
-      ),
+      bottomNavigationBar: BottomNav(selectedIndex: 1),
     );
   }
 }

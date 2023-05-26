@@ -2,41 +2,72 @@ import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class BottomNav extends StatelessWidget {
-  void Function(int)? onTabChange;
-  BottomNav({super.key, required this.onTabChange});
+class BottomNav extends StatefulWidget {
+  final int selectedIndex;
+  const BottomNav({Key? key, required this.selectedIndex}) : super(key: key);
+
+  @override
+  _BottomNavState createState() => _BottomNavState();
+}
+
+class _BottomNavState extends State<BottomNav> {
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
+
+  final List<Map<String, dynamic>> _items = [
+    {
+      'icon': Icons.hail_outlined,
+      'label': 'Pedir carona',
+      'route': '/pedircarona',
+    },
+    {
+      'icon': Icons.directions_car_outlined,
+      'label': 'Oferecer carona',
+      'route': '/oferecercarona',
+    },
+    {
+      'icon': Icons.grid_view_outlined,
+      'label': 'Atividade',
+      'route': '/atividades',
+    },
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      Navigator.pushNamed(context, _items[_selectedIndex]['route']);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    const double iconPadding = 20.0;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
       child: GNav(
-          onTabChange: (value) => onTabChange!(value),
-          color: Colors.grey,
-          mainAxisAlignment: MainAxisAlignment.center,
-          gap: 4,
-          activeColor: redIdColor,
-          tabBorderRadius: 24,
-          tabActiveBorder: Border.all(color: redIdColor),
-          tabs: [
-            GButton(
-              icon: Icons.hail_outlined,
-              iconSize: 24,
-              text: 'Pedir carona',
-              textStyle: TextStyle(fontSize: 14.0, color: redIdColor),
-            ),
-            GButton(
-              icon: Icons.directions_car_outlined,
-              iconSize: 24,
-              text: 'Oferecer carona',
-              textStyle: TextStyle(fontSize: 14.0, color: redIdColor),
-            ),
-            GButton(
-              icon: Icons.grid_view_outlined,
-              iconSize: 24,
-              text: 'Atividade',
-              textStyle: TextStyle(fontSize: 14.0, color: redIdColor),
-            ),
-          ]),
+        selectedIndex: _selectedIndex,
+        onTabChange: _onItemTapped,
+        color: Colors.grey,
+        mainAxisAlignment: MainAxisAlignment.center,
+        gap: 4,
+        activeColor: redIdColor,
+        tabBorderRadius: 24,
+        tabActiveBorder: Border.all(color: redIdColor),
+        tabs: _items
+            .map(
+              (item) => GButton(
+                icon: item['icon'],
+                text: item['label'],
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }

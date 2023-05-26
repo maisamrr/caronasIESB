@@ -1,5 +1,5 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/cadastro.dart';
+import 'package:caronapp/screens/cadastrousuario.dart';
 import 'package:caronapp/widgets/bottomnavigationbarwidget.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customfind.dart';
@@ -28,7 +28,7 @@ class TermosCondicoes extends StatelessWidget {
                   child: const Icon(Icons.arrow_back, size: 24, color: Colors.grey),
                   onTap: () => {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Cadastro()))
+                        MaterialPageRoute(builder: (context) => CadastroUsuario()))
                   },
                 ),
               ),

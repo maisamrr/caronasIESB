@@ -8,7 +8,6 @@ import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/carmodeltile.dart';
 import '../widgets/carwidget.dart';
 import '../widgets/customhistory.dart';
-import 'homecarona.dart';
 import 'oferecercarona.dart';
 
 class ExcluirVeiculo extends StatefulWidget {
