@@ -9,33 +9,32 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(24.0),
       child: GNav(
           onTabChange: (value) => onTabChange!(value),
           color: Colors.grey,
           mainAxisAlignment: MainAxisAlignment.center,
-          gap: 8,
+          gap: 4,
           activeColor: redIdColor,
           tabBorderRadius: 24,
           tabActiveBorder: Border.all(color: redIdColor),
           tabs: [
             GButton(
               icon: Icons.hail_outlined,
-              iconSize: 30,
+              iconSize: 24,
               text: 'Pedir carona',
-              textStyle: TextStyle(fontSize: 16.0, color: redIdColor),
+              textStyle: TextStyle(fontSize: 14.0, color: redIdColor),
             ),
             GButton(
               icon: Icons.directions_car_outlined,
-              iconSize: 30,
+              iconSize: 24,
               text: 'Oferecer carona',
-              textStyle: TextStyle(fontSize: 16.0, color: redIdColor),
+              textStyle: TextStyle(fontSize: 14.0, color: redIdColor),
             ),
             GButton(
               icon: Icons.grid_view_outlined,
-              iconSize: 30,
+              iconSize: 24,
               text: 'Atividade',
-              textStyle: TextStyle(fontSize: 16.0, color: redIdColor),
+              textStyle: TextStyle(fontSize: 14.0, color: redIdColor),
             ),
           ]),
     );
