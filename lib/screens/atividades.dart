@@ -64,8 +64,9 @@ class _Atividades extends State<Atividades> {
                   child: const RoundedSquareIcon(
                     icon: Icons.edit_document,
                   ),
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PerfilUsuario())),
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/perfilusuario');
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 32.0, right: 32.0),
@@ -73,18 +74,14 @@ class _Atividades extends State<Atividades> {
                     child: const RoundedSquareIcon(
                       icon: Icons.email,
                     ),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ContatoSuporte())),
+                    onTap: () {},
                   ),
                 ),
                 GestureDetector(
                   child: const RoundedSquareIcon(
                     icon: Icons.info_sharp,
                   ),
-                  onTap: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Faq())),
+                  onTap: () {},
                 ),
               ],
             ),
@@ -103,8 +100,7 @@ class _Atividades extends State<Atividades> {
                 ),
               ),
             ),
-            //filha - LISTA
-
+            //LISTA
             Container(
               height: 380,
               child: ListView.builder(

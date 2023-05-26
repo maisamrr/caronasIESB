@@ -16,13 +16,6 @@ class CadastroVeiculo extends StatefulWidget {
 class _CadastroVeiculo extends State<CadastroVeiculo> {
   @override
   Widget build(BuildContext context) {
-    //STATUS BAR
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-    ));
-    //FIM STATUS BAR
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Center(
@@ -30,9 +23,21 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 40.0,
+                left: 40.0,
+              ),
+              child: GestureDetector(
+                child: const Icon(Icons.arrow_back, size: 24, color: Colors.grey,),
+                onTap: () => {
+                  Navigator.of(context).pushNamed('/escolherveiculo'),
+                },
+              ),
+            ),
             Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
+                padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                 child: Text(
                   'Cadastrar veículo',
                   style: TextStyle(

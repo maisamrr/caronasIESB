@@ -90,10 +90,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                 child: CustomButton(
                     text: 'VemJunto',
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetalhesCarona()));
+                      Navigator.of(context).pushNamed('/aguardandoinicio');
                     }))
           ],
         ),

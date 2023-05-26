@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/aguardandoinicio':(context) => AguardandoInicio(),
         '/fimcarona': (context) => FimCarona(),
         '/oferecercarona':(context) => OferecerCarona(),
-        'escolherveiculo':(context) => EscolherVeiculo(),
+        '/escolherveiculo':(context) => EscolherVeiculo(),
         '/cadastroveiculo':(context) => CadastroVeiculo(),
 
         '/atividades':(context) => Atividades(),

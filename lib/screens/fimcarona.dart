@@ -18,15 +18,15 @@ class FimCarona extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
+              Center(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 32.0, bottom: 16.0),
+                  padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
                   child: Text(
-                    'Detalhes da carona',
+                    'Fim da carona',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFFF5757),
+                      color: redIdColor,
                     ),
                   ),
                 ),
