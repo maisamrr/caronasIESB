@@ -1,3 +1,4 @@
+import 'package:caronapp/const.dart';
 import 'package:caronapp/models/question.dart';
 import 'package:flutter/material.dart';
 
@@ -21,9 +22,17 @@ class QuestionsTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
           child: ExpansionTile(
-            title: Text(question.title),
+            shape: Border(),
+            title: Text(question.title,
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            textColor: redIdColor,
+            iconColor: redIdColor,
             children: <Widget>[
-              ListTile(title: Text(question.text)),
+              ListTile(
+                  title: Text(
+                question.text,
+                style: TextStyle(height: 1.5),
+              )),
             ],
           ),
         ),

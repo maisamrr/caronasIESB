@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         '/historicocaronas':(context) => HistoricoDeCaronas(),
         '/detalhesviagem':(context) => DetalhesDaViagem(),
 
-      },
+      }, 
       
     );
   }

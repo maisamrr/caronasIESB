@@ -9,24 +9,18 @@ class RoundedSquareIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => PerfilUsuario()))
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color(0xFFEDEDED),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-            child: Icon(
-              icon,
-              color: Colors.grey,
-              size: 30,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFFEDEDED),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Icon(
+            icon,
+            color: Colors.grey,
+            size: 30,
           ),
         ),
       ),

@@ -74,14 +74,18 @@ class _Atividades extends State<Atividades> {
                     child: const RoundedSquareIcon(
                       icon: Icons.email,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/contatosuporte');
+                    },
                   ),
                 ),
                 GestureDetector(
                   child: const RoundedSquareIcon(
                     icon: Icons.info_sharp,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/faq');
+                  },
                 ),
               ],
             ),
@@ -109,7 +113,7 @@ class _Atividades extends State<Atividades> {
                   final address = addresses[index];
                   return AddressTile(
                     address: address,
-                    onPressed: () {},
+                    onPressed: () {Navigator.of(context).pushNamed('/detalhesviagem');},
                   );
                 },
               ),

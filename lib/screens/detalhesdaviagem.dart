@@ -1,8 +1,6 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/historicodecaronas.dart';
+import 'package:caronapp/widgets/custominfobox.dart';
 import 'package:flutter/material.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
-import '../widgets/roundsmallavatar.dart';
 
 class DetalhesDaViagem extends StatelessWidget {
   const DetalhesDaViagem({super.key});
@@ -27,22 +25,21 @@ class DetalhesDaViagem extends StatelessWidget {
                       size: 24,
                       color: Colors.grey,
                     ),
-                    onTap: () => {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => HistoricoDeCaronas()))
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/atividades');
                     },
                   ),
                 ),
               ),
-              const Center(
+              Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
                   child: Text(
-                    'Histórico da Viagem',
+                    'Detalhes da Viagem',
                     style: TextStyle(
                       fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFF5757),
+                      fontWeight: FontWeight.w900,
+                      color: redIdColor,
                     ),
                   ),
                 ),
@@ -53,225 +50,44 @@ class DetalhesDaViagem extends StatelessWidget {
                 child: Text(
                   'Viagem em 23/02/2023',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              //hora
-              Row(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(top: 32.0, left: 40.0),
-                    child: Text(
-                      'Horário:',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 32.0, left: 8.0),
-                    child: Text(
-                      '18:37',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              //endereco partida
-              Row(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 40.0),
-                    child: Text(
-                      'Partida:',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 8.0),
-                    child: Text(
-                      'Casa',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              //endereco chegada
-              Row(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 40.0),
-                    child: Text(
-                      'Chegada:',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 8.0),
-                    child: Text(
-                      'IESB',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              //motorista
-              const Padding(
-                padding: EdgeInsets.only(top: 16.0, left: 40.0),
-                child: Text(
-                  'Motorista:',
-                  style: TextStyle(
-                    color: Colors.black,
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0, left: 40.0),
-                    child: RoundSmallAvatar(
-                      photoPath: 'assets/images/imgprofilejulia.png',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 8.0),
-                    child: Text(
-                      'Julia Paiva',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              //passageiros
-              const Padding(
-                padding: EdgeInsets.only(top: 16.0, left: 40.0),
-                child: Text(
-                  'Passageiros:',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0, left: 40.0),
-                    child: RoundSmallAvatar(
-                      photoPath: 'assets/images/imgrandom.png',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 8.0),
-                    child: Text(
-                      'Maísa Moreira',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0, left: 40.0),
-                    child: RoundSmallAvatar(
-                      photoPath: 'assets/images/imgrandom.png',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 8.0),
-                    child: Text(
-                      'Gustavo Pedro',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0, left: 40.0),
-                    child: RoundSmallAvatar(
-                      photoPath: 'assets/images/imgrandom.png',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 8.0),
-                    child: Text(
-                      'Felipe Louzada',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              //infos do veículo
-              Row(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 40.0),
-                    child: Text(
-                      'Veículo:',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.0, left: 8.0),
-                    child: Text(
-                      'Hyundai HB20 - BRA1234',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              CustomInfoBox(
+                  boldText: 'Horário',
+                  lightText: '18:37',
+                  iconData: Icons.schedule_outlined),
+              CustomInfoBox(
+                  boldText: 'Partida',
+                  lightText: 'SQS 116 Bloco J',
+                  iconData: Icons.location_on_outlined),
+              CustomInfoBox(
+                  boldText: 'Chegada',
+                  lightText: 'Iesb Sul',
+                  iconData: Icons.emoji_flags_outlined),
+              CustomInfoBox(
+                  boldText: 'Motorista',
+                  lightText: 'Julia Paiva',
+                  iconData: Icons.account_circle_outlined),
+                  CustomInfoBox(
+                  boldText: 'Veículo',
+                  lightText: 'Hyundai HB20 - BRA1234',
+                  iconData: Icons.directions_car_outlined),
+              CustomInfoBox(
+                  boldText: 'Passageiro',
+                  lightText: 'Gustavo Pedro',
+                  iconData: Icons.account_circle_outlined),
+              CustomInfoBox(
+                  boldText: 'Passageiro',
+                  lightText: 'Felipe Louzada',
+                  iconData: Icons.account_circle_outlined),
+                  SizedBox(height: 24,)
             ],
           ),
         ),
       ),
-      //bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

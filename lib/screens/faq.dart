@@ -54,8 +54,10 @@ class Faq extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: QuestionsList(questions: questions),
+              Container(
+                height: 500,
+                child:
+                    QuestionsList(questions: SavedQuestions().savedQuestions),
               ),
             ],
           ),
