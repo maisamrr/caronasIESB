@@ -1,6 +1,4 @@
-import 'package:caronapp/models/carmodel.dart';
 import 'package:caronapp/models/question.dart';
-import 'package:flutter/material.dart';
 
 class SavedQuestions {
   final List<Question> _savedQuestions = [
