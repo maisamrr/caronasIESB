@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'custombutton.dart';
 
 class FormLogin extends StatefulWidget {
@@ -64,7 +63,7 @@ class _FormLoginState extends State<FormLogin> {
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      labelText: 'Seu e-mail',
+                      labelText: 'E-mail',
                     ),
                   ),
                 ),
@@ -89,7 +88,7 @@ class _FormLoginState extends State<FormLogin> {
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      labelText: 'Sua senha',
+                      labelText: 'Senha',
                     ),
                   ),
                 ),
