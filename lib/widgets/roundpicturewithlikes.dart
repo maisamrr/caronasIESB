@@ -18,7 +18,7 @@ class RoundProfilePictureWithLikes extends StatelessWidget {
       children: [
         RoundProfilePicture(
           photoPath: photoPath,
-          size: size,
+          circleSize: size,
         ),
         Positioned(
           top: 0,

@@ -54,7 +54,7 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                         children: [
                           RoundProfilePicture(
                             photoPath: 'assets/images/imgprofilejulia.png',
-                            size: 120,
+                            circleSize: 120,
                           ),
                           Positioned(
                             top: 0,
