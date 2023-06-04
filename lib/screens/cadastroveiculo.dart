@@ -56,7 +56,7 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                   labelTextCustom: 'Placa',
                   keyboardTypeCustom: TextInputType.text,
                   backgroundColorCustom: Colors.white,
-                ),
+                ),/*
                 CustomDropdown(
                   optionsList: const ['Ford Ka', 'HB20', 'Celta'],
                   hint: 'Modelo',
@@ -77,7 +77,7 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                   optionsList: const ['Carro', 'Moto'],
                   hint: 'Tipo',
                   boxColor: Colors.white,
-                ),
+                ),*/
               ],
             ),
             Padding(

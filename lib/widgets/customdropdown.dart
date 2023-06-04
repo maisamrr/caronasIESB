@@ -4,9 +4,14 @@ class CustomDropdown extends StatefulWidget {
   final List<String> optionsList;
   final String hint;
   final Color boxColor;
+  final TextEditingController dropdownController;
 
-  CustomDropdown(
-      {required this.optionsList, required this.hint, required this.boxColor});
+  CustomDropdown({
+    required this.optionsList,
+    required this.hint,
+    required this.boxColor,
+    required this.dropdownController,
+  });
 
   @override
   _CustomDropdownState createState() => _CustomDropdownState();
@@ -42,6 +47,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
               onChanged: (newValue) {
                 setState(() {
                   selectedOption = newValue;
+                  widget.dropdownController.text = newValue ?? '';
                 });
               },
               underline: Container(),
@@ -52,21 +58,3 @@ class _CustomDropdownState extends State<CustomDropdown> {
     );
   }
 }
-
-/*DropdownButton<String>(
-              value: selectedOption,
-              hint: Text(widget.hint),
-              isExpanded: true,
-              items: widget.optionsList.map((option) {
-                return DropdownMenuItem<String>(
-                  value: option,
-                  child: Text(option),
-                );
-              }).toList(),
-              onChanged: (newValue) {
-                setState(() {
-                  selectedOption = newValue;
-                });
-              },
-              underline: Container(),
-            ),*/

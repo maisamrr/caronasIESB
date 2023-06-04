@@ -60,7 +60,7 @@ class ContatoSuporte extends StatelessWidget {
                 keyboardTypeCustom: TextInputType.number,
                 backgroundColorCustom: Colors.white,
               ),
-              CustomDropdown(
+              /*CustomDropdown(
                   optionsList: const [
                     'Login',
                     'Pedir carona',
@@ -71,7 +71,7 @@ class ContatoSuporte extends StatelessWidget {
                   ],
                   hint: 'Tipo de problema',
                   boxColor: Colors.white,
-                ),
+                ),*/
               
               Padding(
                 padding:
