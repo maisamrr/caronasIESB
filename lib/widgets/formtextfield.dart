@@ -41,6 +41,9 @@ class _FormTextFieldState extends State<FormTextField> {
                 border: InputBorder.none,
                 labelText: widget.labelText,
               ),
+              onChanged: (text) {
+                setState(() {});
+              },
             ),
           ),
         ),

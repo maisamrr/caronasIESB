@@ -1,10 +1,6 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/cadastrousuario.dart';
-import 'package:caronapp/widgets/bottomnavigationbarwidget.dart';
 import 'package:flutter/material.dart';
-import '../widgets/customfind.dart';
-import '../widgets/customhistory.dart';
-import 'cadastroveiculo.dart';
 
 class TermosCondicoes extends StatelessWidget {
   const TermosCondicoes({super.key});

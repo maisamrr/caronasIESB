@@ -5,8 +5,6 @@ import 'package:caronapp/screens/historicodecaronas.dart';
 import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
 import 'package:flutter/material.dart';
-import '../models/address.dart';
-import '../models/savedaddress.dart';
 import '../widgets/addresstile.dart';
 import '../widgets/bottonnav.dart';
 import '../widgets/roundsquareicon.dart';
@@ -19,11 +17,11 @@ class Atividades extends StatefulWidget {
 }
 
 class _Atividades extends State<Atividades> {
-  SavedAddress savedAddress = SavedAddress();
+  //SavedAddress savedAddress = SavedAddress();
 
   @override
   Widget build(BuildContext context) {
-    List<Address> addresses = savedAddress.savedAddress;
+    //List<Address> addresses = savedAddress.savedAddress;
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -105,7 +103,7 @@ class _Atividades extends State<Atividades> {
               ),
             ),
             //LISTA
-            Container(
+            /*Container(
               height: 380,
               child: ListView.builder(
                 itemCount: addresses.length,
@@ -117,7 +115,7 @@ class _Atividades extends State<Atividades> {
                   );
                 },
               ),
-            ),
+            ),*/
             //HISTORICO
             GestureDetector(
               child: const Align(

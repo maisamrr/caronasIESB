@@ -2,10 +2,7 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/detalhescarona.dart';
 import 'package:caronapp/widgets/destinationfield.dart';
 import 'package:flutter/material.dart';
-import '../models/address.dart';
-import '../models/savedaddress.dart';
 import '../widgets/addresstile.dart';
-import '../widgets/bottomnavigationbarwidget.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customhistory.dart';
 import 'atividades.dart';
@@ -13,11 +10,11 @@ import 'detalhesdaviagem.dart';
 
 class HistoricoDeCaronas extends StatelessWidget {
   HistoricoDeCaronas({super.key});
-  SavedAddress savedAddress = SavedAddress();
+  /*SavedAddress savedAddress = SavedAddress();*/
 
   @override
   Widget build(BuildContext context) {
-    List<Address> addresses = savedAddress.savedAddress;
+    //List<Address> addresses = savedAddress.savedAddress;
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -57,7 +54,7 @@ class HistoricoDeCaronas extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
+              /*Container(
                 height: 500,
                 child: ListView.builder(
                   itemCount: addresses.length,
@@ -69,7 +66,7 @@ class HistoricoDeCaronas extends StatelessWidget {
                     );
                   },
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

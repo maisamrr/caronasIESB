@@ -1,37 +1,45 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/models/address.dart';
-import 'package:caronapp/models/savedaddress.dart';
 import 'package:caronapp/widgets/addresstile.dart';
 import 'package:flutter/material.dart';
+import '../store/address_store.dart';
 import '../widgets/bottonnav.dart';
-import '../widgets/customfind.dart';
+import '../store/user_store.dart';
+import 'destino.dart';
 
 class PedirCarona extends StatefulWidget {
   const PedirCarona({Key? key});
+
   @override
   State<PedirCarona> createState() => _PedirCaronaState();
 }
 
 class _PedirCaronaState extends State<PedirCarona> {
-  SavedAddress savedAddress = SavedAddress();
+  final _form = GlobalKey<FormState>();
+
+  final userStore = UserStore();
+  final addressStore = AddressStore();
+  final TextEditingController _destinoController = TextEditingController();
+  bool isRuaEmpty = true;
 
   @override
   Widget build(BuildContext context) {
-    List<Address> addresses = savedAddress.savedAddress;
-
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Container(
+      body: Form(
+        key: _form,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //TITULO
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                   child: Text(
-                    'Olá, Julia',
+                    userStore.nome.isNotEmpty
+                        ? 'Olá, ${userStore.nome}'
+                        : 'Olá',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.w900,
@@ -40,14 +48,92 @@ class _PedirCaronaState extends State<PedirCarona> {
                   ),
                 ),
               ),
+              //CAMPO ENDERECO
               Padding(
                 padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-                child: CustomFind(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/destino');
-                  },
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(8, 0, 8, 24.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 60,
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(24, 16, 16, 16),
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEDEDED),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: const Icon(
+                              Icons.search,
+                              size: 22,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              controller: _destinoController,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                              decoration: const InputDecoration(
+                                hintText: 'Qual seu destino?',
+                                hintStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                                border: InputBorder.none,
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  isRuaEmpty = value.isEmpty;
+                                });
+                              },
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(8, 1, 1, 1),
+                            child: GestureDetector(
+                              child: Icon(
+                                isRuaEmpty
+                                    ? Icons.arrow_forward_outlined
+                                    : Icons.arrow_forward,
+                                size: 22,
+                                color: isRuaEmpty ? Colors.grey : greenIdColor,
+                              ),
+                              onTap: () {
+                                if (_destinoController.text.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                          'Por favor, insira o endereço de destino.'),
+                                    ),
+                                  );
+                                } else {
+                                  addressStore.setRua(_destinoController.text);
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => Destino(
+                                          destinoController: _destinoController),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
+              //ENDERECOS RECENTES
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
@@ -67,10 +153,16 @@ class _PedirCaronaState extends State<PedirCarona> {
                   itemCount: addresses.length,
                   itemBuilder: (context, index) {
                     final address = addresses[index];
-                    return AddressTile(
-                      address: address,
-                      onPressed:
-                          () {}, //aqui deve autopreencher o endereço de qual seu destino
+                    return GestureDetector(
+                      child: AddressTile(
+                        apelido: address.apelido,
+                        rua: address.rua,
+                        numero: address.numero,
+                        iconAsset: Icon(Icons.hail_outlined, size: 30),
+                      ),
+                      onTap: () {
+                        _destinoController.text = address.rua;
+                      },
                     );
                   },
                 ),

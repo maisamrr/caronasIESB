@@ -1,8 +1,9 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/login.dart';
 import 'package:flutter/material.dart';
-import 'package:caronapp/widgets/customtextfield.dart';
 import 'package:caronapp/widgets/custombutton.dart';
+import 'package:provider/provider.dart';
+
+import '../store/user_store.dart';
 
 class EsqueciSenha extends StatefulWidget {
   @override
@@ -23,50 +24,51 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
     return null;
   }
 
-  /*void _submitForm(BuildContext context) {
-    if (!_form.currentState!.validate()) {
-      return;
-    }
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Recuperação de senha'),
-            content: Text('Foi enviado um e-mail para o endereço informado.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.pushReplacementNamed(context, '/pedircarona');
-                },
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        });
-  }*/
-
   void _submitForm(BuildContext context) {
     if (!_form.currentState!.validate()) {
       return;
     }
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Recuperação de senha'),
-            content: Text('Foi enviado um e-mail para o endereço informado.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.pushReplacementNamed(context, '/');
-                },
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        });
+    UserStore userStore = Provider.of<UserStore>(context, listen: false);
+
+    if (_emailController.text == userStore.email) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Recuperação de senha'),
+              content: const Text(
+                  'Foi enviado um e-mail para o endereço informado.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.pushReplacementNamed(context, '/');
+                    //implementar enviar email
+                  },
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          });
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Recuperação de senha'),
+              content: const Text('O e-mail não está cadastrado.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.pushReplacementNamed(context, '/');
+                  },
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          });
+    }
   }
 
   @override
@@ -74,93 +76,103 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
     return Scaffold(
       backgroundColor: redIdColor,
       body: Form(
-        key: _form,
-        child: ListView(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 80, left: 40.0, right: 40.0, bottom: 80.0),
-                          child: Image.asset(
-                            'assets/images/vemjunto.png',
-                            width: 280,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+          key: _form,
+          child: Consumer<UserStore>(builder: (context, userStore, _) {
+            return ListView(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      Align(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.only(left: 40.0),
-                              child: Text(
-                                'Esqueceu sua senha?',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 16.0, left: 40.0, right: 40.0),
-                              child: Container(
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: Colors.white,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 24.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: TextFormField(
-                                      controller: _emailController,
-                                      validator: _validateEmail,
-                                      keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        labelText: 'E-mail',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, left: 40.0),
-                              child: CustomButton(
-                                text: 'Recuperar',
-                                onPressed: () => _submitForm(context),
+                                  top: 80,
+                                  left: 40.0,
+                                  right: 40.0,
+                                  bottom: 80.0),
+                              child: Image.asset(
+                                'assets/images/vemjunto.png',
+                                width: 280,
                               ),
                             ),
                           ],
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 40.0),
+                                  child: Text(
+                                    'Esqueceu sua senha?',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 16.0, left: 40.0, right: 40.0),
+                                  child: Container(
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 24.0),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: TextFormField(
+                                          controller: _emailController,
+                                          validator: _validateEmail,
+                                          onChanged: (text) {
+                                            setState(() {});
+                                          },
+                                          keyboardType: TextInputType.text,
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                            labelText: 'E-mail',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, left: 40.0),
+                                  child: CustomButton(
+                                    text: 'Recuperar',
+                                    onPressed: () {
+                                      _submitForm(context);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                ),
+              ],
+            );
+          })),
     );
   }
 }

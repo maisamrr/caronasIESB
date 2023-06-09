@@ -1,20 +1,21 @@
-import 'package:caronapp/models/carmodel.dart';
+import 'package:caronapp/store/car_model.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../store/car_store.dart';
 
 class CarModelTile extends StatelessWidget {
-  final CarModel carModel;
-  final Icon iconAsset;
-  void Function()? onPressed;
+  final Car carro;
 
-  CarModelTile({
-    super.key,
-    required this.carModel,
-    this.iconAsset = const Icon(Icons.directions_car_outlined, size: 30),
-    required this.onPressed,
-  });
+  const CarModelTile({
+    Key? key,
+    required this.carro,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    CarStore carStore = Provider.of<CarStore>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 16.0),
       child: Container(
@@ -28,21 +29,23 @@ class CarModelTile extends StatelessWidget {
             title: Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(
-                carModel.carName,
+                EnumToString.convertToString(carro.marca),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
               ),
             ),
-            subtitle: Text(carModel.carPlate),
-            leading: iconAsset,
+            subtitle: Text(carro.placa),
+            leading: const Icon(Icons.directions_car_outlined, size: 30),
             trailing: IconButton(
               icon: const Icon(
                 Icons.delete_outline,
                 size: 25,
               ),
-              onPressed: onPressed,
+              onPressed: () {
+                carStore.removeCar(carro);
+              },
             ),
           ),
         ),

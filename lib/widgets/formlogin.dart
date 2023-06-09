@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../store/user_store.dart';
 import 'custombutton.dart';
 
 class FormLogin extends StatefulWidget {
-  
   @override
   _FormLoginState createState() => _FormLoginState();
 }
@@ -10,7 +11,16 @@ class FormLogin extends StatefulWidget {
 class _FormLoginState extends State<FormLogin> {
   final _form = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _senhaController = TextEditingController();
+
+  String _errorLogin = '';
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _senhaController.dispose();
+    super.dispose();
+  }
 
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
@@ -32,11 +42,16 @@ class _FormLoginState extends State<FormLogin> {
     return null;
   }
 
-  void _submitForm(BuildContext context) {
+  Future<void> _submitForm(BuildContext context) async {
     if (!_form.currentState!.validate()) {
       return;
     }
+
+    UserStore userStore = Provider.of<UserStore>(context, listen: false);
+    userStore.login(_emailController.text);
+
     Navigator.pushReplacementNamed(context, '/pedircarona');
+    
   }
 
   @override
@@ -66,6 +81,9 @@ class _FormLoginState extends State<FormLogin> {
                       border: InputBorder.none,
                       labelText: 'E-mail',
                     ),
+                    onChanged: (text) {
+                      setState(() {});
+                    },
                   ),
                 ),
               ),
@@ -84,13 +102,16 @@ class _FormLoginState extends State<FormLogin> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TextFormField(
-                    controller: _passwordController,
+                    controller: _senhaController,
                     validator: _validatePassword,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       labelText: 'Senha',
                     ),
+                    onChanged: (text) {
+                      setState(() {});
+                    },
                   ),
                 ),
               ),

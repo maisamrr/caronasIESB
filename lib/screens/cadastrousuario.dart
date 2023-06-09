@@ -1,8 +1,9 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/widgets/customdropdown.dart';
 import 'package:caronapp/widgets/formtextfield.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/custombutton.dart';
+import 'package:provider/provider.dart';
+import '../store/user_store.dart';
 
 class CadastroUsuario extends StatefulWidget {
   @override
@@ -11,16 +12,19 @@ class CadastroUsuario extends StatefulWidget {
 
 class _CadastroUsuarioState extends State<CadastroUsuario> {
   final _form = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  final _phoneController = TextEditingController();
+  final _nomeController = TextEditingController();
+  final _celularController = TextEditingController();
   final _matriculaController = TextEditingController();
   final _emailController = TextEditingController();
-  final _dropdownController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _senhaController = TextEditingController();
+
+  String _errorLogin = '';
 
   bool agree = false;
 
-  String? _validateName(String? value) {
+  UserStore userTeste = UserStore();
+
+  String? _validateNome(String? value) {
     if (value == null || value.isEmpty) {
       return "O nome é obrigatório";
     }
@@ -30,7 +34,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
     return null;
   }
 
-  String? _validatePhone(String? value) {
+  String? _validateCelular(String? value) {
     if (value == null || value.isEmpty) {
       return "O número de celular é obrigatório";
     }
@@ -60,13 +64,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
     return null;
   }
 
-  @override
-  void dispose() {
-    _dropdownController.dispose();
-    super.dispose();
-  }
-
-  String? _validatePassword(String? value) {
+  String? _validateSenha(String? value) {
     if (value == null || value.isEmpty) {
       return "Senha é obrigatória";
     }
@@ -84,10 +82,11 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
     }
   }
 
-  void _submitForm(BuildContext context) {
+  Future<void> _submitForm(BuildContext context) async {
     if (!_form.currentState!.validate()) {
       return;
     }
+
     if (!agree) {
       showDialog(
         context: context,
@@ -109,7 +108,40 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
       );
       return;
     }
-    Navigator.pushReplacementNamed(context, '/');
+
+    setState(() => _errorLogin = '');
+
+    try {
+      UserStore userStore = Provider.of<UserStore>(context, listen: false);
+      userStore.setNome(_nomeController.text);
+      userStore.setCelular(_celularController.text);
+      userStore.setMatricula(_matriculaController.text);
+      userStore.setEmail(_emailController.text);
+      userStore.setSenha(_senhaController.text);
+
+
+      Navigator.pushReplacementNamed(context, '/');
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Cadastro bem-sucedido'),
+            content: const Text('Seu cadastro foi realizado com sucesso.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      setState(() => _errorLogin = e.toString());
+    }
   }
 
   @override
@@ -142,14 +174,23 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   ),
                 ),
               ),
+              Text(
+                _errorLogin,
+                style: const TextStyle(
+                  height: 2,
+                  fontSize: 16.0,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
               FormTextField(
-                  controller: _nameController,
-                  validator: _validateName,
+                  controller: _nomeController,
+                  validator: _validateNome,
                   keyboardType: TextInputType.text,
                   labelText: 'Nome'),
               FormTextField(
-                  controller: _phoneController,
-                  validator: _validatePhone,
+                  controller: _celularController,
+                  validator: _validateCelular,
                   keyboardType: TextInputType.phone,
                   labelText: 'Celular'),
               FormTextField(
@@ -162,21 +203,9 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   validator: _validateEmail,
                   keyboardType: TextInputType.emailAddress,
                   labelText: 'E-mail'),
-              //consertar controller
-              CustomDropdown(
-                optionsList: const [
-                  'Feminino',
-                  'Masculino',
-                  'Não-binário',
-                  'Prefiro não informar'
-                ],
-                hint: 'Gênero',
-                boxColor: Colors.white,
-                dropdownController: _dropdownController,
-              ),
               FormTextField(
-                  controller: _passwordController,
-                  validator: _validatePassword,
+                  controller: _senhaController,
+                  validator: _validateSenha,
                   keyboardType: TextInputType.text,
                   labelText: 'Senha'),
               Padding(
