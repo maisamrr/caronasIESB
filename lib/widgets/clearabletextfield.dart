@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class ClearableTextField extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
+  final String? Function(String?)? validator;
 
   ClearableTextField({
     required this.controller,
     required this.labelText,
+    this.validator,
   });
 
   @override
@@ -55,7 +57,7 @@ class _ClearableTextFieldState extends State<ClearableTextField> {
     return Row(
       children: [
         Expanded(
-          child: TextField(
+          child: TextFormField(
             controller: widget.controller,
             focusNode: _focusNode,
             decoration: InputDecoration(
@@ -68,6 +70,7 @@ class _ClearableTextFieldState extends State<ClearableTextField> {
               fontSize: 18,
               color: Colors.black,
             ),
+            validator: widget.validator,
             onChanged: (_) {
               setState(() {
                 _showClearIcon = widget.controller.text.isNotEmpty;

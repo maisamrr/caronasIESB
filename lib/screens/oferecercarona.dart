@@ -40,112 +40,114 @@ class _OferecerCaronaState extends State<OferecerCarona> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Form(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
-                  child: Text(
-                    'Oferecer Carona',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w900,
-                      color: redIdColor,
-                    ),
-                  ),
-                ),
-              ),
-              const Padding(
-                  padding: EdgeInsets.only(left: 40),
-                  child: Text('Carro em uso',
+      body: SingleChildScrollView(
+        child: Form(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
+                    child: Text(
+                      'Oferecer Carona',
                       style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black))),
-              //botao - adicione um carro
-              Padding(
-                padding: const EdgeInsets.fromLTRB(40, 24, 0, 16.0),
-                child: SizedBox(
-                  height: 60,
-                  width: 220,
-                  child: ElevatedButton(
-                    onPressed: () => _navigateToEscolherVeiculo(context),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.w900,
+                        color: redIdColor,
                       ),
                     ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Adicione um carro',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.grey,
-                          ),
+                  ),
+                ),
+                const Padding(
+                    padding: EdgeInsets.only(left: 40),
+                    child: Text('Carro em uso',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black))),
+                //botao - adicione um carro
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(40, 24, 0, 0),
+                  child: SizedBox(
+                    height: 60,
+                    width: 220,
+                    child: ElevatedButton(
+                      onPressed: () => _navigateToEscolherVeiculo(context),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(35, 0, 0, 0),
-                            child: Icon(
-                              Icons.add,
-                              size: 24,
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Adicione um carro',
+                            style: TextStyle(
+                              fontSize: 14.0,
                               color: Colors.grey,
-                            ))
-                      ],
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(35, 0, 0, 0),
+                              child: Icon(
+                                Icons.add,
+                                size: 24,
+                                color: Colors.grey,
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              //partida
-              CustomSearchField(
-                labelText: 'Local de partida',
-                keyboardType: TextInputType.text,
-                backgroundColor: Colors.white,
-                onSubmitted: (value) {},
-              ),
-              CustomSearchField(
-                labelText: 'Destino final',
-                keyboardType: TextInputType.text,
-                backgroundColor: Colors.white,
-                onSubmitted: (value) {},
-              ),
-              CustomTimePicker(
-                labelText: 'Horário de saída',
-                initialValue: _selectedTime,
-                onSaved: (time) {
-                  _selectedTime = time;
-                },
-                validator: (time) {
-                  if (time == null) {
-                    return 'É necessário selecionar um horário';
-                  }
-                  return null;
-                },
-                context: context,
-                backgroundColor: Colors.white,
-                keyboardType: TextInputType.text,
-              ),
-              KmFormField(
-                context: context,
-                labelText: 'Enter a number',
-                keyboardType: TextInputType.number,
-                backgroundColor: Colors.grey[200]!,
-                onSubmitted: (value) {},
-              ),
-              Padding(
-                  padding: const EdgeInsets.only(left: 40, top: 7),
-                  child: CustomButton(
-                    text: 'VemJunto',
-                    onPressed: () => _submitForm(context),
-                  ))
-            ],
+                //partida
+                CustomSearchField(
+                  labelText: 'Local de partida',
+                  keyboardType: TextInputType.text,
+                  backgroundColor: Colors.white,
+                  onSubmitted: (value) {},
+                ),
+                CustomSearchField(
+                  labelText: 'Destino final',
+                  keyboardType: TextInputType.text,
+                  backgroundColor: Colors.white,
+                  onSubmitted: (value) {},
+                ),
+                CustomTimePicker(
+                  labelText: 'Horário de saída',
+                  initialValue: _selectedTime,
+                  onSaved: (time) {
+                    _selectedTime = time;
+                  },
+                  validator: (time) {
+                    if (time == null) {
+                      return 'É necessário selecionar um horário';
+                    }
+                    return null;
+                  },
+                  context: context,
+                  backgroundColor: Colors.white,
+                  keyboardType: TextInputType.text,
+                ),
+                KmFormField(
+                  context: context,
+                  labelText: 'Enter a number',
+                  keyboardType: TextInputType.number,
+                  backgroundColor: Colors.grey[200]!,
+                  onSubmitted: (value) {},
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(left: 40, top: 7),
+                    child: CustomButton(
+                      text: 'VemJunto',
+                      onPressed: () => _submitForm(context),
+                    ))
+              ],
+            ),
           ),
         ),
       ),

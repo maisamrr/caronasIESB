@@ -1,3 +1,4 @@
+import 'package:caronapp/store/status_viagem.dart';
 import 'package:caronapp/store/user_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:intl/intl.dart';
@@ -83,5 +84,39 @@ abstract class _ViagemStoreBase with Store {
   @action
   void removePassageiro(UserStore passageiro) {
     passageiros.remove(passageiro);
+  }
+
+  @computed
+  bool get temCarro => carro != null;
+
+  @observable
+  StatusViagem status = StatusViagem.naoIniciada;
+
+  int calculateStatus() {
+    if (status == StatusViagem.naoIniciada) {
+      return 0;
+    } else if (status == StatusViagem.emCurso) {
+      return 1;
+    } else if (status == StatusViagem.finalizada) {
+      return 2;
+    } else if (status == StatusViagem.cancelada) {
+      return 3;
+    }
+    return 0;
+  }
+
+  @action
+  void iniciarViagem() {
+    status = StatusViagem.emCurso;
+  }
+
+  @action
+  void finalizarViagem() {
+    status = StatusViagem.finalizada;
+  }
+
+  @action
+  void cancelarViagem() {
+    status = StatusViagem.cancelada;
   }
 }
