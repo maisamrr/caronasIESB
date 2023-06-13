@@ -1,4 +1,3 @@
-import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
 
 class CustomSecondaryButton extends StatelessWidget {

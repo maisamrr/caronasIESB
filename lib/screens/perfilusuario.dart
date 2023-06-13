@@ -43,7 +43,7 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Atividades()))
+                                    builder: (context) => const Atividades()))
                           },
                         ),
                       ),
@@ -52,7 +52,7 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                     GestureDetector(
                       child: Stack(
                         children: [
-                          RoundProfilePicture(
+                          const RoundProfilePicture(
                             photoPath: 'assets/images/imgprofilejulia.png',
                             circleSize: 120,
                           ),
@@ -91,10 +91,10 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
-              Text(
+              const Text(
                 'Alterar perfil',
                 style: TextStyle(
                   fontSize: 18.0,
@@ -136,7 +136,7 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Atividades()));
+                              builder: (context) => const Atividades()));
                     },
                   ),
                 ),

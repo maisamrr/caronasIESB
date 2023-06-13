@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RoundSmallAvatar extends StatelessWidget {
   final String photoPath;
 
-  RoundSmallAvatar({required this.photoPath});
+  const RoundSmallAvatar({super.key, required this.photoPath});
 
   @override
   Widget build(BuildContext context) {

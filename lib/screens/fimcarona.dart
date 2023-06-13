@@ -1,8 +1,6 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/widgets/customdriver.dart';
 import 'package:flutter/material.dart';
-import '../widgets/custompassenger.dart';
-import '../widgets/custompassengerlike.dart';
 
 class FimCarona extends StatelessWidget {
   const FimCarona({super.key});
@@ -129,10 +127,10 @@ class FimCarona extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16.0),
                 child: Column(
-                  children: const [
+                  children: [
                     CustomDriver(
                       driverName: 'Gustavo Pedro',
                     ),

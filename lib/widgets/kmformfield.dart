@@ -22,7 +22,7 @@ class KmFormField extends FormField<int> {
           initialValue: initialValue ?? 0,
           onSaved: onSaved,
           builder: (FormFieldState<int> state) {
-            final TextEditingController _controller =
+            final TextEditingController controller =
                 TextEditingController(text: state.value.toString());
             return Padding(
               padding:
@@ -47,13 +47,13 @@ class KmFormField extends FormField<int> {
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                           ),
-                          controller: _controller,
+                          controller: controller,
                           onFieldSubmitted: (value) {/*validar*/},
                         ),
                       ),
                       //ICONE
                       Container(
-                        margin: EdgeInsets.only(right: 8.0),
+                        margin: const EdgeInsets.only(right: 8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: redIdColor,

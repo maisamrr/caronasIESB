@@ -6,7 +6,7 @@ class RoundProfilePictureWithLikes extends StatelessWidget {
   final double size;
   final int thumbsUpCount;
 
-  RoundProfilePictureWithLikes({
+  const RoundProfilePictureWithLikes({super.key, 
     required this.photoPath,
     required this.size,
     required this.thumbsUpCount,
@@ -25,21 +25,21 @@ class RoundProfilePictureWithLikes extends StatelessWidget {
           right: 0,
           child: Container(
             decoration: BoxDecoration(
-              color: Color(0xFFFF5757),
+              color: const Color(0xFFFF5757),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.all(4),
+            padding: const EdgeInsets.all(4),
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.thumb_up,
                   color: Colors.white,
                   size: 18,
                 ),
-                SizedBox(width: 4),
+                const SizedBox(width: 4),
                 Text(
                   thumbsUpCount.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 14,
                   ),

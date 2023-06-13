@@ -4,7 +4,10 @@ import '../store/user_store.dart';
 import 'custombutton.dart';
 
 class FormLogin extends StatefulWidget {
+  const FormLogin({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _FormLoginState createState() => _FormLoginState();
 }
 
@@ -13,7 +16,7 @@ class _FormLoginState extends State<FormLogin> {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
 
-  String _errorLogin = '';
+  final String _errorLogin = '';
 
   @override
   void dispose() {
