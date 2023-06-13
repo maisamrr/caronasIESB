@@ -12,7 +12,6 @@ import 'package:caronapp/screens/fimcarona.dart';
 import 'package:caronapp/screens/detalhesdaviagem.dart';
 import 'package:caronapp/screens/historicodecaronas.dart';
 import 'package:caronapp/screens/login.dart';
-import 'package:caronapp/screens/teste.dart';
 import 'package:caronapp/screens/oferecercarona.dart';
 import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:caronapp/screens/pedircarona.dart';
@@ -57,7 +56,6 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => Login(),
-          '/teste': (context) => const Teste(),
           '/esquecisenha': (context) => EsqueciSenha(),
           '/cadastrousuario': (context) => CadastroUsuario(),
           '/termosecondicoes': (context) => const TermosCondicoes(),
