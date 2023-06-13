@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/clearabletextfield.dart';
 import '../widgets/custombutton.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 
 class CadastroVeiculo extends StatefulWidget {
   const CadastroVeiculo({super.key});
@@ -19,6 +18,23 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
   final _form = GlobalKey<FormState>();
   final _placaController = TextEditingController();
   Marca? marcaSelecionada;
+
+  String? validatePlaca(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Informe uma placa';
+    }
+    if (value.length != 7) {
+      return 'A placa deve ter 8 caracteres';
+    }
+    return null;
+  }
+
+  String? validateMarca(Marca? value) {
+    if (value == null) {
+      return 'Selecione um modelo de carro';
+    }
+    return null;
+  }
 
   Future<void> _submitForm(BuildContext context) async {
     if (!_form.currentState!.validate()) {
@@ -105,6 +121,7 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                               Expanded(
                                 child: ClearableTextField(
                                   controller: _placaController,
+                                  validator: validatePlaca,
                                   labelText: 'Placa',
                                 ),
                               ),
@@ -124,38 +141,41 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                         height: 60,
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 24),
+                              vertical: 8, horizontal: 24),
                           width: double.infinity,
                           height: double.infinity,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: DropdownButton<Marca?>(
+                          child: DropdownButtonFormField<Marca?>(
                             value: marcaSelecionada,
-                            hint: const Text('Selecione um modelo de carro'),
+                            validator: validateMarca,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                            ),
                             icon: const Icon(Icons.expand_more_outlined),
                             iconSize: 24,
                             elevation: 16,
-                            isExpanded: true,
                             style: const TextStyle(
                                 color: Colors.black, fontSize: 18.0),
-                            underline: const SizedBox(),
                             onChanged: (Marca? newValue) {
                               setState(() {
                                 marcaSelecionada = newValue;
                               });
                             },
                             items: [
-                              const DropdownMenuItem<Marca?>(
+                              DropdownMenuItem<Marca?>(
                                 value: null,
-                                child: SizedBox.shrink(),
+                                child: Text(
+                                  'Modelo',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                               ),
                               ...Marca.values.map((Marca marca) {
                                 return DropdownMenuItem<Marca?>(
                                   value: marca,
-                                  child:
-                                      Text(EnumToString.convertToString(marca)),
+                                  child: Text(marca.formattedString),
                                 );
                               }).toList(),
                             ],
@@ -164,6 +184,7 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                       ),
                     ),
                   ),
+
                   //FIM dropdown
                 ],
               ),

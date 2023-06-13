@@ -1,4 +1,5 @@
 import 'package:caronapp/store/car_model.dart';
+import 'package:caronapp/store/marcas_model.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class CarModelTile extends StatelessWidget {
             title: Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(
-                EnumToString.convertToString(carro.marca),
+                (carro.marca.formattedString),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

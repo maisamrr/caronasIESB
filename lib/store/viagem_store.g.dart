@@ -9,6 +9,14 @@ part of 'viagem_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ViagemStore on _ViagemStoreBase, Store {
+  Computed<bool>? _$temCarroComputed;
+
+  @override
+  bool get temCarro =>
+      (_$temCarroComputed ??= Computed<bool>(() => super.temCarro,
+              name: '_ViagemStoreBase.temCarro'))
+          .value;
+
   late final _$dataAtom = Atom(name: '_ViagemStoreBase.data', context: context);
 
   @override
@@ -88,6 +96,22 @@ mixin _$ViagemStore on _ViagemStoreBase, Store {
     });
   }
 
+  late final _$carroAtom =
+      Atom(name: '_ViagemStoreBase.carro', context: context);
+
+  @override
+  Car? get carro {
+    _$carroAtom.reportRead();
+    return super.carro;
+  }
+
+  @override
+  set carro(Car? value) {
+    _$carroAtom.reportWrite(value, super.carro, () {
+      super.carro = value;
+    });
+  }
+
   late final _$passageirosAtom =
       Atom(name: '_ViagemStoreBase.passageiros', context: context);
 
@@ -101,6 +125,22 @@ mixin _$ViagemStore on _ViagemStoreBase, Store {
   set passageiros(ObservableList<UserStore> value) {
     _$passageirosAtom.reportWrite(value, super.passageiros, () {
       super.passageiros = value;
+    });
+  }
+
+  late final _$statusAtom =
+      Atom(name: '_ViagemStoreBase.status', context: context);
+
+  @override
+  StatusViagem get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(StatusViagem value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
     });
   }
 
@@ -163,6 +203,17 @@ mixin _$ViagemStore on _ViagemStoreBase, Store {
   }
 
   @override
+  void setCarro(Car carroSelecionado) {
+    final _$actionInfo = _$_ViagemStoreBaseActionController.startAction(
+        name: '_ViagemStoreBase.setCarro');
+    try {
+      return super.setCarro(carroSelecionado);
+    } finally {
+      _$_ViagemStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void addPassageiro(UserStore passageiro) {
     final _$actionInfo = _$_ViagemStoreBaseActionController.startAction(
         name: '_ViagemStoreBase.addPassageiro');
@@ -185,6 +236,39 @@ mixin _$ViagemStore on _ViagemStoreBase, Store {
   }
 
   @override
+  void iniciarViagem() {
+    final _$actionInfo = _$_ViagemStoreBaseActionController.startAction(
+        name: '_ViagemStoreBase.iniciarViagem');
+    try {
+      return super.iniciarViagem();
+    } finally {
+      _$_ViagemStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void finalizarViagem() {
+    final _$actionInfo = _$_ViagemStoreBaseActionController.startAction(
+        name: '_ViagemStoreBase.finalizarViagem');
+    try {
+      return super.finalizarViagem();
+    } finally {
+      _$_ViagemStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void cancelarViagem() {
+    final _$actionInfo = _$_ViagemStoreBaseActionController.startAction(
+        name: '_ViagemStoreBase.cancelarViagem');
+    try {
+      return super.cancelarViagem();
+    } finally {
+      _$_ViagemStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 data: ${data},
@@ -192,7 +276,10 @@ horario: ${horario},
 partida: ${partida},
 chegada: ${chegada},
 motorista: ${motorista},
-passageiros: ${passageiros}
+carro: ${carro},
+passageiros: ${passageiros},
+status: ${status},
+temCarro: ${temCarro}
     ''';
   }
 }
