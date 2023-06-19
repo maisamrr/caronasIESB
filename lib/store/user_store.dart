@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user_store.g.dart';
@@ -5,6 +6,9 @@ part 'user_store.g.dart';
 class UserStore = _UserStoreBase with _$UserStore;
 
 abstract class _UserStoreBase with Store {
+  final DatabaseReference _userRef = FirebaseDatabase.instance
+      .refFromURL("https://vemjunto-f9f4d-default-rtdb.firebaseio.com/");
+
   @observable
   bool logado = false;
 
@@ -48,5 +52,20 @@ abstract class _UserStoreBase with Store {
   void logout() {
     logado = false;
     email = "";
+  }
+
+  @action
+  Future<void> saveUser() async {
+    // Criar um novo nó para o usuário
+    final newUserRef = _userRef.push();
+
+    // Definir os dados do usuário
+    await newUserRef.set({
+      'nome': nome,
+      'celular': celular,
+      'matricula': matricula,
+      'email': email,
+      'senha': senha,
+    });
   }
 }

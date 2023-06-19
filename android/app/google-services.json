@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "379364796982",
+    "firebase_url": "https://vemjunto-f9f4d-default-rtdb.firebaseio.com",
+    "project_id": "vemjunto-f9f4d",
+    "storage_bucket": "vemjunto-f9f4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379364796982:android:5f9f5d51d331c6653cc697",
+        "android_client_info": {
+          "package_name": "com.example.caronapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379364796982-avep6a9611udatf2n5vtgeqte9pqhh5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRvfG9G8QHSRGJQVRm1TDT1dErUJs3vyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379364796982-avep6a9611udatf2n5vtgeqte9pqhh5v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "379364796982-3q6lc1o8nmlvjjdi27o3cii2k889rqo6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.caronapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

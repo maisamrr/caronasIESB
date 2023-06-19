@@ -82,9 +82,9 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Adicione um carro',
                             style: TextStyle(
