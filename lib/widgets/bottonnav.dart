@@ -7,6 +7,7 @@ class BottomNav extends StatefulWidget {
   const BottomNav({Key? key, required this.selectedIndex}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _BottomNavState createState() => _BottomNavState();
 }
 

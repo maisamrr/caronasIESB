@@ -165,7 +165,7 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
                               });
                             },
                             items: [
-                              DropdownMenuItem<Marca?>(
+                              const DropdownMenuItem<Marca?>(
                                 value: null,
                                 child: Text(
                                   'Modelo',

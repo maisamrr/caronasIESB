@@ -1,11 +1,7 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/contatosuporte.dart';
-import 'package:caronapp/screens/faq.dart';
 import 'package:caronapp/screens/historicodecaronas.dart';
-import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
 import 'package:flutter/material.dart';
-import '../widgets/addresstile.dart';
 import '../widgets/bottonnav.dart';
 import '../widgets/roundsquareicon.dart';
 
@@ -33,7 +29,7 @@ class _Atividades extends State<Atividades> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 32.0, bottom: 24.0),
+                  padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
                   child: Text(
                     'Julia Paiva',
                     style: TextStyle(
@@ -46,8 +42,8 @@ class _Atividades extends State<Atividades> {
               ],
             ),
             //FOTO + LIKES
-            Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 32.0),
               child: RoundProfilePictureWithLikes(
                 photoPath: 'assets/images/imgprofilejulia.png',
                 size: 120,
@@ -135,12 +131,12 @@ class _Atividades extends State<Atividades> {
               onTap: () => (Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HistoricoDeCaronas()))),
+                      builder: (context) => const HistoricoDeCaronas()))),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNav(selectedIndex: 2),
+      bottomNavigationBar: const BottomNav(selectedIndex: 2),
     );
   }
 }

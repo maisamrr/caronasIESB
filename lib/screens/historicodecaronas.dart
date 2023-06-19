@@ -1,15 +1,9 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/detalhescarona.dart';
-import 'package:caronapp/widgets/destinationfield.dart';
 import 'package:flutter/material.dart';
-import '../widgets/addresstile.dart';
-import '../widgets/custombutton.dart';
-import '../widgets/customhistory.dart';
 import 'atividades.dart';
-import 'detalhesdaviagem.dart';
 
 class HistoricoDeCaronas extends StatelessWidget {
-  HistoricoDeCaronas({super.key});
+  const HistoricoDeCaronas({super.key});
   /*SavedAddress savedAddress = SavedAddress();*/
 
   @override
@@ -36,7 +30,7 @@ class HistoricoDeCaronas extends StatelessWidget {
                     ),
                     onTap: () => {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Atividades()))
+                          MaterialPageRoute(builder: (context) => const Atividades()))
                     },
                   ),
                 ),

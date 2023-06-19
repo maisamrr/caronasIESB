@@ -18,7 +18,7 @@ class CustomPersonSimple extends StatelessWidget {
           child: Row(
             children: [
               //FOTO MOTORISTA
-              RoundSmallAvatar(photoPath: 'assets/images/imgrandom.png'),
+              const RoundSmallAvatar(photoPath: 'assets/images/imgrandom.png'),
 
               //MOTORISTA
               Expanded(

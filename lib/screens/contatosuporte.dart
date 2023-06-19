@@ -3,7 +3,6 @@ import 'package:caronapp/screens/atividades.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custombutton.dart';
-import '../widgets/customdropdown.dart';
 import '../widgets/customtextfield.dart';
 
 class ContatoSuporte extends StatelessWidget {
@@ -28,7 +27,7 @@ class ContatoSuporte extends StatelessWidget {
                   child: const Icon(Icons.arrow_back, size: 24),
                   onTap: () => {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Atividades()))
+                        MaterialPageRoute(builder: (context) => const Atividades()))
                   },
                 ),
               ),
@@ -104,7 +103,7 @@ class ContatoSuporte extends StatelessWidget {
                   text: 'Enviar',
                   onPressed: () => {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Atividades()))
+                        MaterialPageRoute(builder: (context) => const Atividades()))
                   },
                 ),
               ),

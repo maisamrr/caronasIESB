@@ -24,7 +24,7 @@ class CustomTimePicker extends FormField<TimeOfDay> {
           onSaved: onSaved,
           validator: validator,
           builder: (FormFieldState<TimeOfDay> state) {
-            final TextEditingController _controller =
+            final TextEditingController controller =
                 TextEditingController(text: state.value!.format(context));
             return Padding(
               padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
@@ -50,7 +50,7 @@ class CustomTimePicker extends FormField<TimeOfDay> {
                     );
                     if (selectedTime != null) {
                       state.didChange(selectedTime);
-                      _controller.text = selectedTime.format(context);
+                      controller.text = selectedTime.format(context);
                     }
                   },
                   child: Padding(
@@ -81,7 +81,7 @@ class CustomTimePicker extends FormField<TimeOfDay> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(right: 8.0),
+                                margin: const EdgeInsets.only(right: 8.0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color: redIdColor,

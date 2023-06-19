@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import '../store/user_store.dart';
 
 class CadastroUsuario extends StatefulWidget {
+  const CadastroUsuario({super.key});
+
   @override
   _CadastroUsuarioState createState() => _CadastroUsuarioState();
 }

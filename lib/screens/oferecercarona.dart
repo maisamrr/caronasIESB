@@ -8,15 +8,16 @@ import '../widgets/customtimepicker.dart';
 import '../widgets/kmformfield.dart';
 
 class OferecerCarona extends StatefulWidget {
-  OferecerCarona({Key? key}) : super(key: key);
+  const OferecerCarona({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _OferecerCaronaState createState() => _OferecerCaronaState();
 }
 
 class _OferecerCaronaState extends State<OferecerCarona> {
   TimeOfDay? _selectedTime;
-  int _km = 0;
+  final int _km = 0;
   final _form = GlobalKey<FormState>();
   Car? selectedCar;
 

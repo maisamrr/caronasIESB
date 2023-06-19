@@ -6,7 +6,7 @@ class CustomDropdown extends StatefulWidget {
   final Color boxColor;
   final TextEditingController dropdownController;
 
-  CustomDropdown({
+  const CustomDropdown({super.key, 
     required this.optionsList,
     required this.hint,
     required this.boxColor,

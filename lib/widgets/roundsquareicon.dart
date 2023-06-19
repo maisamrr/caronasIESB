@@ -1,11 +1,9 @@
-import 'package:caronapp/screens/detalhescarona.dart';
-import 'package:caronapp/screens/perfilusuario.dart';
 import 'package:flutter/material.dart';
 
 class RoundedSquareIcon extends StatelessWidget {
   final IconData icon;
 
-  const RoundedSquareIcon({required this.icon});
+  const RoundedSquareIcon({super.key, required this.icon});
 
   @override
   Widget build(BuildContext context) {
