@@ -121,6 +121,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
       userStore.setEmail(_emailController.text);
       userStore.setSenha(_senhaController.text);
 
+      await userStore.saveUser();
 
       Navigator.pushReplacementNamed(context, '/');
 
@@ -150,97 +151,103 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Form(
-        key: _form,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 40.0, bottom: 40.0),
-                child: GestureDetector(
-                  child: const Icon(Icons.arrow_back, size: 24),
-                  onTap: () => {
-                    Navigator.of(context).pushReplacementNamed('/'),
-                  },
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 40.0),
-                child: Text(
-                  'Criar nova conta',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Form(
+          key: _form,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 25, left: 40.0, bottom: 40.0),
+                  child: GestureDetector(
+                    child: const Icon(Icons.arrow_back, size: 24),
+                    onTap: () => {
+                      Navigator.of(context).pushReplacementNamed('/'),
+                    },
                   ),
                 ),
-              ),
-              Text(
-                _errorLogin,
-                style: const TextStyle(
-                  height: 2,
-                  fontSize: 16.0,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              FormTextField(
-                  controller: _nomeController,
-                  validator: _validateNome,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Nome'),
-              FormTextField(
-                  controller: _celularController,
-                  validator: _validateCelular,
-                  keyboardType: TextInputType.phone,
-                  labelText: 'Celular'),
-              FormTextField(
-                  controller: _matriculaController,
-                  validator: _validateMatricula,
-                  keyboardType: TextInputType.number,
-                  labelText: 'Matrícula'),
-              FormTextField(
-                  controller: _emailController,
-                  validator: _validateEmail,
-                  keyboardType: TextInputType.emailAddress,
-                  labelText: 'E-mail'),
-              FormTextField(
-                  controller: _senhaController,
-                  validator: _validateSenha,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Senha'),
-              Padding(
-                  padding:
-                      const EdgeInsets.only(top: 24.0, left: 40.0, bottom: 8.0),
-                  child: Row(children: [
-                    Checkbox(
-                      value: agree,
-                      onChanged: _onAgreeChanged,
+                const Padding(
+                  padding: EdgeInsets.only(left: 40.0),
+                  child: Text(
+                    'Criar nova conta',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const Text('Eu concordo com os'),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/termosecondicoes');
-                      },
-                      child: const Text(
-                        'Termos e Condições',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    _errorLogin,
+                    style: const TextStyle(
+                      height: 2,
+                      fontSize: 16.0,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                FormTextField(
+                    controller: _nomeController,
+                    validator: _validateNome,
+                    keyboardType: TextInputType.text,
+                    labelText: 'Nome'),
+                FormTextField(
+                    controller: _celularController,
+                    validator: _validateCelular,
+                    keyboardType: TextInputType.phone,
+                    labelText: 'Celular'),
+                FormTextField(
+                    controller: _matriculaController,
+                    validator: _validateMatricula,
+                    keyboardType: TextInputType.number,
+                    labelText: 'Matrícula'),
+                FormTextField(
+                    controller: _emailController,
+                    validator: _validateEmail,
+                    keyboardType: TextInputType.emailAddress,
+                    labelText: 'E-mail'),
+                FormTextField(
+                    controller: _senhaController,
+                    validator: _validateSenha,
+                    keyboardType: TextInputType.text,
+                    labelText: 'Senha'),
+                Padding(
+                    padding: const EdgeInsets.only(
+                        top: 24.0, left: 40.0, bottom: 8.0),
+                    child: Row(children: [
+                      Checkbox(
+                        value: agree,
+                        onChanged: _onAgreeChanged,
+                      ),
+                      const Text('Eu concordo com os'),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/termosecondicoes');
+                        },
+                        child: const Text(
+                          'Termos e Condições',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
                       ),
-                    ),
-                  ])),
-              Padding(
-                padding: const EdgeInsets.only(left: 40.0),
-                child: CustomButton(
-                  text: 'Cadastrar',
-                  onPressed: () => _submitForm(context),
+                    ])),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40.0),
+                  child: CustomButton(
+                    text: 'Cadastrar',
+                    onPressed: () => _submitForm(context),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -36,8 +36,9 @@ class CustomButton extends StatelessWidget {
                   fontSize: 16.0,
                 ),
               ),
-              const Padding(padding: EdgeInsets.only(right: 20, top: 1),
-              child: Icon(Icons.arrow_forward, size: 24))
+              const Padding(
+                  padding: EdgeInsets.only(right: 20, top: 1),
+                  child: Icon(Icons.arrow_forward, size: 24))
             ],
           ),
         ),
