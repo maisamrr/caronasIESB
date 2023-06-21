@@ -1,4 +1,5 @@
 import 'package:caronapp/const.dart';
+import 'package:caronapp/services/user_service.dart';
 import 'package:caronapp/widgets/formtextfield.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/custombutton.dart';
@@ -119,10 +120,19 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
       userStore.setEmail(_emailController.text);
       userStore.setSenha(_senhaController.text);
 
-      await userStore.saveUser();
+      UserService userService = UserService();
+
+      await userService.saveUser(
+        nome: userStore.nome,
+        celular: userStore.celular,
+        matricula: userStore.matricula,
+        email: userStore.email,
+        senha: userStore.senha,
+      );
 
       Navigator.pushReplacementNamed(context, '/');
 
+      // ignore: use_build_context_synchronously
       showDialog(
         context: context,
         builder: (BuildContext context) {

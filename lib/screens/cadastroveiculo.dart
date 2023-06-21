@@ -24,7 +24,7 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
       return 'Informe uma placa';
     }
     if (value.length != 7) {
-      return 'A placa deve ter 8 caracteres';
+      return 'A placa deve ter 7 caracteres';
     }
     return null;
   }

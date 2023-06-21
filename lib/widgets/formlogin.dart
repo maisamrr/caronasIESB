@@ -1,3 +1,4 @@
+import 'package:caronapp/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../store/user_store.dart';
@@ -47,11 +48,38 @@ class _FormLoginState extends State<FormLogin> {
       return;
     }
 
-    UserStore userStore = Provider.of<UserStore>(context, listen: false);
-    userStore.login(_emailController.text);
+    String email = _emailController.text;
+    String senha = _senhaController.text;
 
-    Navigator.pushReplacementNamed(context, '/pedircarona');
-    
+    UserService userService = UserService();
+
+    try {
+      await userService.loginUser(email: email, senha: senha);
+      // O login foi realizado com sucesso, faça a navegação para a próxima tela
+      Navigator.of(context).pushReplacementNamed('/pedircarona');
+    } catch (e) {
+      // Trate o erro de autenticação aqui
+      setState(() {
+        _errorLogin = 'Erro ao fazer login. Verifique suas credenciais.';
+      });
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Erro de Autenticação'),
+            content: Text('Erro ao fazer login. Verifique suas credenciais.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override

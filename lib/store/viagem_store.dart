@@ -18,6 +18,29 @@ abstract class _ViagemStoreBase with Store {
   @observable
   String horario = '';
 
+  //motorista
+  @observable
+  UserStore motorista = UserStore();
+
+  //partida
+  @observable
+  AddressStore partida = AddressStore();
+
+  //chegada
+  @observable
+  AddressStore chegada = AddressStore();
+
+  //carro
+  @observable
+  Car? carro;
+
+  //passageiros
+  @observable
+  ObservableList<UserStore> passageiros = ObservableList<UserStore>();
+
+  @observable
+  StatusViagem status = StatusViagem.naoIniciada;
+
   @action
   void setData(DateTime dateTime) {
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
@@ -29,14 +52,6 @@ abstract class _ViagemStoreBase with Store {
     DateFormat timeFormat = DateFormat.Hm();
     horario = timeFormat.format(dateTime);
   }
-
-  //partida
-  @observable
-  AddressStore partida = AddressStore();
-
-  //chegada
-  @observable
-  AddressStore chegada = AddressStore();
 
   @action
   void setPartida(String apelido, String rua, String numero) {
@@ -52,27 +67,15 @@ abstract class _ViagemStoreBase with Store {
     chegada.setNumero(numero);
   }
 
-  //motorista
-  @observable
-  UserStore motorista = UserStore();
-
   @action
   void setMotorista(String nome) {
     motorista.setNome(nome);
   }
 
-  //carro
-  @observable
-  Car? carro;
-
   @action
   void setCarro(Car carroSelecionado) {
     carro = carroSelecionado;
   }
-
-  //passageiros
-  @observable
-  ObservableList<UserStore> passageiros = ObservableList<UserStore>();
 
   @action
   void addPassageiro(UserStore passageiro) {
@@ -88,9 +91,6 @@ abstract class _ViagemStoreBase with Store {
 
   @computed
   bool get temCarro => carro != null;
-
-  @observable
-  StatusViagem status = StatusViagem.naoIniciada;
 
   int calculateStatus() {
     if (status == StatusViagem.naoIniciada) {
