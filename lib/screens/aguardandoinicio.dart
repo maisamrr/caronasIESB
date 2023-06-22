@@ -150,7 +150,7 @@ class AguardandoInicio extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(bottom: 16.0),
                 child: Column(
                   children: [

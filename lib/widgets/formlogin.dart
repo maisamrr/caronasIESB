@@ -17,7 +17,7 @@ class _FormLoginState extends State<FormLogin> {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
 
-  final String _errorLogin = '';
+  String _errorLogin = '';
 
   @override
   void dispose() {
