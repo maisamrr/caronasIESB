@@ -194,6 +194,24 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "firebase_auth",
+      "rootUri": "file:///C:/Users/Usuario/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth-4.6.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_auth_platform_interface",
+      "rootUri": "file:///C:/Users/Usuario/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_platform_interface-6.15.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_auth_web",
+      "rootUri": "file:///C:/Users/Usuario/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_web-5.5.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "firebase_core",
       "rootUri": "file:///C:/Users/Usuario/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-2.14.0",
       "packageUri": "lib/",
@@ -686,7 +704,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-19T01:11:06.330210Z",
+  "generated": "2023-06-20T20:40:00.108415Z",
   "generator": "pub",
   "generatorVersion": "2.19.5"
 }

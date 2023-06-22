@@ -1,4 +1,5 @@
 import 'package:caronapp/const.dart';
+import 'package:caronapp/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/custombutton.dart';
 import 'package:provider/provider.dart';
@@ -32,45 +33,92 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
     }
     UserStore userStore = Provider.of<UserStore>(context, listen: false);
 
-    if (_emailController.text == userStore.email) {
-      showDialog(
+    String email = _emailController.text;
+
+    UserService userService = UserService();
+
+    userService.isEmailRegistered(email).then((isRegistered) {
+      if (isRegistered) {
+        userService.resetPassword(email).then((_) {
+          // A redefinição de senha foi enviada com sucesso
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Redefinição de Senha Enviada'),
+                content: Text(
+                    'Foi enviado um e-mail para $email com instruções para redefinir a senha.'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        });
+      } else {
+        showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Recuperação de senha'),
-              content: const Text(
-                  'Foi enviado um e-mail para o endereço informado.'),
-              actions: [
+              title: Text('Email não registrado'),
+              content: Text('O email $email não está registrado no sistema.'),
+              actions: <Widget>[
                 TextButton(
+                  child: Text('OK'),
                   onPressed: () {
                     Navigator.of(context).pop();
-                    Navigator.pushReplacementNamed(context, '/');
-                    //implementar enviar email
                   },
-                  child: const Text('Ok'),
                 ),
               ],
             );
-          });
-    } else {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Recuperação de senha'),
-              content: const Text('O e-mail não está cadastrado.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.pushReplacementNamed(context, '/');
-                  },
-                  child: const Text('Ok'),
-                ),
-              ],
-            );
-          });
-    }
+          },
+        );
+      }
+    });
+    // if (_emailController.text == userStore.email) {
+    //   showDialog(
+    //       context: context,
+    //       builder: (BuildContext context) {
+    //         return AlertDialog(
+    //           title: const Text('Recuperação de senha'),
+    //           content: const Text(
+    //               'Foi enviado um e-mail para o endereço informado.'),
+    //           actions: [
+    //             TextButton(
+    //               onPressed: () {
+    //                 Navigator.of(context).pop();
+    //                 Navigator.pushReplacementNamed(context, '/');
+    //                 //implementar enviar email
+    //               },
+    //               child: const Text('Ok'),
+    //             ),
+    //           ],
+    //         );
+    //       });
+    // } else {
+    //   showDialog(
+    //       context: context,
+    //       builder: (BuildContext context) {
+    //         return AlertDialog(
+    //           title: const Text('Recuperação de senha'),
+    //           content: const Text('O e-mail não está cadastrado.'),
+    //           actions: [
+    //             TextButton(
+    //               onPressed: () {
+    //                 Navigator.of(context).pop();
+    //                 Navigator.pushReplacementNamed(context, '/');
+    //               },
+    //               child: const Text('Ok'),
+    //             ),
+    //           ],
+    //         );
+    //       });
+    // }
   }
 
   @override

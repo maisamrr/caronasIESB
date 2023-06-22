@@ -138,8 +138,15 @@ class _EscolherVeiculo extends State<EscolherVeiculo> {
                   itemCount: carStore.carros.length,
                   itemBuilder: (context, index) {
                     Car carro = carStore.carros[index];
-                    return CarModelTile(
-                      carro: carro,
+                    return GestureDetector(
+                      onTap: () {
+                        // Navigator.pop(context, carro);
+                        Navigator.pushNamed(context, '/oferecercarona',
+                            arguments: carro);
+                      },
+                      child: CarModelTile(
+                        carro: carro,
+                      ),
                     );
                   },
                 ),

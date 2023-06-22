@@ -1,6 +1,11 @@
 import 'package:caronapp/const.dart';
+import 'package:caronapp/screens/escolherveiculo.dart';
+import 'package:caronapp/services/viagem_service.dart';
+import 'package:caronapp/store/address_store.dart';
 import 'package:caronapp/store/car_model.dart';
+import 'package:caronapp/store/status_viagem.dart';
 import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
 import '../widgets/bottonnav.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customsearchfield.dart';
@@ -25,20 +30,33 @@ class _OferecerCaronaState extends State<OferecerCarona> {
     if (!_form.currentState!.validate()) {
       return;
     }
-    Navigator.pushReplacementNamed(context, '/aguardandoinicio');
-  }
 
-  Future<void> _navigateToEscolherVeiculo(BuildContext context) async {
-    final result = await Navigator.of(context).pushNamed('/escolherveiculo');
-    if (result != null && result is Car) {
-      setState(() {
-        selectedCar = result;
-      });
-    }
+    ViagemService viagemService = ViagemService();
+    AddressStore addressStore = AddressStore();
+
+    addressStore.setApelido("Apelido");
+    addressStore.setNumero("Numero");
+    addressStore.setRua("Rua");
+
+    viagemService.saveTrip(
+        data: "Hoje",
+        horario: "Agora",
+        partida: addressStore,
+        chegada: addressStore,
+        carro: selectedCar,
+        status: StatusViagem.emCurso);
+    Navigator.pushReplacementNamed(context, '/aguardandoinicio');
   }
 
   @override
   Widget build(BuildContext context) {
+    // Obter o argumento passado da terceira tela
+    final arguments = ModalRoute.of(context)!.settings.arguments;
+
+    // Verificar se o argumento é do tipo Car
+    if (arguments != null && arguments is Car) {
+      selectedCar = arguments;
+    }
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -75,7 +93,8 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                     height: 60,
                     width: 220,
                     child: ElevatedButton(
-                      onPressed: () => _navigateToEscolherVeiculo(context),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, "/escolherveiculo"),
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
                         backgroundColor: Colors.white,
@@ -85,9 +104,11 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
-                            'Adicione um carro',
+                            selectedCar != null
+                                ? selectedCar!.marca.toString()
+                                : 'Adicione um carro',
                             style: TextStyle(
                               fontSize: 14.0,
                               color: Colors.grey,

@@ -10,6 +10,8 @@ class Car {
 
   String get placa => _placa;
 
+  get name => null;
+
   set placa(String value) {
     _placa = value;
   }
