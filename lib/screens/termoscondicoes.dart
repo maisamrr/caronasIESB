@@ -24,7 +24,7 @@ class TermosCondicoes extends StatelessWidget {
                   child: const Icon(Icons.arrow_back, size: 24, color: Colors.grey),
                   onTap: () => {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => CadastroUsuario()))
+                        MaterialPageRoute(builder: (context) => const CadastroUsuario()))
                   },
                 ),
               ),

@@ -6,7 +6,7 @@ class CarWidget extends StatefulWidget {
   final String plate;
   final Color color;
 
-  CarWidget({required this.model, required this.plate, required this.color});
+  const CarWidget({super.key, required this.model, required this.plate, required this.color});
 
   @override
   _CarWidgetState createState() => _CarWidgetState();
@@ -26,7 +26,7 @@ class _CarWidgetState extends State<CarWidget> {
     return GestureDetector(
       onTap: () => {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => OferecerCarona()))
+            context, MaterialPageRoute(builder: (context) => const OferecerCarona()))
       },
       child: Container(
         padding: const EdgeInsets.all(24.0),

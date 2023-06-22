@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import '../store/user_store.dart';
 
 class EsqueciSenha extends StatefulWidget {
+  const EsqueciSenha({super.key});
+
   @override
   _EsqueciSenhaState createState() => _EsqueciSenhaState();
 }

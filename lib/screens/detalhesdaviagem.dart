@@ -33,7 +33,7 @@ class DetalhesDaViagem extends StatelessWidget {
               ),
               Center(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 32.0, bottom: 32.0),
+                  padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                   child: Text(
                     'Detalhes da Viagem',
                     style: TextStyle(
@@ -55,35 +55,35 @@ class DetalhesDaViagem extends StatelessWidget {
                   ),
                 ),
               ),
-              CustomInfoBox(
+              const CustomInfoBox(
                   boldText: 'Horário',
                   lightText: '18:37',
                   iconData: Icons.schedule_outlined),
-              CustomInfoBox(
+              const CustomInfoBox(
                   boldText: 'Partida',
                   lightText: 'SQS 116 Bloco J',
                   iconData: Icons.location_on_outlined),
-              CustomInfoBox(
+              const CustomInfoBox(
                   boldText: 'Chegada',
                   lightText: 'Iesb Sul',
                   iconData: Icons.emoji_flags_outlined),
-              CustomInfoBox(
+              const CustomInfoBox(
                   boldText: 'Motorista',
                   lightText: 'Julia Paiva',
                   iconData: Icons.account_circle_outlined),
-                  CustomInfoBox(
+                  const CustomInfoBox(
                   boldText: 'Veículo',
                   lightText: 'Hyundai HB20 - BRA1234',
                   iconData: Icons.directions_car_outlined),
-              CustomInfoBox(
+              const CustomInfoBox(
                   boldText: 'Passageiro',
                   lightText: 'Gustavo Pedro',
                   iconData: Icons.account_circle_outlined),
-              CustomInfoBox(
+              const CustomInfoBox(
                   boldText: 'Passageiro',
                   lightText: 'Felipe Louzada',
                   iconData: Icons.account_circle_outlined),
-                  SizedBox(height: 24,)
+                  const SizedBox(height: 24,)
             ],
           ),
         ),

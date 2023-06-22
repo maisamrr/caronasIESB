@@ -5,7 +5,7 @@ class ClearableTextField extends StatefulWidget {
   final String labelText;
   final String? Function(String?)? validator;
 
-  ClearableTextField({
+  const ClearableTextField({super.key, 
     required this.controller,
     required this.labelText,
     this.validator,

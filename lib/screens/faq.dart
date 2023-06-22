@@ -2,11 +2,11 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/models/question.dart';
 import 'package:caronapp/models/savedquestions.dart';
 import 'package:caronapp/screens/atividades.dart';
-import 'package:caronapp/screens/cadastrousuario.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/questionstile.dart';
 
+// ignore: must_be_immutable
 class Faq extends StatelessWidget {
   Faq({Key? key}) : super(key: key);
 
@@ -37,7 +37,7 @@ class Faq extends StatelessWidget {
                   ),
                   onTap: () => {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Atividades()))
+                        MaterialPageRoute(builder: (context) => const Atividades()))
                   },
                 ),
               ),
@@ -54,7 +54,7 @@ class Faq extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 500,
                 child:
                     QuestionsList(questions: SavedQuestions().savedQuestions),

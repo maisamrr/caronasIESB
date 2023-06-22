@@ -39,11 +39,11 @@ class CustomHistory extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
         child: ListTile(
-          title: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+          title: const Padding(
+            padding: EdgeInsets.only(bottom: 8.0),
             child: Text(
               'Oie',
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: Color(0xff000000),

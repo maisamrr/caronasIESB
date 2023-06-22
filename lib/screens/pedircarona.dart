@@ -7,7 +7,7 @@ import '../store/user_store.dart';
 import 'destino.dart';
 
 class PedirCarona extends StatefulWidget {
-  const PedirCarona({Key? key});
+  const PedirCarona({super.key});
 
   @override
   State<PedirCarona> createState() => _PedirCaronaState();
@@ -158,7 +158,7 @@ class _PedirCaronaState extends State<PedirCarona> {
                         apelido: address.apelido,
                         rua: address.rua,
                         numero: address.numero,
-                        iconAsset: Icon(Icons.hail_outlined, size: 30),
+                        iconAsset: const Icon(Icons.hail_outlined, size: 30),
                       ),
                       onTap: () {
                         _destinoController.text = address.rua;
@@ -171,7 +171,7 @@ class _PedirCaronaState extends State<PedirCarona> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(selectedIndex: 0),
+      bottomNavigationBar: const BottomNav(selectedIndex: 0),
     );
   }
 }
