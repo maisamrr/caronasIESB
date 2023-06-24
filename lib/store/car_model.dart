@@ -12,6 +12,10 @@ class Car {
 
   get name => null;
 
+  get model => null;
+
+  get plate => null;
+
   set placa(String value) {
     _placa = value;
   }

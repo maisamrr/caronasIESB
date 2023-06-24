@@ -6,11 +6,12 @@ import '../store/car_store.dart';
 
 class CarModelTile extends StatelessWidget {
   final Car carro;
+  final VoidCallback onTap;
 
   const CarModelTile({
-    Key? key,
     required this.carro,
-  }) : super(key: key);
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +27,20 @@ class CarModelTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
           child: ListTile(
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                context,
+                '/oferecercarona',
+                arguments: {
+                  'selectedPlaca': carro.placa,
+                  'selectedMarca': carro.marca,
+                },
+              );
+            }, // Add the onTap callback here
             title: Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(
-                (carro.marca.formattedString),
+                carro.marca.formattedString,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
