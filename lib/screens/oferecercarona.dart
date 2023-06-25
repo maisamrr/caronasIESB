@@ -50,6 +50,10 @@ class _OferecerCaronaState extends State<OferecerCarona> {
       return;
     }
     try {
+      if (selectedCar == null) {
+        return;
+      }
+
       ViagemService viagemService = ViagemService();
 
       await viagemService.saveTrip(

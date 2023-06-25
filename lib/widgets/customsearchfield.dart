@@ -42,7 +42,8 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
               ),
             ),
             Expanded(
-              child: TextField(
+              child: TextFormField(
+                validator: widget.validator,
                 controller: widget.controller,
                 keyboardType: widget.keyboardType,
                 decoration: InputDecoration(
