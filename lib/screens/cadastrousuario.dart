@@ -124,23 +124,44 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
       UserService userService = UserService();
 
-      await userService.saveUser(
-        nome: userStore.nome,
-        celular: userStore.celular,
-        matricula: userStore.matricula,
-        email: userStore.email,
-        senha: userStore.senha,
-      );
+      if (userService.isEmailRegistered(userStore.email) == false) {
+        await userService.saveUser(
+          nome: userStore.nome,
+          celular: userStore.celular,
+          matricula: userStore.matricula,
+          email: userStore.email,
+          senha: userStore.senha,
+        );
 
-      Navigator.pushReplacementNamed(context, '/');
+        Navigator.pushReplacementNamed(context, '/');
+
+        // ignore: use_build_context_synchronously
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Cadastro bem-sucedido'),
+              content: const Text('Seu cadastro foi realizado com sucesso.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
 
       // ignore: use_build_context_synchronously
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Cadastro bem-sucedido'),
-            content: const Text('Seu cadastro foi realizado com sucesso.'),
+            title: const Text('Cadastro mal-sucedido'),
+            content: const Text('Email já cadastrado'),
             actions: [
               TextButton(
                 onPressed: () {
