@@ -2,11 +2,21 @@ import 'package:caronapp/screens/oferecercarona.dart';
 import 'package:flutter/material.dart';
 
 class CarWidget extends StatefulWidget {
-  final String model;
-  final String plate;
+  final String marca;
+  final String placa;
   final Color color;
+  final double modelFontSize;
+  final double plateFontSize;
+  final double iconSize;
 
-  const CarWidget({super.key, required this.model, required this.plate, required this.color});
+  const CarWidget(
+      {super.key,
+      required this.marca,
+      required this.placa,
+      required this.color,
+      required this.modelFontSize,
+      required this.plateFontSize,
+      required this.iconSize});
 
   @override
   _CarWidgetState createState() => _CarWidgetState();
@@ -24,12 +34,14 @@ class _CarWidgetState extends State<CarWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {
+      onTap: () {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const OferecerCarona()))
+          context,
+          MaterialPageRoute(builder: (context) => const OferecerCarona()),
+        );
       },
       child: Container(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Colors.white,
@@ -42,17 +54,19 @@ class _CarWidgetState extends State<CarWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.model,
-                  style: const TextStyle(
+                  widget.marca,
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: widget
+                        .modelFontSize, // Use the provided model font size
                   ),
                 ),
                 Text(
-                  widget.plate,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    height: 1.5,
+                  widget.placa,
+                  style: TextStyle(
+                    fontSize: widget
+                        .plateFontSize, // Use the provided plate font size
+                    height: 1.35,
                   ),
                 ),
               ],
@@ -60,7 +74,7 @@ class _CarWidgetState extends State<CarWidget> {
             Icon(
               Icons.directions_car,
               color: _iconColor,
-              size: 40,
+              size: widget.iconSize, // Use the provided icon size
             ),
           ],
         ),

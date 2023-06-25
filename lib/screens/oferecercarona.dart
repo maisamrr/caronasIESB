@@ -6,7 +6,9 @@ import 'package:caronapp/store/car_model.dart';
 import 'package:caronapp/store/status_viagem.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import '../store/marcas_model.dart';
 import '../widgets/bottonnav.dart';
+import '../widgets/carwidget.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customsearchfield.dart';
 import '../widgets/customtimepicker.dart';
@@ -53,14 +55,23 @@ class _OferecerCaronaState extends State<OferecerCarona> {
     // Obter o argumento passado da terceira tela
     final arguments = ModalRoute.of(context)!.settings.arguments;
 
-    // Verificar se o argumento é do tipo Car
-    if (arguments != null && arguments is Car) {
-      selectedCar = arguments;
+// Verificar se os argumentos são válidos
+    if (arguments != null && arguments is Map<String, dynamic>) {
+      final selectedPlaca = arguments['selectedPlaca'] as String?;
+      final selectedMarca = arguments['selectedMarca'] as Marca?;
+
+      if (selectedPlaca != null && selectedMarca != null) {
+        selectedCar = Car(
+          placa: selectedPlaca,
+          marca: selectedMarca,
+        );
+      }
     }
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Form(
+          key: _form,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -92,40 +103,60 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                   child: SizedBox(
                     height: 60,
                     width: 220,
-                    child: ElevatedButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, "/escolherveiculo"),
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            selectedCar != null
-                                ? selectedCar!.marca.toString()
-                                : 'Adicione um carro',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        if (selectedCar != null)
+                          Expanded(
+                            child: CarWidget(
+                              marca: selectedCar!.marca.formattedString,
+                              placa: selectedCar!.placa,
+                              color: redIdColor,
+                              modelFontSize: 14,
+                              plateFontSize: 12,
+                              iconSize: 24,
                             ),
                           ),
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(35, 0, 0, 0),
-                              child: Icon(
-                                Icons.add,
-                                size: 24,
-                                color: Colors.grey,
-                              ))
-                        ],
-                      ),
+                        if (selectedCar == null)
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: ElevatedButton(
+                              onPressed: () => Navigator.pushNamed(
+                                  context, "/escolherveiculo"),
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Adicione um carro',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(35, 0, 10, 0),
+                                    child: Icon(
+                                      Icons.add,
+                                      size: 24,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 ),
+
                 //partida
                 CustomSearchField(
                   labelText: 'Local de partida',
@@ -157,10 +188,15 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                 ),
                 KmFormField(
                   context: context,
-                  labelText: 'Enter a number',
+                  labelText: 'Limite de quilometragem',
                   keyboardType: TextInputType.number,
                   backgroundColor: Colors.grey[200]!,
-                  onSubmitted: (value) {},
+                  onSubmitted: (value) {
+                    // Handle the submitted value
+                  },
+                  onSaved: (value) {
+                    // Handle the saved value
+                  },
                 ),
                 Padding(
                     padding: const EdgeInsets.only(left: 40, top: 7),
