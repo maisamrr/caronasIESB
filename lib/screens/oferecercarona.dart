@@ -1,11 +1,15 @@
+import 'dart:math';
+
 import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:caronapp/services/viagem_service.dart';
 import 'package:caronapp/store/address_store.dart';
 import 'package:caronapp/store/car_model.dart';
 import 'package:caronapp/store/status_viagem.dart';
+import 'package:caronapp/store/viagem_store.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:provider/provider.dart';
 import '../store/marcas_model.dart';
 import '../widgets/bottonnav.dart';
 import '../widgets/carwidget.dart';
@@ -23,31 +27,49 @@ class OferecerCarona extends StatefulWidget {
 }
 
 class _OferecerCaronaState extends State<OferecerCarona> {
-  TimeOfDay? _selectedTime;
-  final int _km = 0;
   final _form = GlobalKey<FormState>();
-  Car? selectedCar;
+  final _partidaController = TextEditingController();
+  final _destinoController = TextEditingController();
 
-  void _submitForm(BuildContext context) {
+  Car? selectedCar;
+  int _km = 0;
+  TimeOfDay? _selectedTime;
+
+  String? _validateEndereco(String? value) {
+    if (value == null || value.isEmpty) {
+      return "O endereço é obrigatório";
+    }
+    if (value.length < 8) {
+      return "O endereço deve ter no mínimo 8 caracteres";
+    }
+    return null;
+  }
+
+  Future<void> _submitForm(BuildContext context) async {
     if (!_form.currentState!.validate()) {
       return;
     }
+    try {
+      ViagemService viagemService = ViagemService();
 
-    ViagemService viagemService = ViagemService();
-    AddressStore addressStore = AddressStore();
+      await viagemService.saveTrip(
+          data: DateTime.now().day.toString() +
+              "/" +
+              DateTime.now().month.toString() +
+              "/" +
+              DateTime.now().year.toString(),
+          horario: DateTime.now().hour.toString() +
+              ":" +
+              DateTime.now().minute.toString(),
+          partida: _partidaController.text,
+          chegada: _destinoController.text,
+          carro: selectedCar,
+          status: StatusViagem.emCurso);
 
-    addressStore.setApelido("Apelido");
-    addressStore.setNumero("Numero");
-    addressStore.setRua("Rua");
-
-    viagemService.saveTrip(
-        data: "Hoje",
-        horario: "Agora",
-        partida: addressStore,
-        chegada: addressStore,
-        carro: selectedCar,
-        status: StatusViagem.emCurso);
-    Navigator.pushReplacementNamed(context, '/aguardandoinicio');
+      Navigator.pushReplacementNamed(context, '/aguardandoinicio');
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -55,11 +77,10 @@ class _OferecerCaronaState extends State<OferecerCarona> {
     // Obter o argumento passado da terceira tela
     final arguments = ModalRoute.of(context)!.settings.arguments;
 
-// Verificar se os argumentos são válidos
+// // Verificar se os argumentos são válidos
     if (arguments != null && arguments is Map<String, dynamic>) {
       final selectedPlaca = arguments['selectedPlaca'] as String?;
       final selectedMarca = arguments['selectedMarca'] as Marca?;
-
       if (selectedPlaca != null && selectedMarca != null) {
         selectedCar = Car(
           placa: selectedPlaca,
@@ -160,42 +181,41 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                 //partida
                 CustomSearchField(
                   labelText: 'Local de partida',
+                  controller: _partidaController,
+                  validator: _validateEndereco,
                   keyboardType: TextInputType.text,
                   backgroundColor: Colors.white,
-                  onSubmitted: (value) {},
                 ),
                 CustomSearchField(
                   labelText: 'Destino final',
+                  controller: _destinoController,
+                  validator: _validateEndereco,
                   keyboardType: TextInputType.text,
                   backgroundColor: Colors.white,
-                  onSubmitted: (value) {},
                 ),
-                CustomTimePicker(
-                  labelText: 'Horário de saída',
-                  initialValue: _selectedTime,
-                  onSaved: (time) {
-                    _selectedTime = time;
-                  },
-                  validator: (time) {
-                    if (time == null) {
-                      return 'É necessário selecionar um horário';
-                    }
-                    return null;
-                  },
-                  context: context,
-                  backgroundColor: Colors.white,
-                  keyboardType: TextInputType.text,
-                ),
+                // CustomTimePicker(
+                //   labelText: 'Horário de saída',
+                //   initialValue: _selectedTime,
+                //   onSaved: (time) {
+                //     _selectedTime = time;
+                //   },
+                //   validator: (time) {
+                //     if (time == null) {
+                //       return 'É necessário selecionar um horário';
+                //     }
+                //     return "Default horario";
+                //   },
+                //   context: context,
+                //   backgroundColor: Colors.white,
+                //   keyboardType: TextInputType.text,
+                // ),
                 KmFormField(
                   context: context,
                   labelText: 'Limite de quilometragem',
                   keyboardType: TextInputType.number,
                   backgroundColor: Colors.grey[200]!,
                   onSubmitted: (value) {
-                    // Handle the submitted value
-                  },
-                  onSaved: (value) {
-                    // Handle the saved value
+                    _km = value as int;
                   },
                 ),
                 Padding(

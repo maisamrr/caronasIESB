@@ -120,7 +120,8 @@ class _PedirCaronaState extends State<PedirCarona> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => Destino(
-                                          destinoController: _destinoController),
+                                          destinoController:
+                                              _destinoController),
                                     ),
                                   );
                                 }
@@ -155,7 +156,7 @@ class _PedirCaronaState extends State<PedirCarona> {
                     final address = addresses[index];
                     return GestureDetector(
                       child: AddressTile(
-                        apelido: address.apelido,
+                        apelido: address.address,
                         rua: address.rua,
                         numero: address.numero,
                         iconAsset: const Icon(Icons.hail_outlined, size: 30),

@@ -28,7 +28,7 @@ class UserService {
       'email': email,
       'senha': senha,
     });
-
+    //Auth
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
