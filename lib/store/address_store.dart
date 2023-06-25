@@ -6,7 +6,7 @@ class AddressStore = _AddressStoreBase with _$AddressStore;
 
 abstract class _AddressStoreBase with Store {
   @observable
-  String apelido = "";
+  String address = "";
 
   @observable
   String rua = "";
@@ -15,16 +15,16 @@ abstract class _AddressStoreBase with Store {
   String numero = "";
 
   @action
-  void setApelido(String value) => apelido = value;
+  void setApelido(String value) => address = value;
 
   @action
   void setRua(String value) => rua = value;
 
   @action
   void setNumero(String value) => numero = value;
-  
+
   @computed
-  String get getApelido => apelido;
+  String get getApelido => address;
 
   @computed
   String get getRua => rua;

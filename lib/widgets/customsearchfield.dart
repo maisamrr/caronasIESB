@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 
-class CustomSearchField extends StatelessWidget {
+class CustomSearchField extends StatefulWidget {
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
   final String labelText;
   final TextInputType keyboardType;
   final Color backgroundColor;
-  final Function(String)? onSubmitted;
 
   const CustomSearchField({
     Key? key,
     required this.labelText,
+    required this.controller,
+    required this.validator,
     required this.keyboardType,
     required this.backgroundColor,
-    this.onSubmitted,
   }) : super(key: key);
 
+  @override
+  _CustomSearchFieldState createState() => _CustomSearchFieldState();
+}
+
+class _CustomSearchFieldState extends State<CustomSearchField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +29,7 @@ class CustomSearchField extends StatelessWidget {
         height: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          color: backgroundColor,
+          color: widget.backgroundColor,
         ),
         child: Row(
           children: [
@@ -36,13 +43,12 @@ class CustomSearchField extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
-                controller: null,
-                keyboardType: keyboardType,
+                controller: widget.controller,
+                keyboardType: widget.keyboardType,
                 decoration: InputDecoration(
-                  labelText: labelText,
+                  labelText: widget.labelText,
                   border: InputBorder.none,
                 ),
-                onSubmitted: onSubmitted,
               ),
             ),
           ],

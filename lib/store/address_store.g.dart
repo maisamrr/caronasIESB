@@ -35,15 +35,15 @@ mixin _$AddressStore on _AddressStoreBase, Store {
       Atom(name: '_AddressStoreBase.apelido', context: context);
 
   @override
-  String get apelido {
+  String get address {
     _$apelidoAtom.reportRead();
-    return super.apelido;
+    return super.address;
   }
 
   @override
-  set apelido(String value) {
-    _$apelidoAtom.reportWrite(value, super.apelido, () {
-      super.apelido = value;
+  set address(String value) {
+    _$apelidoAtom.reportWrite(value, super.address, () {
+      super.address = value;
     });
   }
 
@@ -117,7 +117,7 @@ mixin _$AddressStore on _AddressStoreBase, Store {
   @override
   String toString() {
     return '''
-apelido: ${apelido},
+apelido: ${address},
 rua: ${rua},
 numero: ${numero},
 getApelido: ${getApelido},
