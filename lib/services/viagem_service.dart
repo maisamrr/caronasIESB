@@ -1,13 +1,9 @@
-import 'dart:math';
 
-import 'package:caronapp/store/address_store.dart';
 import 'package:caronapp/store/car_model.dart';
 import 'package:caronapp/store/marcas_model.dart';
 import 'package:caronapp/store/status_viagem.dart';
-import 'package:caronapp/store/user_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:mobx/mobx.dart';
 
 class ViagemService {
   final DatabaseReference _rootRef = FirebaseDatabase.instance

@@ -66,7 +66,7 @@ class KmFormField extends FormField<int> {
                               Text(
                                 labelText,
                                 style:
-                                    TextStyle(
+                                    const TextStyle(
                                   color:
                                       Colors.black,
                                   fontSize:
@@ -90,12 +90,12 @@ class KmFormField extends FormField<int> {
                           child:
                               Padding(
                             padding:
-                                EdgeInsets.all(8.0),
+                                const EdgeInsets.all(8.0),
                             child:
                                 Text(
                               '${state.value} km',
                               style:
-                                  TextStyle(
+                                  const TextStyle(
                                 color:
                                     Colors.white,
                                 fontSize:
@@ -136,7 +136,7 @@ class _NumberPickerDialogState extends State<NumberPickerDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Escolha um número'),
+      title: const Text('Escolha um número'),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
@@ -149,7 +149,7 @@ class _NumberPickerDialogState extends State<NumberPickerDialog> {
                   });
                 },
                 trailing: selectedNumber == i
-                    ? Icon(Icons.check)
+                    ? const Icon(Icons.check)
                     : null,
               ),
           ],
@@ -157,13 +157,13 @@ class _NumberPickerDialogState extends State<NumberPickerDialog> {
       ),
       actions: <Widget>[
         TextButton(
-          child: Text('SAIR'),
+          child: const Text('SAIR'),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         TextButton(
-          child: Text('OK'),
+          child: const Text('OK'),
           onPressed: () {
             Navigator.of(context).pop(selectedNumber);
           },

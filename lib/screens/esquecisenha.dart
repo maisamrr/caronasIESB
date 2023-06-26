@@ -10,6 +10,7 @@ class EsqueciSenha extends StatefulWidget {
   const EsqueciSenha({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _EsqueciSenhaState createState() => _EsqueciSenhaState();
 }
 
@@ -45,12 +46,12 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text('Redefinição de Senha Enviada'),
+                title: const Text('Redefinição de Senha Enviada'),
                 content: Text(
                     'Foi enviado um e-mail para $email com instruções para redefinir a senha.'),
                 actions: <Widget>[
                   TextButton(
-                    child: Text('OK'),
+                    child: const Text('OK'),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -65,11 +66,11 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Email não registrado'),
+              title: const Text('Email não registrado'),
               content: Text('O email $email não está registrado no sistema.'),
               actions: <Widget>[
                 TextButton(
-                  child: Text('OK'),
+                  child: const Text('OK'),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },

@@ -8,7 +8,7 @@ class CarModelTile extends StatelessWidget {
   final Car carro;
   final VoidCallback onTap;
 
-  const CarModelTile({
+  const CarModelTile({super.key, 
     required this.carro,
     required this.onTap,
   });
