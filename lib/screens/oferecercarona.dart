@@ -1,21 +1,14 @@
-import 'dart:math';
 
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/escolherveiculo.dart';
 import 'package:caronapp/services/viagem_service.dart';
-import 'package:caronapp/store/address_store.dart';
 import 'package:caronapp/store/car_model.dart';
 import 'package:caronapp/store/status_viagem.dart';
-import 'package:caronapp/store/viagem_store.dart';
 import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:provider/provider.dart';
 import '../store/marcas_model.dart';
 import '../widgets/bottonnav.dart';
 import '../widgets/carwidget.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customsearchfield.dart';
-import '../widgets/customtimepicker.dart';
 import '../widgets/kmformfield.dart';
 
 class OferecerCarona extends StatefulWidget {
@@ -57,14 +50,8 @@ class _OferecerCaronaState extends State<OferecerCarona> {
       ViagemService viagemService = ViagemService();
 
       await viagemService.saveTrip(
-          data: DateTime.now().day.toString() +
-              "/" +
-              DateTime.now().month.toString() +
-              "/" +
-              DateTime.now().year.toString(),
-          horario: DateTime.now().hour.toString() +
-              ":" +
-              DateTime.now().minute.toString(),
+          data: "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+          horario: "${DateTime.now().hour}:${DateTime.now().minute}",
           partida: _partidaController.text,
           chegada: _destinoController.text,
           carro: selectedCar,
@@ -155,7 +142,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(

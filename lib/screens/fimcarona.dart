@@ -127,7 +127,7 @@ class FimCarona extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16.0),
                 child: Column(
                   children: [

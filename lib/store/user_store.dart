@@ -1,4 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user_store.g.dart';

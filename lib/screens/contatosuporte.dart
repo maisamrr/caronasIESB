@@ -1,12 +1,130 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/atividades.dart';
+import 'package:caronapp/services/user_service.dart';
+import 'package:caronapp/widgets/formtextfield.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../widgets/custombutton.dart';
-import '../widgets/customtextfield.dart';
+import '../store/user_store.dart';
 
-class ContatoSuporte extends StatelessWidget {
+class ContatoSuporte extends StatefulWidget {
   const ContatoSuporte({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _ContatoSuporteState createState() => _ContatoSuporteState();
+}
+
+class _ContatoSuporteState extends State<ContatoSuporte> {
+  final _form = GlobalKey<FormState>();
+  final _nomeController = TextEditingController();
+  final _matriculaController = TextEditingController();
+  final _emailController = TextEditingController();
+
+  String _errorLogin = '';
+
+  bool agree = false;
+
+  UserStore userTeste = UserStore();
+
+  String? _validateNome(String? value) {
+    if (value == null || value.isEmpty) {
+      return "O nome é obrigatório";
+    }
+    if (value.length < 3) {
+      return "O nome deve ter no mínimo 3 caracteres";
+    }
+    return null;
+  }
+
+  String? _validateMatricula(String? value) {
+    if (value == null || value.isEmpty) {
+      return "A matrícula é obrigatória";
+    }
+    if (value.length != 10) {
+      return "A matrícula deve ter exatamente 10 números";
+    }
+    return null;
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return "E-mail é obrigatório";
+    }
+    if (!value.contains('@')) {
+      return "E-mail inválido";
+    }
+    return null;
+  }
+
+  Future<void> _submitForm(BuildContext context) async {
+    if (!_form.currentState!.validate()) {
+      return;
+    }
+
+    setState(() => _errorLogin = '');
+
+    try {
+      UserStore userStore = Provider.of<UserStore>(context, listen: false);
+      userStore.setNome(_nomeController.text);
+      userStore.setMatricula(_matriculaController.text);
+      userStore.setEmail(_emailController.text);
+
+      UserService userService = UserService();
+
+      if (userService.isEmailRegistered(userStore.email) == false) {
+        await userService.saveUser(
+          nome: userStore.nome,
+          celular: userStore.celular,
+          matricula: userStore.matricula,
+          email: userStore.email,
+          senha: userStore.senha,
+        );
+
+        Navigator.pushReplacementNamed(context, '/');
+
+        // ignore: use_build_context_synchronously
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Envio bem-sucedido'),
+              content: const Text('Sua mensagem foi enviada com sucesso.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Envio mal-sucedido'),
+            content: const Text('Email já cadastrado'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      setState(() => _errorLogin = e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,20 +162,35 @@ class ContatoSuporte extends StatelessWidget {
                   ),
                 ),
               ),
-              const CustomTextField(
-                labelTextCustom: 'Nome',
-                keyboardTypeCustom: TextInputType.text,
-                backgroundColorCustom: Colors.white,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  _errorLogin,
+                  style: const TextStyle(
+                    height: 2,
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              const CustomTextField(
-                labelTextCustom: 'E-mail',
-                keyboardTypeCustom: TextInputType.emailAddress,
-                backgroundColorCustom: Colors.white,
+              FormTextField(
+                controller: _nomeController,
+                validator: _validateNome,
+                keyboardType: TextInputType.text,
+                labelText: 'Nome'
               ),
-              const CustomTextField(
-                labelTextCustom: 'Matrícula',
-                keyboardTypeCustom: TextInputType.number,
-                backgroundColorCustom: Colors.white,
+              FormTextField(
+                controller: _emailController,
+                validator: _validateEmail,
+                keyboardType: TextInputType.emailAddress,
+                labelText: 'E-mail'
+              ),
+              FormTextField(
+                controller: _matriculaController,
+                validator: _validateMatricula,
+                keyboardType: TextInputType.number,
+                labelText: 'Matrícula'
               ),
               /*CustomDropdown(
                   optionsList: const [
@@ -101,10 +234,7 @@ class ContatoSuporte extends StatelessWidget {
                     const EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
                 child: CustomButton(
                   text: 'Enviar',
-                  onPressed: () => {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const Atividades()))
-                  },
+                  onPressed: () => _submitForm(context),
                 ),
               ),
             ],

@@ -57,38 +57,36 @@ class AguardandoInicio extends StatelessWidget {
                           right: 0,
                           child: Align(
                             alignment: Alignment.center,
-                            child: Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 24, bottom: 16.0),
-                                    child: Image.asset(
-                                      'assets/images/logovermelho.png',
-                                      height: 120.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 24, bottom: 16.0),
+                                  child: Image.asset(
+                                    'assets/images/logovermelho.png',
+                                    height: 120.0,
+                                  ),
+                                ),
+                                const Center(
+                                  child: Text(
+                                    'Sua carona deve iniciar às',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
                                     ),
                                   ),
-                                  const Center(
-                                    child: Text(
-                                      'Sua carona deve iniciar às',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                      ),
+                                ),
+                                const Center(
+                                  child: Text(
+                                    '10:57',
+                                    style: TextStyle(
+                                      fontSize: 24.0,
+                                      height: 1.5,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const Center(
-                                    child: Text(
-                                      '10:57',
-                                      style: TextStyle(
-                                        fontSize: 24.0,
-                                        height: 1.5,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -150,7 +148,7 @@ class AguardandoInicio extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 16.0),
                 child: Column(
                   children: [
