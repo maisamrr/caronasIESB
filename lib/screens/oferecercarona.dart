@@ -61,7 +61,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
           partida: _partidaController.text,
           chegada: _destinoController.text,
           carro: selectedCar,
-          status: StatusViagem.emCurso);
+          status: StatusViagem.naoIniciada);
 
       Navigator.pushReplacementNamed(context, '/aguardandoinicio');
     } catch (e) {

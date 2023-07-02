@@ -1,6 +1,8 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/services/user_service.dart';
 import 'package:caronapp/services/viagem_service.dart';
+import 'package:caronapp/store/status_viagem.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customdriver.dart';
 import '../widgets/customsecondarybutton.dart';
@@ -13,17 +15,18 @@ class AguardandoInicio extends StatefulWidget {
 }
 
 class _AguardandoInicioState extends State<AguardandoInicio> {
-  void showCompartilharDialog(BuildContext context) {
+  void showIniciarDialog(BuildContext context) {
     Widget okButton = TextButton(
       child: const Text('OK'),
       onPressed: () {
-        Navigator.of(context).pushReplacementNamed('/pedircarona');
+        //PENDENTE mudar status da viagem atual para emCurso
+        Navigator.of(context).pushReplacementNamed('/detalhescarona');
       },
     );
 
-    AlertDialog compartilhar = AlertDialog(
-      title: const Text('Compartilhar corrida'),
-      content: const Text('Lorem ipsum.'),
+    AlertDialog iniciar = AlertDialog(
+      title: const Text('Iniciar corrida'),
+      content: const Text('Após a confirmação, sua corrida será iniciada.'),
       actions: [
         okButton,
       ],
@@ -32,7 +35,7 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return compartilhar;
+        return iniciar;
       },
     );
   }
@@ -41,13 +44,14 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
     Widget simButton = TextButton(
       child: const Text('Sim'),
       onPressed: () {
+        //PENDENTE mudar status da viagem atual para cancelada
         Navigator.of(context).pushReplacementNamed('/pedircarona');
       },
     );
     Widget naoButton = TextButton(
       child: const Text('Não'),
       onPressed: () {
-        // Ação do botão não
+        Navigator.of(context).pushReplacementNamed('/aguardandoinicio');
       },
     );
 
@@ -70,24 +74,32 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
 
   String? name;
   String? horario;
+  String? partida;
+  String? destino;
 
   @override
   void initState() {
     super.initState();
     pegarNomeUser();
-    pegarHorario();
+    pegarDadosViagem();
   }
 
-  pegarHorario() async {
+  pegarDadosViagem() async {
     ViagemService viagemService = ViagemService();
 
     var tripData = await viagemService.getTripsByUser();
 
-    String? horarioo = tripData[0]['horario'];
+    String? horarioo = tripData.last['horario'];
 
-    setState(() {
-      horario = horarioo;
-    });
+    if (tripData.isNotEmpty) {
+      Map<dynamic, dynamic> viagemAtual = tripData.last;
+
+      setState(() {
+        partida = viagemAtual['partida'];
+        destino = viagemAtual['chegada'];
+        horario = horarioo;
+      });
+    }
   }
 
   pegarNomeUser() async {
@@ -99,10 +111,10 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
     });
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
-    print(name);
-    print(horario);
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -141,7 +153,7 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                               BlendMode.modulate,
                             ),
                             child: Image.asset(
-                              'assets/images/imgmapa.png',
+                              'assets/images/imgmapaatualizada.png',
                             ),
                           ),
                         ),
@@ -189,9 +201,6 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                     ),
                   ),
                 ),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/detalhescarona');
-                },
               ),
 
               Padding(
@@ -199,11 +208,11 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //COMPARTILHAR
+                    //INICIAR
                     CustomSecondaryButton(
-                      text: 'Compartilhar',
+                      text: 'Iniciar',
                       onPressed: () {
-                        showCompartilharDialog(context);
+                        showIniciarDialog(context);
                       },
                     ),
                     //CANCELAR
@@ -234,7 +243,42 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                   driverName: name ?? '',
                 ),
               ),
-              //PASSAGEIROS
+              //TRAJETO
+              const Padding(
+                padding: EdgeInsets.only(top: 24.0, left: 48.0, right: 48.0),
+                child: Text(
+                  'Partida',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 8.0, left: 48.0, bottom: 16.0),
+                child: Text(
+                  partida ?? '',
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 24.0, left: 48.0, right: 48.0),
+                child: Text(
+                  'Destino',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 8.0, left: 48.0, bottom: 16.0),
+                child: Text(
+                  destino ?? '',
+                ),
+              ),
+              /*PASSAGEIROS
               const Padding(
                 padding: EdgeInsets.only(top: 24.0, left: 48.0, right: 48.0),
                 child: Text(
@@ -248,19 +292,19 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Column(
-                    // children: const [
-                    //   CustomDriver(
-                    //     driverName: 'Gustavo Pedro',
-                    //   ),
-                    //   CustomDriver(
-                    //     driverName: 'Felipe Louzada',
-                    //   ),
-                    //   CustomDriver(
-                    //     driverName: 'Luis Loli',
-                    //   ),
-                    // ],
+                    children: const [
+                    CustomDriver(
+                         driverName: 'Gustavo Pedro',
+                     ),
+                       CustomDriver(
+                         driverName: 'Felipe Louzada',
+                       ),
+                       CustomDriver(
+                         driverName: 'Luis Loli',
+                       ),
+                     ],
                     ),
-              ),
+              ),*/
             ],
           ),
         ),

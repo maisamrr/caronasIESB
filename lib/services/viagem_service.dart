@@ -1,4 +1,3 @@
-
 import 'package:caronapp/store/car_model.dart';
 import 'package:caronapp/store/marcas_model.dart';
 import 'package:caronapp/store/status_viagem.dart';
@@ -60,5 +59,11 @@ class ViagemService {
       print('Error retrieving user trips: $e');
       return [];
     }
+  }
+
+  Future<void> setStatusViagem(String viagemId, StatusViagem novoStatus) async {
+    final DatabaseReference viagemRef = _tripRef.child(viagemId);
+
+    await viagemRef.update({'status': novoStatus.toString()});
   }
 }
