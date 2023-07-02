@@ -1,7 +1,5 @@
 import 'package:caronapp/services/user_service.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../store/user_store.dart';
 import 'custombutton.dart';
 
 class FormLogin extends StatefulWidget {
@@ -69,11 +67,12 @@ class _FormLoginState extends State<FormLogin> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Erro de Autenticação'),
-            content: Text('Erro ao fazer login. Verifique suas credenciais.'),
+            title: const Text('Erro de Autenticação'),
+            content:
+                const Text('Erro ao fazer login. Verifique suas credenciais.'),
             actions: <Widget>[
               TextButton(
-                child: Text('OK'),
+                child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

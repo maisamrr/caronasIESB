@@ -1,5 +1,6 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/atividades.dart';
+import 'package:caronapp/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/custombutton.dart';
@@ -20,6 +21,13 @@ class _PerfilUsuario extends State<PerfilUsuario> {
   final _senhaController = TextEditingController();
 
   String _errorLogin = '';
+  String? name;
+
+  @override
+  void initState() {
+    super.initState();
+    pegarNomeUser();
+  }
 
   UserStore userTeste = UserStore();
 
@@ -77,6 +85,15 @@ class _PerfilUsuario extends State<PerfilUsuario> {
     } catch (e) {
       setState(() => _errorLogin = e.toString());
     }
+  }
+
+  pegarNomeUser() async {
+    UserService userService = UserService();
+
+    var userData = await userService.getUserData();
+    setState(() {
+      name = userData!.displayName!;
+    });
   }
 
   @override
@@ -143,11 +160,11 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                       onTap: () => {},
                     ),
                     //FOTO FIM
-                    const Padding(
-                      padding: EdgeInsets.only(top: 24.0, bottom: 32.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24.0, bottom: 32.0),
                       child: Text(
-                        'Julia Paiva',
-                        style: TextStyle(
+                        name ?? '',
+                        style: const TextStyle(
                           fontSize: 24.0,
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
@@ -177,15 +194,15 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                 textAlign: TextAlign.center,
               ),
               FormTextField(
-                controller: _celularController,
-                validator: _validateCelular,
-                keyboardType: TextInputType.phone,
-                labelText: 'Celular'),
+                  controller: _celularController,
+                  validator: _validateCelular,
+                  keyboardType: TextInputType.phone,
+                  labelText: 'Celular'),
               FormTextField(
-                controller: _senhaController,
-                validator: _validateSenha,
-                keyboardType: TextInputType.text,
-                labelText: 'Senha'),
+                  controller: _senhaController,
+                  validator: _validateSenha,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Senha'),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
