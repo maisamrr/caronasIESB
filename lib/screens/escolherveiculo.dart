@@ -1,5 +1,6 @@
 import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../store/car_model.dart';
@@ -71,8 +72,8 @@ class EscolherVeiculo extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 16.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
                     child: Row(
                       children: [
                         Icon(
@@ -106,19 +107,23 @@ class EscolherVeiculo extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: carStore.carros.length,
-                itemBuilder: (context, index) {
-                  Car carro = carStore.carros[index];
-                  return CarModelTile(
-                    carro: carro,
-                    onTap: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        '/oferecercarona',
-                        arguments: {
-                          'selectedPlaca': carro.placa,
-                          'selectedMarca': carro.marca,
+              child: Observer(
+                builder: (BuildContext context) {
+                  return ListView.builder(
+                    itemCount: carStore.carros.length,
+                    itemBuilder: (context, index) {
+                      Car carro = carStore.carros[index];
+                      return CarModelTile(
+                        carro: carro,
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            '/oferecercarona',
+                            arguments: {
+                              'selectedPlaca': carro.placa,
+                              'selectedMarca': carro.marca,
+                            },
+                          );
                         },
                       );
                     },

@@ -8,7 +8,8 @@ class CarModelTile extends StatelessWidget {
   final Car carro;
   final VoidCallback onTap;
 
-  const CarModelTile({super.key, 
+  const CarModelTile({
+    super.key,
     required this.carro,
     required this.onTap,
   });
@@ -36,7 +37,7 @@ class CarModelTile extends StatelessWidget {
                   'selectedMarca': carro.marca,
                 },
               );
-            }, // Add the onTap callback here
+            },
             title: Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(
@@ -55,7 +56,31 @@ class CarModelTile extends StatelessWidget {
                 size: 25,
               ),
               onPressed: () {
-                carStore.removeCar(carro);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Excluir veículo'),
+                      content:
+                          const Text('Deseja realmente excluir o veículo?'),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('Cancelar'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('Excluir'),
+                          onPressed: () {
+                            carStore.removeCar(carro);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ),
