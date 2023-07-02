@@ -2,10 +2,117 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/widgets/customdriver.dart';
 import 'package:caronapp/widgets/customsecondarybutton.dart';
 import 'package:flutter/material.dart';
+import '../services/user_service.dart';
+import '../services/viagem_service.dart';
 import '../widgets/custompassenger.dart';
 
-class DetalhesCarona extends StatelessWidget {
+class DetalhesCarona extends StatefulWidget {
   const DetalhesCarona({super.key});
+
+  @override
+  _DetalhesCaronaState createState() => _DetalhesCaronaState();
+}
+
+class _DetalhesCaronaState extends State<DetalhesCarona> {
+  void showCancelarDialog(BuildContext context) {
+    Widget simButton = TextButton(
+      child: const Text('Sim'),
+      onPressed: () {
+        //PENDENTE mudar status da viagem atual para cancelada
+        Navigator.of(context).pushNamed('/detalhesviagem');
+      },
+    );
+    Widget naoButton = TextButton(
+      child: const Text('Não'),
+      onPressed: () {
+        return;
+      },
+    );
+
+    AlertDialog cancelar = AlertDialog(
+      title: const Text('Cancelar'),
+      content: const Text('Você deseja cancelar a carona atual?'),
+      actions: [
+        simButton,
+        naoButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return cancelar;
+      },
+    );
+  }
+
+  void showFinalizarDialog(BuildContext context) {
+    Widget simButton = TextButton(
+      child: const Text('Sim'),
+      onPressed: () {
+        //PENDENTE mudar status da viagem atual para finalizada
+        Navigator.of(context).pushNamed('/detalhesviagem');
+      },
+    );
+    Widget naoButton = TextButton(
+      child: const Text('Não'),
+      onPressed: () {
+        return;
+      },
+    );
+
+    AlertDialog finalizar = AlertDialog(
+      title: const Text('Finalizar'),
+      content: const Text('Fim da carona atual?'),
+      actions: [
+        simButton,
+        naoButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return finalizar;
+      },
+    );
+  }
+
+  String? name;
+  String? horario;
+  String? partida;
+  String? destino;
+
+  @override
+  void initState() {
+    super.initState();
+    pegarNomeUser();
+    pegarDadosViagem();
+  }
+
+  pegarDadosViagem() async {
+    ViagemService viagemService = ViagemService();
+
+    var tripData = await viagemService.getTripsByUser();
+
+    if (tripData.isNotEmpty) {
+      Map<dynamic, dynamic> viagemAtual = tripData.last;
+
+      setState(() {
+        partida = viagemAtual['partida'];
+        destino = viagemAtual['chegada'];
+      });
+    }
+  }
+
+  pegarNomeUser() async {
+    UserService userService = UserService();
+
+    var userData = await userService.getUserData();
+    setState(() {
+      name = userData!.displayName!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,33 +137,31 @@ class DetalhesCarona extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector( child:
-              SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16.0, left: 48.0, right: 48.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Image.asset(
-                      'assets/images/imgmapa.png',
+              GestureDetector(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 16.0, left: 48.0, right: 48.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Image.asset(
+                        'assets/images/imgmapaatualizada.png',
+                      ),
                     ),
                   ),
                 ),
               ),
-              onTap: () {
-                 Navigator.of(context).pushReplacementNamed('/fimcarona');
-              },),
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 32, 40, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //COMPARTILHAR
+                    //FINALIZAR
                     CustomSecondaryButton(
-                      text: 'Compartilhar',
+                      text: 'Finalizar',
                       onPressed: () {
-                        showCompartilharDialog(context);
+                        showCancelarDialog(context);
                       },
                     ),
                     //CANCELAR
@@ -80,10 +185,10 @@ class DetalhesCarona extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 16.0),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
                 child: CustomDriver(
-                  driverName: 'Julia Paiva',
+                  driverName: name ?? '',
                 ),
               ),
               //PASSAGEIROS
@@ -112,7 +217,7 @@ class DetalhesCarona extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: CustomPassenger(
-                  passengerName: 'Maísa Moreira',
+                  passengerName: 'Luis Loli',
                   passengerAddress: 'Rua Flutter',
                   passengerHour: DateTime.now(),
                   containerColor: const Color(0xffFFAB57),
@@ -124,59 +229,4 @@ class DetalhesCarona extends StatelessWidget {
       ),
     );
   }
-}
-
-void showCompartilharDialog(BuildContext context) {
-  Widget okButton = TextButton(
-    child: const Text('OK'),
-    onPressed: () {
-      Navigator.of(context).pushNamed('/pedircarona');
-    },
-  );
-
-  AlertDialog compartilhar = AlertDialog(
-    title: const Text('Compartilhar corrida'),
-    content: const Text('Lorem ipsum.'),
-    actions: [
-      okButton,
-    ],
-  );
-
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return compartilhar;
-    },
-  );
-}
-
-void showCancelarDialog(BuildContext context) {
-  Widget simButton = TextButton(
-    child: const Text('Sim'),
-    onPressed: () {
-      Navigator.of(context).pushNamed('/pedircarona');
-    },
-  );
-  Widget naoButton = TextButton(
-    child: const Text('Não'),
-    onPressed: () {
-      // Ação do botão não
-    },
-  );
-
-  AlertDialog cancelar = AlertDialog(
-    title: const Text('Cancelar'),
-    content: const Text('Você deseja cancelar a corrida atual?'),
-    actions: [
-      simButton,
-      naoButton,
-    ],
-  );
-
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return cancelar;
-    },
-  );
 }

@@ -111,8 +111,6 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
     });
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
