@@ -152,26 +152,25 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                           right: 0,
                           child: Align(
                             alignment: Alignment.center,
-                            child: Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 24, bottom: 16.0),
-                                    child: Image.asset(
-                                      'assets/images/logovermelho.png',
-                                      height: 120.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 24, bottom: 16.0),
+                                  child: Image.asset(
+                                    'assets/images/logovermelho.png',
+                                    height: 120.0,
+                                  ),
+                                ),
+                                const Center(
+                                  child: Text(
+                                    'Sua carona deve iniciar às',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
                                     ),
                                   ),
-                                  const Center(
-                                    child: Text(
-                                      'Sua carona deve iniciar às',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                      ),
-                                    ),
-                                  ),
+
                                   Center(
                                     child: Text(
                                       horario ?? '',
@@ -180,10 +179,11 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                                         height: 1.5,
                                         fontWeight: FontWeight.bold,
                                       ),
+
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

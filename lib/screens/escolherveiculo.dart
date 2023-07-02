@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../store/car_model.dart';
-import '../store/marcas_model.dart';
 import '../widgets/carmodeltile.dart';
 
 import 'package:caronapp/store/car_store.dart';
@@ -71,11 +70,11 @@ class EscolherVeiculo extends StatelessWidget {
                     color: const Color(0xFFf7f5f5),
                     borderRadius: BorderRadius.circular(24.0),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
                         vertical: 16.0, horizontal: 16.0),
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(
                           Icons.add,
                           size: 25,
