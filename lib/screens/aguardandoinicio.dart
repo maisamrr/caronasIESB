@@ -170,16 +170,14 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                                       fontSize: 18.0,
                                     ),
                                   ),
-
-                                  Center(
-                                    child: Text(
-                                      horario ?? '',
-                                      style: const TextStyle(
-                                        fontSize: 24.0,
-                                        height: 1.5,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-
+                                ),
+                                Center(
+                                  child: Text(
+                                    horario ?? '',
+                                    style: const TextStyle(
+                                      fontSize: 24.0,
+                                      height: 1.5,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),

@@ -17,6 +17,8 @@ class _FormLoginState extends State<FormLogin> {
 
   String _errorLogin = '';
 
+  bool _obscurePassword = true;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -70,7 +72,6 @@ class _FormLoginState extends State<FormLogin> {
             title: const Text('Erro de Autenticação'),
             content:
                 const Text('Erro ao fazer login. Verifique suas credenciais.'),
-
             actions: <Widget>[
               TextButton(
                 child: const Text('OK'),
@@ -136,9 +137,22 @@ class _FormLoginState extends State<FormLogin> {
                     controller: _senhaController,
                     validator: _validatePassword,
                     keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
+                    obscureText: _obscurePassword,
+                    decoration: InputDecoration(
                       border: InputBorder.none,
                       labelText: 'Senha',
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                        child: Icon(
+                          _obscurePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                      ),
                     ),
                     onChanged: (text) {
                       setState(() {});
