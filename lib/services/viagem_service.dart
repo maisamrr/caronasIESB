@@ -40,4 +40,25 @@ class ViagemService {
       'status': status.toString(),
     });
   }
+
+  Future<List<dynamic>> getTripsByUser() async {
+    try {
+      final User? currentUser = _auth.currentUser;
+
+      final String motoristaKey = currentUser?.uid ?? '';
+
+      final DatabaseEvent snapshot =
+          await _tripRef.orderByChild('motorista').equalTo(motoristaKey).once();
+
+      final Map<dynamic, dynamic>? tripData =
+          (snapshot.snapshot.value as Map<dynamic, dynamic>?);
+      final List<dynamic> trips = tripData?.values.toList() ?? [];
+
+      return trips;
+    } catch (e) {
+      // Handle the data reading error here
+      print('Error retrieving user trips: $e');
+      return [];
+    }
+  }
 }

@@ -1,5 +1,8 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/historicodecaronas.dart';
+import 'package:caronapp/services/user_service.dart';
+import 'package:caronapp/services/viagem_service.dart';
+import 'package:caronapp/widgets/addresstile.dart';
 import 'package:caronapp/widgets/roundpicturewithlikes.dart';
 import 'package:flutter/material.dart';
 import '../widgets/bottonnav.dart';
@@ -13,12 +16,58 @@ class Atividades extends StatefulWidget {
 }
 
 class _Atividades extends State<Atividades> {
-  //SavedAddress savedAddress = SavedAddress();
+  String? name;
+
+  List<String> locals = [];
+  List<String> hora = [];
+  List<String> data = [];
+  int? length;
+
+  @override
+  void initState() {
+    super.initState();
+    pegarNomeUser();
+    pegarViagensUser();
+  }
+
+  pegarNomeUser() async {
+    UserService userService = UserService();
+
+    var userData = await userService.getUserData();
+    setState(() {
+      name = userData!.displayName!;
+    });
+  }
+
+  pegarViagensUser() async {
+    ViagemService viagemService = ViagemService();
+
+    var tripData = await viagemService.getTripsByUser();
+
+    List<String> localNames = [];
+    List<String> horaNames = [];
+    List<String> dataNames = [];
+
+    for (var endereco in tripData) {
+      String addressName = endereco['partida'];
+      String addressHourId = endereco['horario'];
+      String addressDateNumber = endereco['data'];
+      localNames.add(addressName);
+      horaNames.add(addressHourId);
+      dataNames.add(addressDateNumber);
+    }
+    print(tripData.length);
+
+    setState(() {
+      locals = localNames;
+      hora = horaNames;
+      data = dataNames;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     //List<Address> addresses = savedAddress.savedAddress;
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -31,7 +80,7 @@ class _Atividades extends State<Atividades> {
                 Padding(
                   padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
                   child: Text(
-                    'Julia Paiva',
+                    name ?? '',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.w900,
@@ -99,19 +148,19 @@ class _Atividades extends State<Atividades> {
               ),
             ),
             //LISTA
-            /*Container(
+            SizedBox(
               height: 380,
               child: ListView.builder(
-                itemCount: addresses.length,
+                itemCount: locals.length,
                 itemBuilder: (context, index) {
-                  final address = addresses[index];
                   return AddressTile(
-                    address: address,
-                    onPressed: () {Navigator.of(context).pushNamed('/detalhesviagem');},
+                    apelido: locals[index],
+                    rua: hora[index],
+                    numero: data[index],
                   );
                 },
               ),
-            ),*/
+            ),
             //HISTORICO
             GestureDetector(
               child: const Align(

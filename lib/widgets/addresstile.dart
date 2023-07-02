@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../store/address_store.dart';
 
 class AddressTile extends StatefulWidget {
-  final String apelido;
-  final String rua;
-  final String numero;
+  final String? apelido;
+  final String? rua;
+  final String? numero;
 
   final Icon iconAsset;
 
@@ -43,7 +43,7 @@ class _AddressTileState extends State<AddressTile> {
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Text(
-                  widget.apelido,
+                  widget.apelido ?? "",
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -51,7 +51,7 @@ class _AddressTileState extends State<AddressTile> {
                   ),
                 ),
               ),
-              subtitle: Text(widget.rua),
+              subtitle: Text(widget.rua ?? ""),
               leading: widget.iconAsset,
             ),
           ),

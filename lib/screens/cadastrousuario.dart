@@ -125,7 +125,9 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
       UserService userService = UserService();
 
-      if (userService.isEmailRegistered(userStore.email) == false) {
+      bool emailExists = await userService.isEmailRegistered(userStore.email);
+
+      if (emailExists == false) {
         await userService.saveUser(
           nome: userStore.nome,
           celular: userStore.celular,
@@ -154,26 +156,26 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
             );
           },
         );
+      } else {
+        // ignore: use_build_context_synchronously
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Cadastro mal-sucedido'),
+              content: const Text('Email já cadastrado'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
       }
-
-      // ignore: use_build_context_synchronously
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Cadastro mal-sucedido'),
-            content: const Text('Email já cadastrado'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
     } catch (e) {
       setState(() => _errorLogin = e.toString());
     }

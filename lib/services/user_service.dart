@@ -6,6 +6,7 @@ class UserService {
   final DatabaseReference _rootRef = FirebaseDatabase.instance
       .refFromURL("https://vemjunto-f9f4d-default-rtdb.firebaseio.com/");
   late final DatabaseReference _userRef = _rootRef.child('users');
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> saveUser({
@@ -80,5 +81,16 @@ class UserService {
       print('Erro ao verificar email: $e');
       return false;
     }
+  }
+
+  Future<User?> getUserData() async {
+    try {
+      final User? currentUser = _auth.currentUser;
+      return currentUser;
+    } catch (e) {
+      // Trate o erro de leitura dos dados aqui
+      print('Erro ao recuperar os dados do usuário: $e');
+    }
+    return null;
   }
 }
