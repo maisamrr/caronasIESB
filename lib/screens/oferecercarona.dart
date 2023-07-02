@@ -1,4 +1,3 @@
-
 import 'package:caronapp/const.dart';
 import 'package:caronapp/services/viagem_service.dart';
 import 'package:caronapp/store/car_model.dart';
@@ -42,15 +41,22 @@ class _OferecerCaronaState extends State<OferecerCarona> {
     if (!_form.currentState!.validate()) {
       return;
     }
-    try {
-      if (selectedCar == null) {
-        return;
-      }
 
+    if (selectedCar == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('É obrigatória a seleção de um veículo.'),
+        ),
+      );
+      return;
+    }
+
+    try {
       ViagemService viagemService = ViagemService();
 
       await viagemService.saveTrip(
-          data: "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+          data:
+              "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
           horario: "${DateTime.now().hour}:${DateTime.now().minute}",
           partida: _partidaController.text,
           chegada: _destinoController.text,
