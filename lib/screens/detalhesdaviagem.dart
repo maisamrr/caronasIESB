@@ -2,8 +2,62 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/widgets/custominfobox.dart';
 import 'package:flutter/material.dart';
 
-class DetalhesDaViagem extends StatelessWidget {
+import '../services/user_service.dart';
+import '../services/viagem_service.dart';
+import '../widgets/bottonnav.dart';
+
+class DetalhesDaViagem extends StatefulWidget {
   const DetalhesDaViagem({super.key});
+
+  @override
+  State<DetalhesDaViagem> createState() => _DetalhesDaViagemState();
+}
+
+class _DetalhesDaViagemState extends State<DetalhesDaViagem> {
+  String? name;
+  String? horario;
+  String? partida;
+  String? destino;
+  String? status;
+  String? data;
+  String? placa;
+  String? marca;
+
+  @override
+  void initState() {
+    super.initState();
+    pegarNomeUser();
+    pegarDadosViagem();
+  }
+
+  pegarDadosViagem() async {
+    ViagemService viagemService = ViagemService();
+
+    var tripData = await viagemService.getTripsByUser();
+
+    if (tripData.isNotEmpty) {
+      Map<dynamic, dynamic> viagemAtual = tripData.last;
+
+      setState(() {
+        partida = viagemAtual['partida'];
+        destino = viagemAtual['chegada'];
+        horario = viagemAtual['horario'];
+        status = viagemAtual['status'];
+        data = viagemAtual['data'];
+        marca = viagemAtual['car']['marca'];
+        placa = viagemAtual['car']['placa'];
+      });
+    }
+  }
+
+  pegarNomeUser() async {
+    UserService userService = UserService();
+
+    var userData = await userService.getUserData();
+    setState(() {
+      name = userData!.displayName!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +89,7 @@ class DetalhesDaViagem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                   child: Text(
-                    'Detalhes da Viagem',
+                    'Resumo da Viagem',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.w900,
@@ -45,49 +99,60 @@ class DetalhesDaViagem extends StatelessWidget {
                 ),
               ),
               //data
-              const Padding(
-                padding: EdgeInsets.only(top: 24.0, left: 40.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 24.0, left: 40.0),
                 child: Text(
-                  'Viagem em 23/02/2023',
-                  style: TextStyle(
+                  data ?? '',
+                  style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const CustomInfoBox(
+              CustomInfoBox(
+                  boldText: 'Status da Viagem',
+                  lightText: status ?? '',
+                  iconData: Icons.cached_outlined),
+              CustomInfoBox(
                   boldText: 'Horário',
-                  lightText: '18:37',
+                  lightText: horario ?? '',
                   iconData: Icons.schedule_outlined),
-              const CustomInfoBox(
+              CustomInfoBox(
                   boldText: 'Partida',
-                  lightText: 'SQS 116 Bloco J',
+                  lightText: partida ?? '',
                   iconData: Icons.location_on_outlined),
-              const CustomInfoBox(
-                  boldText: 'Chegada',
-                  lightText: 'Iesb Sul',
+              CustomInfoBox(
+                  boldText: 'Destino',
+                  lightText: destino ?? '',
                   iconData: Icons.emoji_flags_outlined),
-              const CustomInfoBox(
+              CustomInfoBox(
                   boldText: 'Motorista',
-                  lightText: 'Julia Paiva',
+                  lightText: name ?? '',
                   iconData: Icons.account_circle_outlined),
-                  const CustomInfoBox(
+              CustomInfoBox(
                   boldText: 'Veículo',
-                  lightText: 'Hyundai HB20 - BRA1234',
+                  lightText: '${marca ?? ''} ${placa ?? ''}',
                   iconData: Icons.directions_car_outlined),
               const CustomInfoBox(
-                  boldText: 'Passageiro',
+                  boldText: 'Passageiro 1',
                   lightText: 'Gustavo Pedro',
                   iconData: Icons.account_circle_outlined),
               const CustomInfoBox(
-                  boldText: 'Passageiro',
+                  boldText: 'Passageiro 2',
                   lightText: 'Felipe Louzada',
                   iconData: Icons.account_circle_outlined),
-                  const SizedBox(height: 24,)
+              const CustomInfoBox(
+                  boldText: 'Passageiro 3',
+                  lightText: 'Luís Loli',
+                  iconData: Icons.account_circle_outlined),
+              const SizedBox(
+                height: 24,
+              )
             ],
           ),
         ),
       ),
+      bottomNavigationBar: const BottomNav(selectedIndex: 1),
     );
   }
 }

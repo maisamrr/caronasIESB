@@ -276,33 +276,6 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                   destino ?? '',
                 ),
               ),
-              /*PASSAGEIROS
-              const Padding(
-                padding: EdgeInsets.only(top: 24.0, left: 48.0, right: 48.0),
-                child: Text(
-                  'Passageiros',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: Column(
-                    children: const [
-                    CustomDriver(
-                         driverName: 'Gustavo Pedro',
-                     ),
-                       CustomDriver(
-                         driverName: 'Felipe Louzada',
-                       ),
-                       CustomDriver(
-                         driverName: 'Luis Loli',
-                       ),
-                     ],
-                    ),
-              ),*/
             ],
           ),
         ),
