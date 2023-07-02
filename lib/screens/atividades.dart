@@ -1,5 +1,4 @@
 import 'package:caronapp/const.dart';
-import 'package:caronapp/screens/historicodecaronas.dart';
 import 'package:caronapp/services/user_service.dart';
 import 'package:caronapp/services/viagem_service.dart';
 import 'package:caronapp/widgets/addresstile.dart';
@@ -90,13 +89,12 @@ class _Atividades extends State<Atividades> {
                 ),
               ],
             ),
-            //FOTO + LIKES
+            //FOTO
             const Padding(
               padding: EdgeInsets.only(bottom: 32.0),
               child: RoundProfilePictureWithLikes(
-                photoPath: 'assets/images/imgprofilejulia.png',
+                photoPath: 'assets/images/imgrandom.png',
                 size: 120,
-                thumbsUpCount: 10,
               ),
             ),
             //ROW ícones do menu
@@ -160,27 +158,6 @@ class _Atividades extends State<Atividades> {
                   );
                 },
               ),
-            ),
-            //HISTORICO
-            GestureDetector(
-              child: const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: 16.0, left: 40.0, right: 40.0, bottom: 24.0),
-                  child: Text(
-                    'Ver todo o histórico',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              onTap: () => (Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const HistoricoDeCaronas()))),
             ),
           ],
         ),

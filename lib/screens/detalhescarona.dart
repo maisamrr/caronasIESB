@@ -161,7 +161,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                     CustomSecondaryButton(
                       text: 'Finalizar',
                       onPressed: () {
-                        showCancelarDialog(context);
+                        showFinalizarDialog(context);
                       },
                     ),
                     //CANCELAR

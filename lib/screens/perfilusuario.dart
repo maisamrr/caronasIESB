@@ -136,7 +136,7 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                       child: Stack(
                         children: [
                           const RoundProfilePicture(
-                            photoPath: 'assets/images/imgprofilejulia.png',
+                            photoPath: 'assets/images/imgdefaultuser.png',
                             circleSize: 120,
                           ),
                           Positioned(
