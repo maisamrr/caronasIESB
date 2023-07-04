@@ -1,4 +1,5 @@
 import 'package:caronapp/const.dart';
+import 'package:caronapp/store/status_viagem.dart';
 import 'package:caronapp/widgets/customdriver.dart';
 import 'package:caronapp/widgets/customsecondarybutton.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,32 @@ class DetalhesCarona extends StatefulWidget {
 }
 
 class _DetalhesCaronaState extends State<DetalhesCarona> {
+  late String tripId;
+  String? name;
+  String? horario;
+  String? partida;
+  String? destino;
+
+  @override
+  void initState() {
+    super.initState();
+    pegarNomeUser();
+    pegarDadosViagem();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    tripId = ModalRoute.of(context)!.settings.arguments as String;
+  }
+
   void showCancelarDialog(BuildContext context) {
     Widget simButton = TextButton(
       child: const Text('Sim'),
-      onPressed: () {
+      onPressed: () async {
         //PENDENTE mudar status da viagem atual para cancelada
+        await ViagemService().setStatusViagem(tripId, StatusViagem.cancelada);
         Navigator.of(context).pushNamed('/detalhesviagem');
       },
     );
@@ -49,8 +71,10 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
   void showFinalizarDialog(BuildContext context) {
     Widget simButton = TextButton(
       child: const Text('Sim'),
-      onPressed: () {
+      onPressed: () async {
         //PENDENTE mudar status da viagem atual para finalizada
+        await ViagemService().setStatusViagem(tripId, StatusViagem.finalizada);
+
         Navigator.of(context).pushNamed('/detalhesviagem');
       },
     );
@@ -76,18 +100,6 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
         return finalizar;
       },
     );
-  }
-
-  String? name;
-  String? horario;
-  String? partida;
-  String? destino;
-
-  @override
-  void initState() {
-    super.initState();
-    pegarNomeUser();
-    pegarDadosViagem();
   }
 
   pegarDadosViagem() async {

@@ -38,6 +38,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
   }
 
   Future<void> _submitForm(BuildContext context) async {
+    String? tripId;
     if (!_form.currentState!.validate()) {
       return;
     }
@@ -54,7 +55,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
     try {
       ViagemService viagemService = ViagemService();
 
-      await viagemService.saveTrip(
+      tripId = await viagemService.saveTrip(
           data:
               "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
           horario: "${DateTime.now().hour}:${DateTime.now().minute}",
@@ -63,7 +64,8 @@ class _OferecerCaronaState extends State<OferecerCarona> {
           carro: selectedCar,
           status: StatusViagem.naoIniciada);
 
-      Navigator.pushReplacementNamed(context, '/aguardandoinicio');
+      Navigator.pushReplacementNamed(context, '/aguardandoinicio',
+          arguments: tripId);
     } catch (e) {
       print(e);
     }
@@ -148,9 +150,9 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                               ),
-                              child: const Row(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     'Adicione um carro',
                                     style: TextStyle(
@@ -190,22 +192,6 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                   keyboardType: TextInputType.text,
                   backgroundColor: Colors.white,
                 ),
-                // CustomTimePicker(
-                //   labelText: 'Horário de saída',
-                //   initialValue: _selectedTime,
-                //   onSaved: (time) {
-                //     _selectedTime = time;
-                //   },
-                //   validator: (time) {
-                //     if (time == null) {
-                //       return 'É necessário selecionar um horário';
-                //     }
-                //     return "Default horario";
-                //   },
-                //   context: context,
-                //   backgroundColor: Colors.white,
-                //   keyboardType: TextInputType.text,
-                // ),
                 KmFormField(
                   context: context,
                   labelText: 'Limite de quilometragem',

@@ -26,6 +26,10 @@ class _CadastroVeiculo extends State<CadastroVeiculo> {
     if (value.length != 7) {
       return 'A placa deve ter 7 caracteres';
     }
+    final regex = RegExp(r'^[A-Z]{3}\d{4}$');
+    if (!regex.hasMatch(value)) {
+      return 'Placa inválida';
+    }
     return null;
   }
 
