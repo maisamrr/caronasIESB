@@ -127,10 +127,10 @@ class FimCarona extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 16.0),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
                 child: Column(
-                  children: [
+                  children: const [
                     CustomDriver(
                       driverName: 'Gustavo Pedro',
                     ),

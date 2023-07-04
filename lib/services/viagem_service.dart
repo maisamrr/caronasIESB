@@ -10,13 +10,14 @@ class ViagemService {
   late final DatabaseReference _tripRef = _rootRef.child('trips');
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> saveTrip(
+  Future<String?> saveTrip(
       {required String data,
       required String horario,
       required String partida,
       required String chegada,
       required Car? carro,
       required StatusViagem status}) async {
+    String? tripId;
     final User? currentUser = _auth.currentUser;
 
     final String motoristaKey = currentUser?.uid ?? '';
@@ -38,6 +39,10 @@ class ViagemService {
       },
       'status': status.toString(),
     });
+
+    tripId = newTripRef.key;
+
+    return tripId;
   }
 
   Future<List<dynamic>> getTripsByUser() async {

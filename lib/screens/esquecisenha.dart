@@ -41,7 +41,6 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
     userService.isEmailRegistered(email).then((isRegistered) {
       if (isRegistered) {
         userService.resetPassword(email).then((_) {
-          // A redefinição de senha foi enviada com sucesso
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -81,45 +80,6 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
         );
       }
     });
-    // if (_emailController.text == userStore.email) {
-    //   showDialog(
-    //       context: context,
-    //       builder: (BuildContext context) {
-    //         return AlertDialog(
-    //           title: const Text('Recuperação de senha'),
-    //           content: const Text(
-    //               'Foi enviado um e-mail para o endereço informado.'),
-    //           actions: [
-    //             TextButton(
-    //               onPressed: () {
-    //                 Navigator.of(context).pop();
-    //                 Navigator.pushReplacementNamed(context, '/');
-    //                 //implementar enviar email
-    //               },
-    //               child: const Text('Ok'),
-    //             ),
-    //           ],
-    //         );
-    //       });
-    // } else {
-    //   showDialog(
-    //       context: context,
-    //       builder: (BuildContext context) {
-    //         return AlertDialog(
-    //           title: const Text('Recuperação de senha'),
-    //           content: const Text('O e-mail não está cadastrado.'),
-    //           actions: [
-    //             TextButton(
-    //               onPressed: () {
-    //                 Navigator.of(context).pop();
-    //                 Navigator.pushReplacementNamed(context, '/');
-    //               },
-    //               child: const Text('Ok'),
-    //             ),
-    //           ],
-    //         );
-    //       });
-    // }
   }
 
   @override

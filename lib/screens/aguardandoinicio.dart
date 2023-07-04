@@ -2,7 +2,6 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/services/user_service.dart';
 import 'package:caronapp/services/viagem_service.dart';
 import 'package:caronapp/store/status_viagem.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../widgets/customdriver.dart';
 import '../widgets/customsecondarybutton.dart';
@@ -15,12 +14,33 @@ class AguardandoInicio extends StatefulWidget {
 }
 
 class _AguardandoInicioState extends State<AguardandoInicio> {
+  late String tripId;
+  String? name;
+  String? horario;
+  String? partida;
+  String? destino;
+
+  @override
+  void initState() {
+    super.initState();
+    pegarNomeUser();
+    pegarDadosViagem();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    tripId = ModalRoute.of(context)!.settings.arguments as String;
+  }
+
   void showIniciarDialog(BuildContext context) {
     Widget okButton = TextButton(
       child: const Text('OK'),
-      onPressed: () {
-        //PENDENTE mudar status da viagem atual para emCurso
-        Navigator.of(context).pushReplacementNamed('/detalhescarona');
+      onPressed: () async {
+        await ViagemService().setStatusViagem(tripId, StatusViagem.emCurso);
+        Navigator.of(context)
+            .pushReplacementNamed('/detalhescarona', arguments: tripId);
       },
     );
 
@@ -43,8 +63,8 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
   void showCancelarDialog(BuildContext context) {
     Widget simButton = TextButton(
       child: const Text('Sim'),
-      onPressed: () {
-        //PENDENTE mudar status da viagem atual para cancelada
+      onPressed: () async {
+        await ViagemService().setStatusViagem(tripId, StatusViagem.cancelada);
         Navigator.of(context).pushReplacementNamed('/pedircarona');
       },
     );
@@ -70,18 +90,6 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
         return cancelar;
       },
     );
-  }
-
-  String? name;
-  String? horario;
-  String? partida;
-  String? destino;
-
-  @override
-  void initState() {
-    super.initState();
-    pegarNomeUser();
-    pegarDadosViagem();
   }
 
   pegarDadosViagem() async {

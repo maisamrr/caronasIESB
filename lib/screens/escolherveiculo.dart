@@ -71,11 +71,11 @@ class EscolherVeiculo extends StatelessWidget {
                     color: const Color(0xFFf7f5f5),
                     borderRadius: BorderRadius.circular(24.0),
                   ),
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 16.0),
                     child: Row(
-                      children: [
+                      children: const [
                         Icon(
                           Icons.add,
                           size: 25,
