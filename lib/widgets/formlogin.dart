@@ -94,9 +94,9 @@ class _FormLoginState extends State<FormLogin> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
+            padding: const EdgeInsets.only(left: 40.0, right: 40.0),
             child: Container(
-              height: 60,
+              height: 64,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 color: Colors.white,
@@ -108,10 +108,10 @@ class _FormLoginState extends State<FormLogin> {
                   child: TextFormField(
                     controller: _emailController,
                     validator: _validateEmail,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      labelText: 'E-mail',
+                      hintText: 'E-mail',
                     ),
                     onChanged: (text) {
                       setState(() {});
@@ -124,7 +124,7 @@ class _FormLoginState extends State<FormLogin> {
           Padding(
             padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
             child: Container(
-              height: 60,
+              height: 64,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 color: Colors.white,
@@ -140,7 +140,7 @@ class _FormLoginState extends State<FormLogin> {
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      labelText: 'Senha',
+                      hintText: 'Senha',
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {

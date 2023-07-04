@@ -24,7 +24,7 @@ class _FormTextFieldState extends State<FormTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
       child: Container(
-        height: 60,
+        height: 64,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
           color: Colors.white,

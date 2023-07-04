@@ -28,6 +28,8 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
   UserStore userTeste = UserStore();
 
+  bool _obscurePassword = true;
+
   String? _validateNome(String? value) {
     if (value == null || value.isEmpty) {
       return "O nome é obrigatório";
@@ -183,6 +185,8 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -245,20 +249,66 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                     validator: _validateEmail,
                     keyboardType: TextInputType.emailAddress,
                     labelText: 'E-mail'),
-                FormTextField(
-                    controller: _senhaController,
-                    validator: _validateSenha,
-                    keyboardType: TextInputType.text,
-                    labelText: 'Senha'),
                 Padding(
-                    padding: const EdgeInsets.only(
-                        top: 24.0, left: 40.0, bottom: 8.0),
-                    child: Row(children: [
+                  padding:
+                      const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
+                  child: Container(
+                    height: 64,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextFormField(
+                          controller: _senhaController,
+                          validator: _validateSenha,
+                          keyboardType: TextInputType.text,
+                          obscureText: _obscurePassword,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Senha',
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
+                              child: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            ),
+                          ),
+                          onChanged: (text) {
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                /*FormTextField(
+                  controller: _senhaController,
+                  validator: _validateSenha,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Senha',
+                ),*/
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 16.0, left: 32.0),
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    direction: Axis.horizontal,
+                    children: [
                       Checkbox(
                         value: agree,
                         onChanged: _onAgreeChanged,
                       ),
-                      const Text('Eu concordo com os'),
+                      const Text('Aceito os'),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pushNamed('/termosecondicoes');
@@ -272,9 +322,11 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                           ),
                         ),
                       ),
-                    ])),
+                    ],
+                  ),
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
+                  padding: const EdgeInsets.only(left: 40.0, bottom: 40.0),
                   child: CustomButton(
                     text: 'Cadastrar',
                     onPressed: () => _submitForm(context),
