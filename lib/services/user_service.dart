@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -92,5 +91,14 @@ class UserService {
       print('Erro ao recuperar os dados do usuário: $e');
     }
     return null;
+  }
+
+  Future<void> logout() async {
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      // Trate o erro de logout aqui
+      print('Erro ao fazer logout: $e');
+    }
   }
 }

@@ -1,13 +1,11 @@
 import 'package:caronapp/const.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomNav extends StatefulWidget {
   final int selectedIndex;
   const BottomNav({Key? key, required this.selectedIndex}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _BottomNavState createState() => _BottomNavState();
 }
 
@@ -47,26 +45,19 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
-      child: GNav(
-        selectedIndex: _selectedIndex,
-        onTabChange: _onItemTapped,
-        color: Colors.grey,
-        mainAxisAlignment: MainAxisAlignment.center,
-        gap: 4,
-        activeColor: redIdColor,
-        tabBorderRadius: 24,
-        tabActiveBorder: Border.all(color: redIdColor),
-        tabs: _items
-            .map(
-              (item) => GButton(
-                icon: item['icon'],
-                text: item['label'],
-              ),
-            )
-            .toList(),
-      ),
+    return BottomNavigationBar(
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      backgroundColor: Colors.white,
+      selectedItemColor: redIdColor,
+      unselectedItemColor: Colors.grey,
+      type: BottomNavigationBarType.fixed,
+      items: _items.map((item) {
+        return BottomNavigationBarItem(
+          icon: Icon(item['icon']),
+          label: item['label'],
+        );
+      }).toList(),
     );
   }
 }

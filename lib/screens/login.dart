@@ -28,19 +28,19 @@ class Login extends StatelessWidget {
                             top: 80, left: 40.0, right: 40.0, bottom: 80.0),
                         child: Image.asset(
                           'assets/images/vemjunto.png',
-                          width: width*0.7,
+                          width: width * 0.7,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           FormLogin(),
                         ],
                       ),
