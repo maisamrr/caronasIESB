@@ -7,10 +7,9 @@ import 'package:provider/provider.dart';
 import '../store/user_store.dart';
 
 class EsqueciSenha extends StatefulWidget {
-  const EsqueciSenha({super.key});
+  const EsqueciSenha({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _EsqueciSenhaState createState() => _EsqueciSenhaState();
 }
 
@@ -86,104 +85,86 @@ class _EsqueciSenhaState extends State<EsqueciSenha> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: redIdColor,
-      body: Form(
-          key: _form,
-          child: Consumer<UserStore>(builder: (context, userStore, _) {
-            return ListView(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Form(
+              key: _form,
+              child: Consumer<UserStore>(
+                builder: (context, userStore, _) {
+                  return Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back),
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        Stack(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 80,
-                                  left: 40.0,
-                                  right: 40.0,
-                                  bottom: 80.0),
-                              child: Image.asset(
-                                'assets/images/vemjunto.png',
-                                width: 280,
-                              ),
+                            Image.asset(
+                              'assets/images/vemjunto.png',
+                              width: 280,
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 40.0),
-                                  child: Text(
-                                    'Esqueceu sua senha?',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                        const SizedBox(height: 40.0),
+                        const Text(
+                          'Esqueceu sua senha?',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 16.0),
+                        Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 24.0),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: TextFormField(
+                                controller: _emailController,
+                                validator: _validateEmail,
+                                onChanged: (text) {
+                                  setState(() {});
+                                },
+                                keyboardType: TextInputType.text,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  labelText: 'E-mail',
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 16.0, left: 40.0, right: 40.0),
-                                  child: Container(
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      color: Colors.white,
-                                    ),
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 24.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: TextFormField(
-                                          controller: _emailController,
-                                          validator: _validateEmail,
-                                          onChanged: (text) {
-                                            setState(() {});
-                                          },
-                                          keyboardType: TextInputType.text,
-                                          decoration: const InputDecoration(
-                                            border: InputBorder.none,
-                                            labelText: 'E-mail',
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 40.0),
-                                  child: CustomButton(
-                                    text: 'Recuperar',
-                                    onPressed: () {
-                                      _submitForm(context);
-                                    },
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          })),
+                        ),
+                        const SizedBox(height: 8.0),
+                        CustomButton(
+                          text: 'Recuperar',
+                          onPressed: () {
+                            _submitForm(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

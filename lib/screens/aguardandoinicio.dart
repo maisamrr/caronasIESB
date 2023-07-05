@@ -215,18 +215,24 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     //INICIAR
-                    CustomSecondaryButton(
-                      text: 'Iniciar',
-                      onPressed: () {
-                        showIniciarDialog(context);
-                      },
+                    SizedBox(
+                      width: 150,
+                      child: CustomSecondaryButton(
+                        text: 'Iniciar',
+                        onPressed: () {
+                          showIniciarDialog(context);
+                        },
+                      ),
                     ),
                     //CANCELAR
-                    CustomSecondaryButton(
-                      text: 'Cancelar',
-                      onPressed: () {
-                        showCancelarDialog(context);
-                      },
+                    SizedBox(
+                      width: 150,
+                      child: CustomSecondaryButton(
+                        text: 'Cancelar',
+                        onPressed: () {
+                          showCancelarDialog(context);
+                        },
+                      ),
                     ),
                   ],
                 ),

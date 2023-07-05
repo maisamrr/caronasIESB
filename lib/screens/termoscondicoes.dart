@@ -21,10 +21,13 @@ class TermosCondicoes extends StatelessWidget {
                   left: 40.0,
                 ),
                 child: GestureDetector(
-                  child: const Icon(Icons.arrow_back, size: 24, color: Colors.grey),
+                  child: const Icon(Icons.arrow_back,
+                      size: 24, color: Colors.grey),
                   onTap: () => {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const CadastroUsuario()))
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CadastroUsuario()))
                   },
                 ),
               ),
@@ -44,7 +47,7 @@ class TermosCondicoes extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 40.0, right: 40.0),
                 child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nibh eros, vulputate ac lacus scelerisque, sodales vulputate ipsum. Nam tristique feugiat ex sagittis laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam id iaculis metus, at mattis elit. Sed vel tortor metus. Suspendisse venenatis magna eu lacinia porttitor. Donec pulvinar, metus at hendrerit viverra, quam ante volutpat erat, sit amet ultricies lectus nisl in nisi.',
+                  'Bem-vindo(a) ao nosso aplicativo de caronas! Antes de começar a usar o nosso serviço, é importante que você leia e concorde com os seguintes termos e condições. Ao utilizar o aplicativo, você está aceitando todos os termos aqui estabelecidos. Se você não concordar com algum desses termos, por favor, pare de usar o aplicativo imediatamente. \n\n1 - Uso do Aplicativo  \n\n1.1 - O aplicativo de caronas tem como objetivo conectar motoristas que oferecem caronas com passageiros que desejam compartilhar essas viagens. O aplicativo fornece uma plataforma para facilitar essa conexão, mas não se responsabiliza por qualquer incidente que possa ocorrer durante a carona. \n\n1.2 - Ao utilizar o aplicativo, você concorda em fornecer informações precisas e atualizadas sobre si mesmo, incluindo seu nome, número de telefone, foto de perfil e outras informações solicitadas. Você também concorda em fornecer informações precisas sobre suas viagens, incluindo a data, hora e local de partida e destino. \n\n1.3 - Você é responsável por todas as atividades realizadas por meio de sua conta no aplicativo. Mantenha suas informações de login seguras e não compartilhe sua conta com terceiros.\n\n1.4 - Você concorda em usar o aplicativo de caronas de forma responsável, respeitando as leis e regulamentos aplicáveis. Você não deve usar o aplicativo para qualquer atividade ilegal, fraudulenta, abusiva ou que viole os direitos de terceiros.',
                   style: TextStyle(
                     fontSize: 16.0,
                     height: 1.5,
@@ -54,17 +57,7 @@ class TermosCondicoes extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
                 child: Text(
-                  'Curabitur vel quam id magna ultricies aliquam nec sit amet arcu. Aenean interdum accumsan lacus, id varius augue dapibus at. Pellentesque at ex mattis ex euismod rutrum id a libero. Praesent consequat sit amet nulla et congue. Suspendisse eget sapien et tortor malesuada lobortis. Pellentesque egestas blandit consectetur. Vivamus dignissim leo at dolor pellentesque, nec pulvinar nisi mollis. Sed pellentesque venenatis metus, id pellentesque ex maximus a.',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    height: 1.5,
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0, bottom: 80.0),
-                child: Text(
-                  'Donec neque dui, eleifend sed odio ut, pretium auctor nunc. Sed in neque non turpis congue aliquam. Nam lorem turpis, tincidunt in neque eu, tempus tempor quam. Phasellus dolor est, aliquam id lorem sed, ultricies porttitor libero. Nam quis tincidunt odio, id congue odio. Praesent eget est a metus bibendum auctor vitae nec velit. Praesent ut nulla diam. Phasellus est mauris, commodo at facilisis sed, vulputate et arcu. Morbi tempor at magna id varius. Etiam vulputate dictum risus ultricies scelerisque. Vivamus suscipit ligula eget finibus maximus. Cras sed rhoncus metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in quam a mauris condimentum malesuada. Nullam in magna non massa ultricies egestas at at erat. Ut pretium, felis ac varius placerat, sem nunc rhoncus nisl, quis porta ligula felis eu neque.',
+                  '2 - Responsabilidades do Motorista \n\n2.1 - Ao se tornar um motorista no aplicativo de caronas, você declara possuir uma carteira de motorista válida, bem como um veículo em bom estado de funcionamento e devidamente registrado. \n\n2.2 - Como motorista, você tem a opção de oferecer caronas e aceitar passageiros de acordo com sua disponibilidade e preferência. No entanto, você é responsável por garantir a segurança dos passageiros durante a carona, respeitando as leis de trânsito e adotando uma condução segura. \n\n2.3 - Você concorda em fornecer informações precisas sobre sua identidade, veículo e seguro de automóvel. É sua responsabilidade manter todas essas informações atualizadas no aplicativo. \n\n2.4 - O pagamento das despesas relacionadas à carona, como combustível e pedágios, será acordado diretamente entre o motorista e o passageiro. O aplicativo não se responsabiliza por quaisquer pagamentos ou acordos financeiros entre as partes.',
                   style: TextStyle(
                     fontSize: 16.0,
                     height: 1.5,

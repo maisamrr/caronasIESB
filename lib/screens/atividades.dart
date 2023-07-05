@@ -29,6 +29,13 @@ class _Atividades extends State<Atividades> {
     pegarViagensUser();
   }
 
+  void logout() async {
+    UserService userService = UserService();
+    await userService.logout();
+
+    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+  }
+
   pegarNomeUser() async {
     UserService userService = UserService();
 
@@ -163,6 +170,14 @@ class _Atividades extends State<Atividades> {
         ),
       ),
       bottomNavigationBar: const BottomNav(selectedIndex: 2),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        onPressed: () {
+          logout();
+        },
+        child: const Icon(Icons.logout),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
