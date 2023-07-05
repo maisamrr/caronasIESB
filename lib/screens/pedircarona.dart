@@ -1,4 +1,5 @@
 import 'package:caronapp/const.dart';
+import 'package:caronapp/services/user_service.dart';
 import 'package:caronapp/widgets/addresstile.dart';
 import 'package:flutter/material.dart';
 import '../store/address_store.dart';
@@ -20,6 +21,27 @@ class _PedirCaronaState extends State<PedirCarona> {
   final addressStore = AddressStore();
   final TextEditingController _destinoController = TextEditingController();
   bool isRuaEmpty = true;
+  String? name;
+
+  @override
+  void initState() {
+    super.initState();
+    pegarNomeUser();
+  }
+
+  pegarNomeUser() async {
+    UserService userService = UserService();
+
+    // var userData = await userService.getUserData();
+    Map<String, dynamic>? userCustomData =
+        await userService.getCurrentUserCustomData();
+
+    var userData = await userService.getUserData();
+
+    setState(() {
+      name = userData!.displayName!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +59,7 @@ class _PedirCaronaState extends State<PedirCarona> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
                   child: Text(
-                    userStore.nome.isNotEmpty
-                        ? 'Olá, ${userStore.nome}'
-                        : 'Olá',
+                    "Olá, $name",
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.w900,
