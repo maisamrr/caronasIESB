@@ -57,7 +57,6 @@ class UserService {
         password: senha,
       );
     } catch (e) {
-      // Trate o erro de autenticação aqui
       rethrow;
     }
   }
@@ -66,7 +65,6 @@ class UserService {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
-      // Trate o erro de redefinição de senha aqui
       print('Erro ao redefinir a senha: $e');
     }
   }
@@ -76,7 +74,6 @@ class UserService {
       final methods = await _auth.fetchSignInMethodsForEmail(email);
       return methods.isNotEmpty;
     } catch (e) {
-      // Trate o erro de verificação de email aqui
       print('Erro ao verificar email: $e');
       return false;
     }
@@ -87,10 +84,77 @@ class UserService {
       final User? currentUser = _auth.currentUser;
       return currentUser;
     } catch (e) {
-      // Trate o erro de leitura dos dados aqui
       print('Erro ao recuperar os dados do usuário: $e');
     }
     return null;
+  }
+
+  Future<Map<String, dynamic>?> getCurrentUserCustomData() async {
+    try {
+      final User? currentUser = _auth.currentUser;
+
+      final String userKey = currentUser!.uid;
+
+      final DatabaseEvent snapshot = await _userRef
+          .orderByChild('firebaseUserId')
+          .equalTo(userKey)
+          .limitToFirst(1)
+          .once();
+
+      final userData = snapshot.snapshot.value as Map<dynamic, dynamic>?;
+
+      if (userData != null) {
+        return userData.cast<String, dynamic>();
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error retrieving user data: $e');
+      return null;
+    }
+  }
+
+  Future<void> updateUser(
+    String? name,
+    String? celular,
+    String? matricula,
+  ) async {
+    try {
+      final User? currentUser = _auth.currentUser;
+
+      final String userKey = currentUser!.uid;
+
+      final DatabaseEvent snapshot = await _userRef
+          .orderByChild('firebaseUserId')
+          .equalTo(userKey)
+          .limitToFirst(1)
+          .once();
+
+      final userMap = snapshot.snapshot.value as Map<dynamic, dynamic>?;
+
+      if (userMap != null) {
+        final userId = userMap.keys.first;
+
+        final updatedUserData = <String, dynamic>{};
+
+        if (name != null) {
+          updatedUserData['nome'] = name;
+          await _auth.currentUser?.updateDisplayName(name);
+        }
+
+        if (celular != null) {
+          updatedUserData['celular'] = celular;
+        }
+
+        if (matricula != null) {
+          updatedUserData['matricula'] = matricula;
+        }
+        print(updatedUserData.toString());
+        await _userRef.child(userId).update(updatedUserData);
+      }
+    } catch (e) {
+      print('Erro ao atualizar o usuário: $e');
+    }
   }
 
   Future<void> logout() async {

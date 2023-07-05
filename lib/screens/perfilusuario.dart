@@ -2,14 +2,12 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/atividades.dart';
 import 'package:caronapp/services/user_service.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/formtextfield.dart';
 import '../widgets/roundprofilepicture.dart';
-import '../store/user_store.dart';
 
 class PerfilUsuario extends StatefulWidget {
-  const PerfilUsuario({super.key});
+  const PerfilUsuario({Key? key}) : super(key: key);
 
   @override
   _PerfilUsuario createState() => _PerfilUsuario();
@@ -17,19 +15,50 @@ class PerfilUsuario extends StatefulWidget {
 
 class _PerfilUsuario extends State<PerfilUsuario> {
   final _form = GlobalKey<FormState>();
+  final _nomeController = TextEditingController();
+  final _matriculaController = TextEditingController();
   final _celularController = TextEditingController();
-  final _senhaController = TextEditingController();
 
   String _errorLogin = '';
   String? name;
+  String? celular;
+  String? matricula;
 
   @override
   void initState() {
     super.initState();
-    pegarNomeUser();
+    pegarDadosUser();
   }
 
-  UserStore userTeste = UserStore();
+  pegarDadosUser() async {
+    UserService userService = UserService();
+
+    // var userData = await userService.getUserData();
+    Map<String, dynamic>? userCustomData =
+        await userService.getCurrentUserCustomData();
+
+    var userData = userCustomData?.values.first;
+    var userData2 = await userService.getUserData();
+
+    setState(() {
+      name = userData2!.displayName!;
+      celular = userData['celular'];
+      matricula = userData['matricula'];
+      _nomeController.text = userData2.displayName!;
+      _celularController.text = userData['celular'] ?? '';
+      _matriculaController.text = userData['matricula'] ?? '';
+    });
+  }
+
+  String? _validateNome(String? value) {
+    if (value == null || value.isEmpty) {
+      return "O nome é obrigatório";
+    }
+    if (value.length < 3) {
+      return "O nome deve ter no mínimo 3 caracteres";
+    }
+    return null;
+  }
 
   String? _validateCelular(String? value) {
     if (value == null || value.isEmpty) {
@@ -41,12 +70,12 @@ class _PerfilUsuario extends State<PerfilUsuario> {
     return null;
   }
 
-  String? _validateSenha(String? value) {
+  String? _validateMatricula(String? value) {
     if (value == null || value.isEmpty) {
-      return "A senha é obrigatória";
+      return "A matrícula é obrigatória";
     }
-    if (value.length < 8) {
-      return "Sua senha deve ter no mínimo 8 caracters";
+    if (value.length != 10) {
+      return "A matrícula deve ter exatamente 10 números";
     }
     return null;
   }
@@ -55,13 +84,13 @@ class _PerfilUsuario extends State<PerfilUsuario> {
     if (!_form.currentState!.validate()) {
       return;
     }
-
     setState(() => _errorLogin = '');
 
     try {
-      UserStore userStore = Provider.of<UserStore>(context, listen: false);
-      userStore.setCelular(_celularController.text);
-      userStore.setSenha(_senhaController.text);
+      UserService userService = UserService();
+
+      userService.updateUser(_nomeController.text, _celularController.text,
+          _matriculaController.text);
 
       Navigator.pushReplacementNamed(context, '/');
 
@@ -70,7 +99,7 @@ class _PerfilUsuario extends State<PerfilUsuario> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Perfil alterado'),
-            content: const Text('Seu perifl foi alterado com sucesso.'),
+            content: const Text('Seu perfil foi alterado com sucesso.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -85,15 +114,6 @@ class _PerfilUsuario extends State<PerfilUsuario> {
     } catch (e) {
       setState(() => _errorLogin = e.toString());
     }
-  }
-
-  pegarNomeUser() async {
-    UserService userService = UserService();
-
-    var userData = await userService.getUserData();
-    setState(() {
-      name = userData!.displayName!;
-    });
   }
 
   @override
@@ -193,26 +213,37 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              FormTextField(
-                  controller: _celularController,
-                  validator: _validateCelular,
-                  keyboardType: TextInputType.phone,
-                  labelText: 'Celular'),
-              FormTextField(
-                  controller: _senhaController,
-                  validator: _validateSenha,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Senha'),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 40.0),
-                  child: CustomButton(
-                    text: 'Alterar',
-                    onPressed: () => _submitForm(context),
-                  ),
-                ),
-              ),
+              Form(
+                  key: _form,
+                  child: Column(
+                    children: [
+                      FormTextField(
+                          controller: _nomeController,
+                          validator: _validateNome,
+                          keyboardType: TextInputType.text,
+                          labelText: 'Nome'),
+                      FormTextField(
+                          controller: _celularController,
+                          validator: _validateCelular,
+                          keyboardType: TextInputType.phone,
+                          labelText: 'Celular'),
+                      FormTextField(
+                          controller: _matriculaController,
+                          validator: _validateMatricula,
+                          keyboardType: TextInputType.text,
+                          labelText: 'Matricula'),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, left: 40.0),
+                          child: CustomButton(
+                            text: 'Alterar',
+                            onPressed: () => _submitForm(context),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),
