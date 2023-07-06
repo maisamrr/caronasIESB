@@ -129,26 +129,28 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
-                  child: Text(
-                    'Aguardando início',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w900,
-                      color: redIdColor,
-                    ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 32.0,
+                  bottom: 16.0,
+                  left: 55.0,
+                  right: 16.0,
+                ),
+                child: Text(
+                  'Aguardando início',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w900,
+                    color: redIdColor,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              //IMAGEM
               GestureDetector(
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 16.0, left: 48.0, right: 48.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SizedBox(
+                    width: double.infinity,
                     child: Stack(
                       children: [
                         ClipRRect(
@@ -163,11 +165,7 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                             ),
                           ),
                         ),
-                        Positioned(
-                          top: 0,
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
+                        Positioned.fill(
                           child: Align(
                             alignment: Alignment.center,
                             child: Column(
@@ -175,29 +173,29 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      top: 24, bottom: 16.0),
+                                    top: 24.0,
+                                    bottom: 16.0,
+                                  ),
                                   child: Image.asset(
                                     'assets/images/logovermelho.png',
                                     height: 120.0,
                                   ),
                                 ),
-                                const Center(
-                                  child: Text(
-                                    'Sua carona deve iniciar às',
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                    ),
+                                const Text(
+                                  'Sua carona deve iniciar às',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
                                   ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                Center(
-                                  child: Text(
-                                    horario ?? '',
-                                    style: const TextStyle(
-                                      fontSize: 24.0,
-                                      height: 1.5,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                Text(
+                                  horario ?? '',
+                                  style: const TextStyle(
+                                    fontSize: 24.0,
+                                    height: 1.5,
+                                    fontWeight: FontWeight.bold,
                                   ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ],
                             ),
@@ -208,37 +206,37 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 32, 40, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //INICIAR
-                    SizedBox(
-                      width: 150,
-                      child: CustomSecondaryButton(
-                        text: 'Iniciar',
-                        onPressed: () {
-                          showIniciarDialog(context);
-                        },
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: CustomSecondaryButton(
+                          text: 'Iniciar',
+                          onPressed: () {
+                            showIniciarDialog(context);
+                          },
+                        ),
                       ),
                     ),
-                    //CANCELAR
-                    SizedBox(
-                      width: 150,
-                      child: CustomSecondaryButton(
-                        text: 'Cancelar',
-                        onPressed: () {
-                          showCancelarDialog(context);
-                        },
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: CustomSecondaryButton(
+                          text: 'Cancelar',
+                          onPressed: () {
+                            showCancelarDialog(context);
+                          },
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-
-              //MOTORISTA
               const Padding(
                 padding: EdgeInsets.only(top: 24.0, left: 48.0, right: 48.0),
                 child: Text(
@@ -255,7 +253,6 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                   driverName: name ?? '',
                 ),
               ),
-              //TRAJETO
               const Padding(
                 padding: EdgeInsets.only(top: 24.0, left: 48.0, right: 48.0),
                 child: Text(
@@ -267,8 +264,12 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 8.0, left: 48.0, bottom: 16.0),
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  left: 48.0,
+                  right: 48.0,
+                  bottom: 16.0,
+                ),
                 child: Text(
                   partida ?? '',
                 ),
@@ -284,8 +285,12 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 8.0, left: 48.0, bottom: 16.0),
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  left: 48.0,
+                  right: 48.0,
+                  bottom: 16.0,
+                ),
                 child: Text(
                   destino ?? '',
                 ),

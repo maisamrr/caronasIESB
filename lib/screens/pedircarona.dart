@@ -32,10 +32,6 @@ class _PedirCaronaState extends State<PedirCarona> {
   pegarNomeUser() async {
     UserService userService = UserService();
 
-    // var userData = await userService.getUserData();
-    Map<String, dynamic>? userCustomData =
-        await userService.getCurrentUserCustomData();
-
     var userData = await userService.getUserData();
 
     setState(() {
