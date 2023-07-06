@@ -62,7 +62,6 @@ class _Atividades extends State<Atividades> {
       horaNames.add(addressHourId);
       dataNames.add(addressDateNumber);
     }
-    print(tripData.length);
 
     setState(() {
       locals = localNames;

@@ -26,6 +26,28 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
 
   String _errorLogin = '';
 
+  @override
+  void initState() {
+    super.initState();
+    pegarDadosUser();
+  }
+
+  pegarDadosUser() async {
+    UserService userService = UserService();
+
+    // var userData = await userService.getUserData();
+    Map<String, dynamic>? userCustomData =
+        await userService.getCurrentUserCustomData();
+
+    var userData = userCustomData?.values.first;
+
+    setState(() {
+      _nomeController.text = userData['nome'] ?? '';
+      _emailController.text = userData['email'] ?? '';
+      _matriculaController.text = userData['matricula'] ?? '';
+    });
+  }
+
   String? _validateNome(String? value) {
     if (value == null || value.isEmpty) {
       return "O nome é obrigatório";
@@ -116,7 +138,7 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
                 if (_errorLogin.isNotEmpty)
                   Text(
                     _errorLogin,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -147,20 +169,26 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
                   ),
                 ),
                 FormTextField(
-                    controller: _nomeController,
-                    validator: _validateNome,
-                    keyboardType: TextInputType.text,
-                    labelText: 'Nome'),
+                  controller: _nomeController,
+                  validator: _validateNome,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Nome',
+                  enabled: false,
+                ),
                 FormTextField(
-                    controller: _emailController,
-                    validator: _validateEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    labelText: 'E-mail'),
+                  controller: _emailController,
+                  validator: _validateEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  labelText: 'E-mail',
+                  enabled: false,
+                ),
                 FormTextField(
-                    controller: _matriculaController,
-                    validator: _validateMatricula,
-                    keyboardType: TextInputType.number,
-                    labelText: 'Matrícula'),
+                  controller: _matriculaController,
+                  validator: _validateMatricula,
+                  keyboardType: TextInputType.number,
+                  labelText: 'Matrícula',
+                  enabled: false,
+                ),
                 CustomDropdown(
                   optionsList: const [
                     'Login',

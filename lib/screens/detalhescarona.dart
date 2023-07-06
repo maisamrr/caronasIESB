@@ -240,7 +240,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: CustomPassenger(
                   passengerName: 'Gustavo',
-                  passengerAddress: 'Rua Angular',
+                  passengerAddress: 'Rua Junit',
                   passengerHour: DateTime.now(),
                   containerColor: const Color.fromARGB(255, 255, 87, 87),
                 ),
