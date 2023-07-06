@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/custombutton.dart';
 import '../store/user_store.dart';
+import '../widgets/customdropdown.dart';
 
 class ContatoSuporte extends StatefulWidget {
   const ContatoSuporte({super.key});
@@ -20,12 +21,10 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
   final _nomeController = TextEditingController();
   final _matriculaController = TextEditingController();
   final _emailController = TextEditingController();
+  final _dropdownController = TextEditingController();
+  final _mensagemController = TextEditingController();
 
   String _errorLogin = '';
-
-  bool agree = false;
-
-  UserStore userTeste = UserStore();
 
   String? _validateNome(String? value) {
     if (value == null || value.isEmpty) {
@@ -57,6 +56,16 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
     return null;
   }
 
+  String? _validateMensagem(String? value) {
+    if (value == null || value.isEmpty) {
+      return "A mensagem é obrigatória";
+    }
+    if (value.length < 50) {
+      return "A mensagem deve mais de 50 caracteres";
+    }
+    return null;
+  }
+
   Future<void> _submitForm(BuildContext context) async {
     if (!_form.currentState!.validate()) {
       return;
@@ -70,46 +79,12 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
       userStore.setMatricula(_matriculaController.text);
       userStore.setEmail(_emailController.text);
 
-      UserService userService = UserService();
-
-      if (userService.isEmailRegistered(userStore.email) == false) {
-        await userService.saveUser(
-          nome: userStore.nome,
-          celular: userStore.celular,
-          matricula: userStore.matricula,
-          email: userStore.email,
-          senha: userStore.senha,
-        );
-
-        Navigator.pushReplacementNamed(context, '/');
-
-        // ignore: use_build_context_synchronously
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Envio bem-sucedido'),
-              content: const Text('Sua mensagem foi enviada com sucesso.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
-      }
-
-      // ignore: use_build_context_synchronously
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Envio mal-sucedido'),
-            content: const Text('Email já cadastrado'),
+            title: const Text('Envio bem-sucedido'),
+            content: const Text('Sua mensagem foi enviada com sucesso.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -131,68 +106,62 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 40.0,
-                  left: 40.0,
+        child: Form(
+          key: _form,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (_errorLogin.isNotEmpty)
+                  Text(
+                    _errorLogin,
+                    style: TextStyle(color: Colors.red),
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40.0,
+                    left: 40.0,
+                  ),
+                  child: GestureDetector(
+                    child: const Icon(Icons.arrow_back, size: 24),
+                    onTap: () => {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Atividades()))
+                    },
+                  ),
                 ),
-                child: GestureDetector(
-                  child: const Icon(Icons.arrow_back, size: 24),
-                  onTap: () => {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const Atividades()))
-                  },
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 32.0),
-                  child: Text(
-                    'Suporte',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w900,
-                      color: redIdColor,
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 32.0),
+                    child: Text(
+                      'Suporte',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.w900,
+                        color: redIdColor,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  _errorLogin,
-                  style: const TextStyle(
-                    height: 2,
-                    fontSize: 16.0,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              FormTextField(
-                controller: _nomeController,
-                validator: _validateNome,
-                keyboardType: TextInputType.text,
-                labelText: 'Nome'
-              ),
-              FormTextField(
-                controller: _emailController,
-                validator: _validateEmail,
-                keyboardType: TextInputType.emailAddress,
-                labelText: 'E-mail'
-              ),
-              FormTextField(
-                controller: _matriculaController,
-                validator: _validateMatricula,
-                keyboardType: TextInputType.number,
-                labelText: 'Matrícula'
-              ),
-              /*CustomDropdown(
+                FormTextField(
+                    controller: _nomeController,
+                    validator: _validateNome,
+                    keyboardType: TextInputType.text,
+                    labelText: 'Nome'),
+                FormTextField(
+                    controller: _emailController,
+                    validator: _validateEmail,
+                    keyboardType: TextInputType.emailAddress,
+                    labelText: 'E-mail'),
+                FormTextField(
+                    controller: _matriculaController,
+                    validator: _validateMatricula,
+                    keyboardType: TextInputType.number,
+                    labelText: 'Matrícula'),
+                CustomDropdown(
                   optionsList: const [
                     'Login',
                     'Pedir carona',
@@ -203,97 +172,46 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
                   ],
                   hint: 'Tipo de problema',
                   boxColor: Colors.white,
-                ),*/
-              
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 24.0, left: 40.0, right: 40.0),
-                child: Container(
-                  height: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.white,
-                  ),
-                  child: TextField(
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 8.0),
-                      labelText: 'Descrição do problema',
-                      hintText: 'Relate aqui seu problema',
-                      border: InputBorder.none,
-                      alignLabelWithHint: true,
+                  dropdownController: _dropdownController,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
+                  child: Container(
+                    height: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
                     ),
-                    maxLines: 20,
-                    keyboardType: TextInputType.multiline,
-                    onChanged: (value) {},
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 8.0),
+                        labelText: 'Descrição do problema',
+                        hintText: 'Relate aqui seu problema',
+                        border: InputBorder.none,
+                        alignLabelWithHint: true,
+                      ),
+                      maxLines: 20,
+                      keyboardType: TextInputType.multiline,
+                      controller: _mensagemController,
+                      validator: _validateMensagem,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
-                child: CustomButton(
-                  text: 'Enviar',
-                  onPressed: () => _submitForm(context),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 8.0, left: 40.0, right: 40.0),
+                  child: CustomButton(
+                    text: 'Enviar',
+                    onPressed: () => _submitForm(context),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-/*
-class ExpansionTileExample extends StatefulWidget {
-  const ExpansionTileExample({super.key});
-
-  @override
-  State<ExpansionTileExample> createState() => _ExpansionTileExampleState();
-}
-
-class _ExpansionTileExampleState extends State<ExpansionTileExample> {
-  bool _customTileExpanded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        const ExpansionTile(
-          title: Text('ExpansionTile 1'),
-          subtitle: Text('Trailing expansion arrow icon'),
-          children: <Widget>[
-            ListTile(title: Text('This is tile number 1')),
-          ],
-        ),
-        ExpansionTile(
-          title: const Text('ExpansionTile 2'),
-          subtitle: const Text('Custom expansion arrow icon'),
-          trailing: Icon(
-            _customTileExpanded
-                ? Icons.arrow_drop_down_circle
-                : Icons.arrow_drop_down,
-          ),
-          children: const <Widget>[
-            ListTile(title: Text('This is tile number 2')),
-          ],
-          onExpansionChanged: (bool expanded) {
-            setState(() {
-              _customTileExpanded = expanded;
-            });
-          },
-        ),
-        const ExpansionTile(
-          title: Text('ExpansionTile 3'),
-          subtitle: Text('Leading expansion arrow icon'),
-          controlAffinity: ListTileControlAffinity.leading,
-          children: <Widget>[
-            ListTile(title: Text('This is tile number 3')),
-          ],
-        ),
-      ],
-    );
-  }
-}
-*/

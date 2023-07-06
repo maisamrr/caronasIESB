@@ -185,8 +185,6 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -234,24 +232,28 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   validator: _validateNome,
                   keyboardType: TextInputType.text,
                   labelText: 'Nome',
+                  
                 ),
                 FormTextField(
                   controller: _celularController,
                   validator: _validateCelular,
                   keyboardType: TextInputType.phone,
                   labelText: 'Celular',
+                  
                 ),
                 FormTextField(
                   controller: _matriculaController,
                   validator: _validateMatricula,
                   keyboardType: TextInputType.number,
                   labelText: 'Matrícula',
+                  
                 ),
                 FormTextField(
                   controller: _emailController,
                   validator: _validateEmail,
                   keyboardType: TextInputType.emailAddress,
                   labelText: 'E-mail',
+                  
                 ),
                 Padding(
                   padding:
@@ -295,12 +297,6 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                     ),
                   ),
                 ),
-                /*FormTextField(
-                  controller: _senhaController,
-                  validator: _validateSenha,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Senha',
-                ),*/
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, left: 32.0),
                   child: Wrap(

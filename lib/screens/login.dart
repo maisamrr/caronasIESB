@@ -25,7 +25,7 @@ class Login extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 80, left: 40.0, right: 40.0, bottom: 80.0),
+                            top: 56, left: 40.0, right: 40.0, bottom: 56.0),
                         child: Image.asset(
                           'assets/images/vemjunto.png',
                           width: width * 0.7,
@@ -34,13 +34,13 @@ class Login extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           FormLogin(),
                         ],
                       ),
