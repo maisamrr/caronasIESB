@@ -1,4 +1,5 @@
 import 'package:caronapp/const.dart';
+import 'package:caronapp/store/status_viagem.dart';
 import 'package:caronapp/widgets/custominfobox.dart';
 import 'package:flutter/material.dart';
 
@@ -111,7 +112,9 @@ class _DetalhesDaViagemState extends State<DetalhesDaViagem> {
               ),
               CustomInfoBox(
                   boldText: 'Status da Viagem',
-                  lightText: status ?? '',
+                  lightText: status == StatusViagem.cancelada.toString()
+                      ? "Cancelada"
+                      : "Finalizada",
                   iconData: Icons.cached_outlined),
               CustomInfoBox(
                   boldText: 'Horário',
@@ -131,7 +134,7 @@ class _DetalhesDaViagemState extends State<DetalhesDaViagem> {
                   iconData: Icons.account_circle_outlined),
               CustomInfoBox(
                   boldText: 'Veículo',
-                  lightText: '${marca ?? ''} ${placa ?? ''}',
+                  lightText: '${marca ?? ''} - ${placa ?? ''}',
                   iconData: Icons.directions_car_outlined),
               const CustomInfoBox(
                   boldText: 'Passageiro 1',

@@ -230,25 +230,29 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   ),
                 ),
                 FormTextField(
-                    controller: _nomeController,
-                    validator: _validateNome,
-                    keyboardType: TextInputType.text,
-                    labelText: 'Nome'),
+                  controller: _nomeController,
+                  validator: _validateNome,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Nome',
+                ),
                 FormTextField(
-                    controller: _celularController,
-                    validator: _validateCelular,
-                    keyboardType: TextInputType.phone,
-                    labelText: 'Celular'),
+                  controller: _celularController,
+                  validator: _validateCelular,
+                  keyboardType: TextInputType.phone,
+                  labelText: 'Celular',
+                ),
                 FormTextField(
-                    controller: _matriculaController,
-                    validator: _validateMatricula,
-                    keyboardType: TextInputType.number,
-                    labelText: 'Matrícula'),
+                  controller: _matriculaController,
+                  validator: _validateMatricula,
+                  keyboardType: TextInputType.number,
+                  labelText: 'Matrícula',
+                ),
                 FormTextField(
-                    controller: _emailController,
-                    validator: _validateEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    labelText: 'E-mail'),
+                  controller: _emailController,
+                  validator: _validateEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  labelText: 'E-mail',
+                ),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
@@ -298,8 +302,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   labelText: 'Senha',
                 ),*/
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16.0, left: 32.0),
+                  padding: const EdgeInsets.only(top: 16.0, left: 32.0),
                   child: Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,
                     direction: Axis.horizontal,

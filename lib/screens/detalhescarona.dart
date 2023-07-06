@@ -1,14 +1,14 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/store/status_viagem.dart';
 import 'package:caronapp/widgets/customdriver.dart';
+import 'package:caronapp/widgets/custompassenger.dart';
 import 'package:caronapp/widgets/customsecondarybutton.dart';
 import 'package:flutter/material.dart';
 import '../services/user_service.dart';
 import '../services/viagem_service.dart';
-import '../widgets/custompassenger.dart';
 
 class DetalhesCarona extends StatefulWidget {
-  const DetalhesCarona({super.key});
+  const DetalhesCarona({Key? key}) : super(key: key);
 
   @override
   _DetalhesCaronaState createState() => _DetalhesCaronaState();
@@ -39,7 +39,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
     Widget simButton = TextButton(
       child: const Text('Sim'),
       onPressed: () async {
-        //PENDENTE mudar status da viagem atual para cancelada
+        // PENDENTE: mudar status da viagem atual para cancelada
         await ViagemService().setStatusViagem(tripId, StatusViagem.cancelada);
         Navigator.of(context).pushNamed('/detalhesviagem');
       },
@@ -47,7 +47,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
     Widget naoButton = TextButton(
       child: const Text('Não'),
       onPressed: () {
-        return;
+        Navigator.of(context).pop();
       },
     );
 
@@ -72,7 +72,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
     Widget simButton = TextButton(
       child: const Text('Sim'),
       onPressed: () async {
-        //PENDENTE mudar status da viagem atual para finalizada
+        // PENDENTE: mudar status da viagem atual para finalizada
         await ViagemService().setStatusViagem(tripId, StatusViagem.finalizada);
 
         Navigator.of(context).pushNamed('/detalhesviagem');
@@ -81,7 +81,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
     Widget naoButton = TextButton(
       child: const Text('Não'),
       onPressed: () {
-        return;
+        Navigator.of(context).pop();
       },
     );
 
@@ -136,16 +136,15 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
-                  child: Text(
-                    'Detalhes da carona',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w900,
-                      color: redIdColor,
-                    ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 32.0, bottom: 16.0, left: 50),
+                child: Text(
+                  'Detalhes da carona',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w900,
+                    color: redIdColor,
                   ),
                 ),
               ),
@@ -154,7 +153,10 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 16.0, left: 48.0, right: 48.0),
+                      top: 16.0,
+                      left: 48.0,
+                      right: 48.0,
+                    ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: Image.asset(
@@ -169,24 +171,32 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //FINALIZAR
-                    CustomSecondaryButton(
-                      text: 'Finalizar',
-                      onPressed: () {
-                        showFinalizarDialog(context);
-                      },
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: CustomSecondaryButton(
+                          text: 'Finalizar',
+                          onPressed: () {
+                            showFinalizarDialog(context);
+                          },
+                        ),
+                      ),
                     ),
-                    //CANCELAR
-                    CustomSecondaryButton(
-                      text: 'Cancelar',
-                      onPressed: () {
-                        showCancelarDialog(context);
-                      },
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: CustomSecondaryButton(
+                          text: 'Cancelar',
+                          onPressed: () {
+                            showCancelarDialog(context);
+                          },
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-              //MOTORISTA
               const Padding(
                 padding: EdgeInsets.only(top: 24.0, left: 48.0, right: 48.0),
                 child: Text(
@@ -203,9 +213,12 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                   driverName: name ?? '',
                 ),
               ),
-              //PASSAGEIROS
               const Padding(
-                padding: EdgeInsets.only(left: 48.0, right: 48.0, bottom: 16.0),
+                padding: EdgeInsets.only(
+                  left: 48.0,
+                  right: 48.0,
+                  bottom: 16.0,
+                ),
                 child: Text(
                   'Passageiros',
                   style: TextStyle(
@@ -214,17 +227,23 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                   ),
                 ),
               ),
-              CustomPassenger(
-                passengerName: 'Felipe Lousada',
-                passengerAddress: 'ABC 49',
-                passengerHour: DateTime.now(),
-                containerColor: const Color(0xffff8ac5),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: CustomPassenger(
+                  passengerName: 'Maísa',
+                  passengerAddress: 'Rua Spring',
+                  passengerHour: DateTime.now(),
+                  containerColor: const Color.fromARGB(255, 137, 87, 255),
+                ),
               ),
-              CustomPassenger(
-                passengerName: 'Gustavo Pedro',
-                passengerAddress: 'Rua 55',
-                passengerHour: DateTime.now(),
-                containerColor: const Color(0xff57ABFF),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: CustomPassenger(
+                  passengerName: 'Gustavo',
+                  passengerAddress: 'Rua Angular',
+                  passengerHour: DateTime.now(),
+                  containerColor: const Color.fromARGB(255, 255, 87, 87),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
