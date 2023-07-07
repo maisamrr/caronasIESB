@@ -40,7 +40,7 @@ class _ContatoSuporteState extends State<ContatoSuporte> {
         await userService.getCurrentUserCustomData();
 
     var userData = userCustomData?.values.first;
-
+    print(userCustomData);
     setState(() {
       _nomeController.text = userData['nome'] ?? '';
       _emailController.text = userData['email'] ?? '';
