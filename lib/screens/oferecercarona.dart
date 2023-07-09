@@ -35,6 +35,9 @@ class _OferecerCaronaState extends State<OferecerCarona> {
     if (value.length < 8) {
       return "O endereço deve ter no mínimo 8 caracteres";
     }
+    if (value.length > 20) {
+      return "O endereço deve ter no máximo 20 caracteres";
+    }
     return null;
   }
 
