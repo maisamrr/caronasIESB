@@ -3,6 +3,7 @@ import 'package:caronapp/services/user_service.dart';
 import 'package:caronapp/widgets/formtextfield.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/custombutton.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../store/user_store.dart';
 
@@ -10,7 +11,6 @@ class CadastroUsuario extends StatefulWidget {
   const CadastroUsuario({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _CadastroUsuarioState createState() => _CadastroUsuarioState();
 }
 
@@ -21,6 +21,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
   final _matriculaController = TextEditingController();
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
+  
 
   String _errorLogin = '';
 
@@ -131,16 +132,14 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
       if (emailExists == false) {
         await userService.saveUser(
-          nome: userStore.nome,
-          celular: userStore.celular,
-          matricula: userStore.matricula,
-          email: userStore.email,
-          senha: userStore.senha,
-        );
+            nome: userStore.nome,
+            celular: userStore.celular,
+            matricula: userStore.matricula,
+            email: userStore.email,
+            senha: userStore.senha);
 
         Navigator.pushReplacementNamed(context, '/');
 
-        // ignore: use_build_context_synchronously
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -197,7 +196,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.only(top: 25, left: 40.0, bottom: 40.0),
+                      const EdgeInsets.only(top: 50, left: 40.0, bottom: 40.0),
                   child: GestureDetector(
                     child: const Icon(Icons.arrow_back, size: 24),
                     onTap: () => {
@@ -215,8 +214,8 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40.0),
                   child: Text(
                     _errorLogin,
                     style: const TextStyle(
@@ -232,28 +231,28 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   validator: _validateNome,
                   keyboardType: TextInputType.text,
                   labelText: 'Nome',
-                  
                 ),
                 FormTextField(
                   controller: _celularController,
                   validator: _validateCelular,
                   keyboardType: TextInputType.phone,
+                  maxLength: 11,
+                  format: FilteringTextInputFormatter.digitsOnly,
                   labelText: 'Celular',
-                  
                 ),
                 FormTextField(
                   controller: _matriculaController,
                   validator: _validateMatricula,
                   keyboardType: TextInputType.number,
+                  maxLength: 10,
+                  format: FilteringTextInputFormatter.digitsOnly,
                   labelText: 'Matrícula',
-                  
                 ),
                 FormTextField(
                   controller: _emailController,
                   validator: _validateEmail,
                   keyboardType: TextInputType.emailAddress,
                   labelText: 'E-mail',
-                  
                 ),
                 Padding(
                   padding:

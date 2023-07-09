@@ -10,27 +10,29 @@ class ViagemService {
   late final DatabaseReference _tripRef = _rootRef.child('trips');
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<String?> saveTrip(
-      {required String data,
-      required String horario,
-      required String partida,
-      required String chegada,
-      required Car? carro,
-      required StatusViagem status}) async {
+  Future<String?> saveTrip({
+    required String data,
+    required String horario,
+    required String partida,
+    required String chegada,
+    required Car? carro,
+    required StatusViagem status,
+  }) async {
     String? tripId;
     final User? currentUser = _auth.currentUser;
 
     final String motoristaKey = currentUser?.uid ?? '';
 
-    // Criar um novo nó para o usuário
+    // Criar um novo nó para a viagem com um ID gerado automaticamente
     final newTripRef = _tripRef.push();
+    tripId = newTripRef.key; // Obter o ID gerado automaticamente
 
-    // Definir os dados do usuário
+    // Definir os dados da viagem, incluindo o ID
     await newTripRef.set({
+      'id': tripId, // Salvar o ID da viagem
       'data': data,
       'horario': horario,
-      'motorista':
-          motoristaKey, // Usar a chave única do motorista como referência
+      'motorista': motoristaKey,
       'partida': partida,
       'chegada': chegada,
       'car': {
@@ -39,8 +41,6 @@ class ViagemService {
       },
       'status': status.toString(),
     });
-
-    tripId = newTripRef.key;
 
     return tripId;
   }
@@ -70,5 +70,21 @@ class ViagemService {
     final DatabaseReference viagemRef = _tripRef.child(viagemId);
 
     await viagemRef.update({'status': novoStatus.toString()});
+  }
+
+  Future<Map<dynamic, dynamic>?> getTripById(String tripId) async {
+    try {
+      final DatabaseEvent snapshot = await _tripRef.child(tripId).once();
+
+      if (snapshot.snapshot.value != null) {
+        return snapshot.snapshot.value as Map<dynamic, dynamic>?;
+      }
+
+      return null;
+    } catch (e) {
+      // Handle the data reading error here
+      print('Error retrieving trip data: $e');
+      return null;
+    }
   }
 }

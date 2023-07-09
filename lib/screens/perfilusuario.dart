@@ -21,8 +21,6 @@ class _PerfilUsuario extends State<PerfilUsuario> {
 
   String _errorLogin = '';
   String? name;
-  String? celular;
-  String? matricula;
 
   @override
   void initState() {
@@ -38,13 +36,10 @@ class _PerfilUsuario extends State<PerfilUsuario> {
         await userService.getCurrentUserCustomData();
 
     var userData = userCustomData?.values.first;
-    var userData2 = await userService.getUserData();
 
     setState(() {
-      name = userData2!.displayName!;
-      celular = userData['celular'];
-      matricula = userData['matricula'];
-      _nomeController.text = userData2.displayName!;
+      name = userData['nome'] ?? '';
+      _nomeController.text = userData['nome'] ?? '';
       _celularController.text = userData['celular'] ?? '';
       _matriculaController.text = userData['matricula'] ?? '';
     });

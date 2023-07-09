@@ -1,3 +1,4 @@
+import 'package:caronapp/store/car_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -13,6 +14,7 @@ class UserService {
     required String celular,
     required String matricula,
     required String email,
+    Car? carro,
     required String senha,
   }) async {
     // Criar um novo nó para o usuário
@@ -26,6 +28,7 @@ class UserService {
       'matricula': matricula,
       'email': email,
       'senha': senha,
+      'car': carro
     });
     //Auth
     try {

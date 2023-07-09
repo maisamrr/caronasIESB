@@ -8,18 +8,19 @@ import '../widgets/bottonnav.dart';
 import '../widgets/roundsquareicon.dart';
 
 class Atividades extends StatefulWidget {
-  const Atividades({super.key});
+  const Atividades({Key? key}) : super(key: key);
 
   @override
-  _Atividades createState() => _Atividades();
+  _AtividadesState createState() => _AtividadesState();
 }
 
-class _Atividades extends State<Atividades> {
+class _AtividadesState extends State<Atividades> {
   String? name;
 
   List<String> locals = [];
   List<String> hora = [];
   List<String> data = [];
+  List<String> ids = [];
   int? length;
 
   @override
@@ -53,18 +54,21 @@ class _Atividades extends State<Atividades> {
     List<String> localNames = [];
     List<String> horaNames = [];
     List<String> dataNames = [];
+    List<String> id = [];
 
     for (var endereco in tripData) {
+      String addressId = endereco['id'];
       String addressName = endereco['partida'];
       String addressHourId = endereco['horario'];
       String addressDateNumber = endereco['data'];
+      id.add(addressId);
       localNames.add(addressName);
       horaNames.add(addressHourId);
       dataNames.add(addressDateNumber);
     }
-    print(tripData.length);
 
     setState(() {
+      ids = id;
       locals = localNames;
       hora = horaNames;
       data = dataNames;
@@ -73,101 +77,112 @@ class _Atividades extends State<Atividades> {
 
   @override
   Widget build(BuildContext context) {
-    //List<Address> addresses = savedAddress.savedAddress;
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //ROW nome
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
+        children: [
+          Expanded(
+            child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
-                  child: Text(
-                    name ?? '',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w900,
-                      color: redIdColor,
+                //ROW nome
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
+                      child: Text(
+                        name ?? '',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.w900,
+                          color: redIdColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                //FOTO
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 32.0),
+                  child: RoundProfilePictureWithLikes(
+                    photoPath: 'assets/images/imgrandom.png',
+                    size: 120,
+                  ),
+                ),
+                //ROW ícones do menu
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      child: const RoundedSquareIcon(
+                        icon: Icons.edit_document,
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/perfilusuario');
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+                      child: GestureDetector(
+                        child: const RoundedSquareIcon(
+                          icon: Icons.email,
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pushNamed('/contatosuporte');
+                        },
+                      ),
+                    ),
+                    GestureDetector(
+                      child: const RoundedSquareIcon(
+                        icon: Icons.info_sharp,
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/faq');
+                      },
+                    ),
+                  ],
+                ),
+                //VIAGENS RECENTES
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 40.0, left: 40.0, right: 40.0, bottom: 16.0),
+                    child: Text(
+                      'Viagens recentes',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            //FOTO
-            const Padding(
-              padding: EdgeInsets.only(bottom: 32.0),
-              child: RoundProfilePictureWithLikes(
-                photoPath: 'assets/images/imgrandom.png',
-                size: 120,
-              ),
-            ),
-            //ROW ícones do menu
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  child: const RoundedSquareIcon(
-                    icon: Icons.edit_document,
-                  ),
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/perfilusuario');
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-                  child: GestureDetector(
-                    child: const RoundedSquareIcon(
-                      icon: Icons.email,
-                    ),
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/contatosuporte');
+                //LISTA
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: locals.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/detalhesviagem',
+                            arguments: {'tripId': ids[index]},
+                          );
+                        },
+                        child: AddressTile(
+                          local: locals[index],
+                          hora: hora[index],
+                          data: data[index],
+                        ),
+                      );
                     },
                   ),
                 ),
-                GestureDetector(
-                  child: const RoundedSquareIcon(
-                    icon: Icons.info_sharp,
-                  ),
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/faq');
-                  },
-                ),
               ],
             ),
-            //VIAGENS RECENTES
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(
-                    top: 40.0, left: 40.0, right: 40.0, bottom: 16.0),
-                child: Text(
-                  'Viagens recentes',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            //LISTA
-            SizedBox(
-              height: 380,
-              child: ListView.builder(
-                itemCount: locals.length,
-                itemBuilder: (context, index) {
-                  return AddressTile(
-                    apelido: locals[index],
-                    rua: hora[index],
-                    numero: data[index],
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: const BottomNav(selectedIndex: 2),
       floatingActionButton: FloatingActionButton(

@@ -71,7 +71,7 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
     Widget naoButton = TextButton(
       child: const Text('Não'),
       onPressed: () {
-        Navigator.of(context).pushReplacementNamed('/aguardandoinicio');
+        Navigator.of(context).pop();
       },
     );
 

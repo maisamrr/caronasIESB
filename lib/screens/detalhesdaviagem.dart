@@ -25,8 +25,8 @@ class _DetalhesDaViagemState extends State<DetalhesDaViagem> {
   String? marca;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     pegarNomeUser();
     pegarDadosViagem();
   }
@@ -34,20 +34,43 @@ class _DetalhesDaViagemState extends State<DetalhesDaViagem> {
   pegarDadosViagem() async {
     ViagemService viagemService = ViagemService();
 
-    var tripData = await viagemService.getTripsByUser();
+    Map<String, dynamic>? tripDataFromAtividades =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
 
-    if (tripData.isNotEmpty) {
-      Map<dynamic, dynamic> viagemAtual = tripData.last;
+    if (tripDataFromAtividades != null) {
+      String tripId = tripDataFromAtividades['tripId'];
 
-      setState(() {
-        partida = viagemAtual['partida'];
-        destino = viagemAtual['chegada'];
-        horario = viagemAtual['horario'];
-        status = viagemAtual['status'];
-        data = viagemAtual['data'];
-        marca = viagemAtual['car']['marca'];
-        placa = viagemAtual['car']['placa'];
-      });
+      var tripData = await viagemService.getTripById(tripId);
+
+      if (tripData!.isNotEmpty) {
+        Map<dynamic, dynamic> viagemAtual = tripData;
+
+        setState(() {
+          partida = viagemAtual['partida'];
+          destino = viagemAtual['chegada'];
+          horario = viagemAtual['horario'];
+          status = viagemAtual['status'];
+          data = viagemAtual['data'];
+          marca = viagemAtual['car']['marca'];
+          placa = viagemAtual['car']['placa'];
+        });
+      }
+    } else {
+      var tripData = await viagemService.getTripsByUser();
+
+      if (tripData.isNotEmpty) {
+        Map<dynamic, dynamic> viagemAtual = tripData.last;
+
+        setState(() {
+          partida = viagemAtual['partida'];
+          destino = viagemAtual['chegada'];
+          horario = viagemAtual['horario'];
+          status = viagemAtual['status'];
+          data = viagemAtual['data'];
+          marca = viagemAtual['car']['marca'];
+          placa = viagemAtual['car']['placa'];
+        });
+      }
     }
   }
 
@@ -62,6 +85,7 @@ class _DetalhesDaViagemState extends State<DetalhesDaViagem> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {});
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
