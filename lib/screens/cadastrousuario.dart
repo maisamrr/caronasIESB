@@ -196,7 +196,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.only(top: 25, left: 40.0, bottom: 40.0),
+                      const EdgeInsets.only(top: 50, left: 40.0, bottom: 40.0),
                   child: GestureDetector(
                     child: const Icon(Icons.arrow_back, size: 24),
                     onTap: () => {

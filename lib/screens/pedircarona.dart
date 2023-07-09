@@ -165,25 +165,25 @@ class _PedirCaronaState extends State<PedirCarona> {
                   ),
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: addresses.length,
-                  itemBuilder: (context, index) {
-                    final address = addresses[index];
-                    return GestureDetector(
-                      child: AddressTile(
-                        apelido: address.address,
-                        rua: address.rua,
-                        numero: address.numero,
-                        iconAsset: const Icon(Icons.hail_outlined, size: 30),
-                      ),
-                      onTap: () {
-                        _destinoController.text = address.rua;
-                      },
-                    );
-                  },
-                ),
-              ),
+              // Expanded(
+              //   child: ListView.builder(
+              //     itemCount: addresses.length,
+              //     itemBuilder: (context, index) {
+              //       final address = addresses[index];
+              //       return GestureDetector(
+              //         child: AddressTile(
+              //           apelido: address.address,
+              //           rua: address.rua,
+              //           numero: address.numero,
+              //           iconAsset: const Icon(Icons.hail_outlined, size: 30),
+              //         ),
+              //         onTap: () {
+              //           _destinoController.text = address.rua;
+              //         },
+              //       );
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),

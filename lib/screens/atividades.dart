@@ -20,6 +20,7 @@ class _Atividades extends State<Atividades> {
   List<String> locals = [];
   List<String> hora = [];
   List<String> data = [];
+  List<String> ids = [];
   int? length;
 
   @override
@@ -53,17 +54,21 @@ class _Atividades extends State<Atividades> {
     List<String> localNames = [];
     List<String> horaNames = [];
     List<String> dataNames = [];
+    List<String> id = [];
 
     for (var endereco in tripData) {
+      String addressId = endereco['id'];
       String addressName = endereco['partida'];
       String addressHourId = endereco['horario'];
       String addressDateNumber = endereco['data'];
+      id.add(addressId);
       localNames.add(addressName);
       horaNames.add(addressHourId);
       dataNames.add(addressDateNumber);
     }
 
     setState(() {
+      ids = id;
       locals = localNames;
       hora = horaNames;
       data = dataNames;
@@ -157,10 +162,19 @@ class _Atividades extends State<Atividades> {
               child: ListView.builder(
                 itemCount: locals.length,
                 itemBuilder: (context, index) {
-                  return AddressTile(
-                    apelido: locals[index],
-                    rua: hora[index],
-                    numero: data[index],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/detalhesviagem',
+                        arguments: {'tripId': ids[index]},
+                      );
+                    },
+                    child: AddressTile(
+                      local: locals[index],
+                      hora: hora[index],
+                      data: data[index],
+                    ),
                   );
                 },
               ),
