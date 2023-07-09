@@ -1,4 +1,5 @@
 import 'package:caronapp/services/user_service.dart';
+import 'package:caronapp/widgets/newtextformfield.dart';
 import 'package:flutter/material.dart';
 import 'custombutton.dart';
 
@@ -18,6 +19,7 @@ class _FormLoginState extends State<FormLogin> {
   String _errorLogin = '';
 
   bool _obscurePassword = true;
+  String? _errorText;
 
   @override
   void dispose() {
@@ -53,6 +55,14 @@ class _FormLoginState extends State<FormLogin> {
 
     String email = _emailController.text;
     String senha = _senhaController.text;
+    String? errorPassword = _validatePassword(senha);
+
+    if (errorPassword != null) {
+      setState(() {
+        _errorText = errorPassword;
+      });
+      return;
+    }
 
     UserService userService = UserService();
 
@@ -93,35 +103,116 @@ class _FormLoginState extends State<FormLogin> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: NewTextFormField(
+                controller: _emailController,
+                validator: _validateEmail,
+                keyboardType: TextInputType.emailAddress,
+                errorTextColor: const Color.fromARGB(255, 113, 7, 7),
+                hintText: 'E-mail'),
+          ),
+          //SENHA
           Padding(
-            padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-            child: Container(
-              height: 64,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.fromLTRB(24, 8, 8, 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                   child: TextFormField(
-                    controller: _emailController,
-                    validator: _validateEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
+                    controller: _senhaController,
+                    keyboardType: TextInputType.text,
+                    obscureText: _obscurePassword,
+                    decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'E-mail',
-                    ),
+                      hintText: 'Senha',
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                        child: Icon(
+                          _obscurePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                    ),),
                     onChanged: (text) {
                       setState(() {});
                     },
                   ),
                 ),
+                if (_errorText != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 8),
+                    child: Text(
+                      _errorText!,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 113, 7, 7),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          //FIM SENHA
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0, left: 40.0),
+            child: TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/esquecisenha');
+              },
+              style: ElevatedButton.styleFrom(),
+              child: const Text(
+                'Esqueci minha senha',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 12,
+                ),
               ),
             ),
           ),
           Padding(
+            padding: const EdgeInsets.only(left: 40.0),
+            child: CustomButton(
+              text: 'Login',
+              onPressed: () => _submitForm(context),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0, left: 40.0, bottom: 40.0),
+            child: TextButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/cadastrousuario');
+              },
+              style: ElevatedButton.styleFrom(),
+              child: const Text(
+                'Não tem uma conta? Inscreva-se',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+/*
+Padding(
             padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
             child: Container(
               height: 64,
@@ -161,50 +252,4 @@ class _FormLoginState extends State<FormLogin> {
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, left: 40.0),
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/esquecisenha');
-              },
-              style: ElevatedButton.styleFrom(),
-              child: const Text(
-                'Esqueci minha senha',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40.0),
-            child: CustomButton(
-              text: 'Login',
-              onPressed: () => _submitForm(context),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, left: 40.0),
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacementNamed('/cadastrousuario');
-              },
-              style: ElevatedButton.styleFrom(),
-              child: const Text(
-                'Não tem uma conta? Inscreva-se',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+          ), */

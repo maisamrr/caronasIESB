@@ -1,6 +1,7 @@
 import 'package:caronapp/const.dart';
 import 'package:caronapp/services/user_service.dart';
 import 'package:caronapp/widgets/formtextfield.dart';
+import 'package:caronapp/widgets/newtextformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:caronapp/widgets/custombutton.dart';
 import 'package:flutter/services.dart';
@@ -30,6 +31,8 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
   UserStore userTeste = UserStore();
 
   bool _obscurePassword = true;
+    String? _errorText;
+
 
   String? _validateNome(String? value) {
     if (value == null || value.isEmpty) {
@@ -91,6 +94,16 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
 
   Future<void> _submitForm(BuildContext context) async {
     if (!_form.currentState!.validate()) {
+      return;
+    }
+
+    String senha = _senhaController.text;
+    String? errorPassword = _validateSenha(senha);
+
+    if (errorPassword != null) {
+      setState(() {
+        _errorText = errorPassword;
+      });
       return;
     }
 
@@ -215,7 +228,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 40.0),
+                  padding: const EdgeInsets.only(bottom: 8.0),
                   child: Text(
                     _errorLogin,
                     style: const TextStyle(
@@ -226,78 +239,91 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                FormTextField(
+                NewTextFormField(
                   controller: _nomeController,
                   validator: _validateNome,
                   keyboardType: TextInputType.text,
-                  labelText: 'Nome',
+                  hintText: 'Nome',
+                  errorTextColor: redIdColor,
                 ),
-                FormTextField(
+                NewTextFormField(
                   controller: _celularController,
                   validator: _validateCelular,
                   keyboardType: TextInputType.phone,
                   maxLength: 11,
                   format: FilteringTextInputFormatter.digitsOnly,
-                  labelText: 'Celular',
+                  hintText: 'Celular',
+                  errorTextColor: redIdColor,
                 ),
-                FormTextField(
+                NewTextFormField(
                   controller: _matriculaController,
                   validator: _validateMatricula,
                   keyboardType: TextInputType.number,
                   maxLength: 10,
                   format: FilteringTextInputFormatter.digitsOnly,
-                  labelText: 'Matrícula',
+                  hintText: 'Matrícula',
+                  errorTextColor: redIdColor,
                 ),
-                FormTextField(
+                NewTextFormField(
                   controller: _emailController,
                   validator: _validateEmail,
                   keyboardType: TextInputType.emailAddress,
-                  labelText: 'E-mail',
+                  hintText: 'E-mail',
+                  errorTextColor: redIdColor,
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
-                  child: Container(
-                    height: 64,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: TextFormField(
-                          controller: _senhaController,
-                          validator: _validateSenha,
-                          keyboardType: TextInputType.text,
-                          obscureText: _obscurePassword,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Senha',
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _obscurePassword = !_obscurePassword;
-                                });
-                              },
-                              child: Icon(
-                                _obscurePassword
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                            ),
-                          ),
-                          onChanged: (text) {
-                            setState(() {});
-                          },
+                //SENHA
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.fromLTRB(24, 8, 8, 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: TextFormField(
+                    controller: _senhaController,
+                    keyboardType: TextInputType.text,
+                    obscureText: _obscurePassword,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Senha',
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                        child: Icon(
+                          _obscurePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                         ),
+                    ),),
+                    onChanged: (text) {
+                      setState(() {});
+                    },
+                  ),
+                ),
+                if (_errorText != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 8),
+                    child: Text(
+                      _errorText!,
+                      style: TextStyle(
+                        color: redIdColor,
+                        fontSize: 12,
                       ),
                     ),
                   ),
-                ),
+              ],
+            ),
+          ),
+          //FIM SENHA
                 Padding(
-                  padding: const EdgeInsets.only(top: 16.0, left: 32.0),
+                  padding: const EdgeInsets.only(top: 16.0, left: 40.0),
                   child: Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,
                     direction: Axis.horizontal,
@@ -338,3 +364,47 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
     );
   }
 }
+
+/*
+Padding(
+                  padding:
+                      const EdgeInsets.only(top: 16.0, left: 40.0, right: 40.0),
+                  child: Container(
+                    height: 64,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextFormField(
+                          controller: _senhaController,
+                          validator: _validateSenha,
+                          keyboardType: TextInputType.text,
+                          obscureText: _obscurePassword,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Senha',
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
+                              child: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            ),
+                          ),
+                          onChanged: (text) {
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ), */

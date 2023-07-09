@@ -28,27 +28,31 @@ class CustomInfoBox extends StatelessWidget {
             children: [
               Icon(iconData, color: Colors.grey,),
               const SizedBox(width: 16.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    boldText,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
+              Flexible( // Utilize o Flexible para evitar o overflow do texto
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      boldText,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
+                      maxLines: 2, // Defina o número máximo de linhas para limitar o tamanho do texto
+                      overflow: TextOverflow.ellipsis, // Defina o tipo de overflow caso o texto ultrapasse o limite
                     ),
-                  ),
-                  const SizedBox(height: 4.0),
-                  Text(
-                    lightText,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 14,
-                      color: Colors.grey,
+                    const SizedBox(height: 4.0),
+                    Text(
+                      lightText,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

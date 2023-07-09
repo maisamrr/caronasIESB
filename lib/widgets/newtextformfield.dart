@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NewTextFormField extends StatefulWidget {
   final TextEditingController controller;
@@ -7,6 +8,10 @@ class NewTextFormField extends StatefulWidget {
   final Color errorTextColor;
   final String? hintText;
 
+  final bool? enabled;
+  final TextInputFormatter? format;
+  final int? maxLength;
+
   const NewTextFormField({
     Key? key,
     required this.controller,
@@ -14,6 +19,9 @@ class NewTextFormField extends StatefulWidget {
     required this.keyboardType,
     required this.errorTextColor,
     required this.hintText,
+    this.enabled,
+    this.format,
+    this.maxLength,
   }) : super(key: key);
 
   @override
@@ -26,32 +34,53 @@ class _NewTextFormFieldState extends State<NewTextFormField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(40, 16, 40, 16),
+      padding: const EdgeInsets.fromLTRB(40, 16, 40, 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(24, 8, 8, 8),
+            padding: const EdgeInsets.fromLTRB(24, 8, 8, 8),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20.0),
             ),
-            child: TextFormField(
-              keyboardType: widget.keyboardType,
-              validator: (value) {
-                setState(() {
-                  _errorText = widget.validator?.call(value);
-                });
-                return null;
-              },
-              controller: widget.controller,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: widget.hintText,
-              ),
-              onChanged: (text) {
-                setState(() {});
-              },
+            child: Stack(
+            alignment: Alignment.centerRight,
+              children: [
+                TextFormField(
+                  controller: widget.controller,
+                  validator: (value) {
+                    setState(() {
+                      _errorText = widget.validator?.call(value);
+                    });
+                    return null;
+                  },
+                  keyboardType: widget.keyboardType,
+                  inputFormatters: widget.format != null ? [widget.format!] : null,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: widget.hintText,
+                  ),
+                  enabled: widget.enabled ?? true,
+                  onChanged: (text) {
+                    setState(() {});
+                  },
+                ),
+                if (widget.maxLength != null)
+                  Positioned(
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Text(
+                        '${widget.controller.text.length}/${widget.maxLength}',
+                        style: const TextStyle(fontSize: 12.0, color: Colors.grey),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
           if (_errorText != null)

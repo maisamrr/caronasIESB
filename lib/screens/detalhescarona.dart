@@ -72,7 +72,6 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
     Widget simButton = TextButton(
       child: const Text('Sim'),
       onPressed: () async {
-        // PENDENTE: mudar status da viagem atual para finalizada
         await ViagemService().setStatusViagem(tripId, StatusViagem.finalizada);
 
         Navigator.of(context).pushNamed('/detalhesviagem');
@@ -148,8 +147,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                   ),
                 ),
               ),
-              GestureDetector(
-                child: SizedBox(
+               SizedBox(
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -165,7 +163,7 @@ class _DetalhesCaronaState extends State<DetalhesCarona> {
                     ),
                   ),
                 ),
-              ),
+              
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 32, 40, 0),
                 child: Row(

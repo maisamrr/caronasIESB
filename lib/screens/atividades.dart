@@ -105,7 +105,7 @@ class _AtividadesState extends State<Atividades> {
                 const Padding(
                   padding: EdgeInsets.only(bottom: 32.0),
                   child: RoundProfilePictureWithLikes(
-                    photoPath: 'assets/images/imgrandom.png',
+                    photoPath: 'assets/images/imgdefaultuser.png',
                     size: 120,
                   ),
                 ),

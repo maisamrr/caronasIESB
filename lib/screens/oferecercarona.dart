@@ -9,6 +9,7 @@ import '../widgets/carwidget.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/customsearchfield.dart';
 import '../widgets/kmformfield.dart';
+import '../widgets/newtextformfield.dart';
 
 class OferecerCarona extends StatefulWidget {
   const OferecerCarona({Key? key}) : super(key: key);
@@ -150,9 +151,9 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'Adicione um carro',
                                     style: TextStyle(
@@ -176,21 +177,22 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                     ),
                   ),
                 ),
-
                 //partida
-                CustomSearchField(
-                  labelText: 'Local de partida',
+                NewTextFormField(
+                  hintText: 'Local de partida',
                   controller: _partidaController,
                   validator: _validateEndereco,
                   keyboardType: TextInputType.text,
-                  backgroundColor: Colors.white,
+                  errorTextColor: redIdColor,
+                  maxLength: 20, 
                 ),
-                CustomSearchField(
-                  labelText: 'Destino final',
+                NewTextFormField(
+                  hintText: 'Destino final',
                   controller: _destinoController,
                   validator: _validateEndereco,
                   keyboardType: TextInputType.text,
-                  backgroundColor: Colors.white,
+                  errorTextColor: redIdColor,
+                  maxLength: 20,
                 ),
                 KmFormField(
                   context: context,
@@ -202,7 +204,7 @@ class _OferecerCaronaState extends State<OferecerCarona> {
                   },
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(left: 40, top: 7),
+                    padding: const EdgeInsets.only(left: 40, top: 8, bottom: 24.0),
                     child: CustomButton(
                       text: 'VemJunto',
                       onPressed: () => _submitForm(context),

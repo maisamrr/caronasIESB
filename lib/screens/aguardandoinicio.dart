@@ -146,9 +146,12 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              GestureDetector(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+              Padding(
+                  padding: const EdgeInsets.only(
+                      top: 16.0,
+                      left: 48.0,
+                      right: 48.0,
+                    ),
                   child: SizedBox(
                     width: double.infinity,
                     child: Stack(
@@ -178,20 +181,20 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                                   ),
                                   child: Image.asset(
                                     'assets/images/logovermelho.png',
-                                    height: 120.0,
+                                    height: 60.0,
                                   ),
                                 ),
                                 const Text(
                                   'Sua carona deve iniciar às',
                                   style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 16.0,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
                                 Text(
                                   horario ?? '',
                                   style: const TextStyle(
-                                    fontSize: 24.0,
+                                    fontSize: 18.0,
                                     height: 1.5,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -205,7 +208,7 @@ class _AguardandoInicioState extends State<AguardandoInicio> {
                     ),
                   ),
                 ),
-              ),
+              
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 32, 40, 0),
                 child: Row(

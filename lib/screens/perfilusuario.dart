@@ -2,8 +2,10 @@ import 'package:caronapp/const.dart';
 import 'package:caronapp/screens/atividades.dart';
 import 'package:caronapp/services/user_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/custombutton.dart';
 import '../widgets/formtextfield.dart';
+import '../widgets/newtextformfield.dart';
 import '../widgets/roundprofilepicture.dart';
 
 class PerfilUsuario extends StatefulWidget {
@@ -212,21 +214,31 @@ class _PerfilUsuario extends State<PerfilUsuario> {
                   key: _form,
                   child: Column(
                     children: [
-                      FormTextField(
-                          controller: _nomeController,
-                          validator: _validateNome,
-                          keyboardType: TextInputType.text,
-                          labelText: 'Nome'),
-                      FormTextField(
-                          controller: _celularController,
-                          validator: _validateCelular,
-                          keyboardType: TextInputType.phone,
-                          labelText: 'Celular'),
-                      FormTextField(
-                          controller: _matriculaController,
-                          validator: _validateMatricula,
-                          keyboardType: TextInputType.text,
-                          labelText: 'Matricula'),
+                      NewTextFormField(
+                        controller: _nomeController,
+                        validator: _validateNome,
+                        keyboardType: TextInputType.text,
+                        hintText: 'Nome',
+                        errorTextColor: redIdColor,
+                      ),
+                      NewTextFormField(
+                        controller: _celularController,
+                        validator: _validateCelular,
+                        keyboardType: TextInputType.phone,
+                        maxLength: 11,
+                        format: FilteringTextInputFormatter.digitsOnly,
+                        hintText: 'Celular',
+                        errorTextColor: redIdColor,
+                      ),
+                      NewTextFormField(
+                        controller: _matriculaController,
+                        validator: _validateMatricula,
+                        keyboardType: TextInputType.number,
+                        maxLength: 10,
+                        format: FilteringTextInputFormatter.digitsOnly,
+                        hintText: 'Matrícula',
+                        errorTextColor: redIdColor,
+                      ),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
